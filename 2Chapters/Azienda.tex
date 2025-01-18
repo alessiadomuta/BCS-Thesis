@@ -1,20 +1,102 @@
 \chapter{L' Azienda}
     \section{SogeaSoft S.r.l}
-    Scriverò una breve introduzione all’azienda SogeaSoft S.r.l. e all’azienda acquisitrice Bluenext S.r.l.
+    SogeaSoft S.r.l. è un'azienda di sviluppo \textit{software} fondata nel 1980 a Treviso, con l'obiettivo di progettare e realizzare soluzioni a supporto dei processi aziendali, servendo diverse realtà nel Triveneto.
+    Oggi, SogeaSoft rappresenta una filiale di Bluenext S.r.l., azienda di consulenza informatica fondata nel 2012 a Rimini, attiva su tutto il territorio nazionale. Inizialmente, l'azienda acquisitrice si concentrava esclusivamente sullo sviluppo di un \textit{software} per ottimizzare il settore commerciale delle imprese, ma negli ultimi anni ha ampliato il proprio raggio d'azione, esplorando nuovi settori.
     
     \section{Organizzazione aziendale}
-    Descriverò l’organizzazione interna dell’azienda: i diversi dipartimenti, come questi interagiscono e il loro ruolo. Illustrerò anche la nuova realtà aziendale emersa dopo l’acquisizione.
+    La Figura 1.1 mostra come Sogeasoft S.r.l. sia strutturata in diverse aree operative, ciascuna dedicata alla gestione e allo sviluppo dei prodotti e servizi descritti nei punti seguenti: 
+    
+    \begin{itemize}
+        \item \textbf{SAI}: si occupa dello sviluppo dell'\textit{Enterprise Resource Planning} (ERP), in particolare rappresenta la libreria di base e gestisce la contabilità.
+        \item \textbf{SAICon}: sviluppa soluzioni verticali per il settore delle confezioni (abbigliamento) e calzaturiero, integrate con l'ERP SAI.
+        \item \textbf{SAIOnWeb}: si concentra su applicativi correlati agli ERP, ma anche su soluzioni autonome come \textit{Customer Relationship Management} (CRM), \textit{Supplier Relationship Management} (SRM), raccolta ordini e \textit{After Sales Service} (ASS). Inoltre, sviluppa la nuova architettura per la migrazione del gestionale.
+        \item \textbf{SAIPro}: fornisce applicativi per la pianificazione e il controllo della produzione, destinati alle aziende manifatturiere.
+        \item \textbf{BI}: Sviluppa soluzioni per la \textit{Business Intelligence} (BI), focalizzandosi sull'analisi dei dati aziendali per ottimizzare le \textit{performance} e supportare decisioni strategiche più informate e mirate. 
+        \item \textbf{CS} (\textit{Customer Service}): offre supporto ai clienti tramite due uffici: uno dedicato a SAI e l'altro a SAICon, per garantire assistenza mirata.
+        \item \textbf{Ufficio sistemistico}: si occupa della gestione dell'infrastruttura \textit{hardware}, sia interna all'azienda che per i clienti che richiedono supporto, oltre a fornire assistenza ai \textit{team} di sviluppo.
+    \end{itemize}
+    
+    \noindent SAIonWeb è stato il tema principale del mio \textit{stage}. Il nome SAIonWeb era inizialmente legato al progetto originale, focalizzato esclusivamente su applicativi utilizzabili tramite il \textit{web}. Tuttavia, con l'evoluzione dell'architettura del sistema, il nome è diventato fuorviante. Attualmente il progetto si occupa di sviluppare un'infrastruttura più moderna e flessibile, che possa eventualmente supportare e gradualmente sostituire il gestionale SAI. 
+    Questo processo prevede la collaborazione di membri provenienti da diverse aree, tra cui il \textit{team} di SAICon e quello di SAIPro, che lavorano congiuntamente per integrare i vari componenti del sistema.\\
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{BCS-Tessi/images/SOGEAProdotti.png}
+        \caption{Panoramica dei prodotti e servizi offerti da SogeaSoft}
+        \label{fig:panoramica_prodotti}
+    \end{figure}
+
+    \noindent Come si può osservare in Figura 1.1, i principali prodotti di SogeaSoft S.r.l. sono strettamente interconnessi, il che si riflette nell’organizzazione dei \textit{team} all’interno dell’azienda. Sebbene esista una divisione indicativa basata sul tipo di prodotto sviluppato, i ruoli risultano essere sfumati e coprono più aree di competenza. 
+    \noindent Le persone che lavorano su ciascun prodotto fanno riferimento a un \textit{Product Owner}, che può rappresentare più \textit{team} in base alle necessità.
+
+    \noindent Durante il mio \textit{stage} ho avuto modo di interagire con: 
+    \begin{itemize}
+        \item \textbf{\textit{Product Owner}}: si occupa di definire la visione del prodotto, gestire il \textit{backlog}, e collaborare con il \textit{team} di sviluppo e gli \textit{stakeholder}.
+        \item \textbf{\textit{Team Leader}}: gestisce il \textit{team} di sviluppo. In SogeaSoft S.r.l. questa figura può coincidere con il \textit{Product Owner} e/o con il \textit{Scrum Master}. (non so se tenerlo)
+        \item \textbf{Sviluppatore}: si occupa di progettazione, sviluppo e \textit{testing} del \textit{software}. In base al grado di esperienza contribuisce anche all'analisi e all'assistenza ai clienti. 
+    \end{itemize}
+
+
     \section{Prodotti di SogeaSoft}
-    Descriverò il prodotto principale, le sue funzioni e tutte le sue declinazioni nei diversi contesti
-    applicativi.
+
+    Il prodotto principale di SogeaSoft S.r.l. è un \textit{software} ERP denominato SAI (Sistema Aziendale Integrato). Costituisce la base per tutti gli altri prodotti sviluppati dall'azienda infatti fanno affidamento diretto su SAI. Nasce come software per la gestione della contabilità, poi ampliato con il tempo e adattato a realtà manifatturiere, portando la necessità di introdurre ulteriori funzionalità. 
+    Nel contesto del mio stage ho potuto approfondire SAIOnWeb e SAIPro che sviluppano le seguenti funzionalità:
+    \begin{itemize}
+        \item \textbf{Material Requirements Planning (MRP)}: pianificazione per determinare i materiali necessari per la produzione, ottimizzando i tempi di approvvigionamento e garantendo la disponibilità delle componenti richieste;
+        \item \textbf{Master Production Scheduling} (MPS): piano di produzione dettagliato per garantire il rispetto degli impegni con i clienti, ottimizzando l’utilizzo delle risorse e coordinando la produzione con la domanda prevista;
+        \item \textbf{Capacity Requirements Planning (CRP)}: analisi delle capacità produttive disponibili per verificare che siano adeguate a soddisfare i requisiti stabiliti dal piano di produzione;
+        \item \textbf{Finite Capacity Scheduling (FCS)}: pianificazione dettagliata che considera i limiti effettivi delle risorse aziendali, ottimizzando l'allocazione e la sequenza delle attività produttive per massimizzare l'efficienza.       
+    \end{itemize}
+    
         \subsection{Target dell'azienda}
-        Scriverò una descrizione del target dell’azienda indicando dimensione e caratteristiche delle
-        aziende clienti, con un focus specifico sul tipo di azienda cliente del mio stage.
+        SogeaSoft S.r.l. si rivolge principalmente alle Piccole e Medie Imprese (PMI), che spesso presentano la necessità di digitalizzare i propri processi aziendali, richiedendo al contempo un supporto tecnico affidabile e costante.  
+        
+        \noindent Le PMI che rappresentano il target principale dell’azienda operano prevalentemente nel settore manifatturiero e sono interessate a ottimizzare i propri flussi operativi. Questi includono la gestione e il monitoraggio delle \textit{performance} del personale, la regolazione e l’automazione dei processi logistici, e l’implementazione di soluzioni che migliorino la pianificazione, la produzione e il controllo dei costi.
+        
     \section{Modello di sviluppo}
-    Descriverò il modello di sviluppo adottato dall’azienda.
+    SogeaSoft S.r.l. ha adottato un modello di sviluppo software basato sul \textit{framework} Scrum, una metodologia ispirata ai principi dell’Agile Manifesto. Questo approccio mira a ottimizzare il processo di lavoro rendendolo modulare, adattivo e in grado di rispondere rapidamente ai cambiamenti e alle necessità del cliente e alla complessità delle commesse.  
+    
+    \noindent Alla base di Scrum vi è il concetto di \textit{User Story}, una descrizione ad alto livello delle funzionalità attese dal cliente o individuate dal \textit{Product Owner}. Le \textit{User Story}, raccolte nel \textit{Product Backlog}, costituiscono l'insieme di attività prioritarie che guidano lo sviluppo. Questo elenco viene costantemente aggiornato per riflettere nuove necessità o modificare le priorità.
+    
+    \noindent Dopo essere state definite e raffinate, le \textit{User Story} guidano l'organizzazione e la pianificazione dello sviluppo, che avviene attraverso cicli iterativi chiamati \textit{Sprint}. Questo approccio consente di garantire un miglior controllo dei processi e un allineamento costante tra il \textit{team} di sviluppo e gli obiettivi aziendali. 
+
+    \noindent Le principali cerimonie Scrum adottate sono visibili in un diagramma nella Figura 1.2, meglio descritte in seguito:
+    \begin{itemize}
+    
+        \item \textbf{\textit{Sprint Planning}}: all'inizio di ogni \textit{Sprint}, il gruppo di lavoro partecipa a una sessione di pianificazione per selezionare gli elementi del \textit{backlog} da sviluppare. Gli obiettivi principali dello \textit{Sprint} vengono definiti insieme allo \textit{Sprint Goal}, che rappresenta il risultato principale atteso. Le attività vengono poi suddivise in compiti più piccoli, stimati tramite la sequenza di Fibonacci, per garantire una gestione efficace delle tempistiche;
+
+        \item \textbf{\textit{Daily Scrum}}: ogni giorno, il gruppo di sviluppo e lo \textit{Scrum Master} partecipano a un incontro breve, durante il quale si coordinano le attività e si identificano eventuali ostacoli. Questo garantisce un allineamento costante del gruppo verso gli obiettivi dello \textit{Sprint};
+
+        \item \textbf{\textit{Sprint Review}}: alla fine dello \textit{Sprint}, gli incrementi di prodotto sviluppati vengono presentati. Sebbene in teoria questa fase preveda il coinvolgimento degli \textit{stakeholder}, nel caso di SogeaSoft S.r.l. il ruolo di collegamento con il cliente finale viene svolto dal \textit{Product Owner}, il quale raccoglie \textit{feedback} e li traduce in aggiornamenti per il \textit{backlog};  
+
+        \item \textbf{\textit{Sprint Retrospective}}: questo momento di riflessione sul lavoro svolto è utilizzato dal gruppo di lavoro per identificare opportunità di miglioramento nel processo di sviluppo. Tuttavia, data la dimensione contenuta dei \textit{team} e la consolidata organizzazione del lavoro, questa cerimonia viene svolta solo quando necessario.  
+
+        \item \textbf{Raffinamento del \textit{Backlog}}: un'altra attività fondamentale è quella del Raffinamento, che si tiene con cadenza regolare per preparare gli elementi del \textit{backlog} per i successivi \textit{Sprint}. Durante queste sessioni, il gruppo di lavoro collabora per suddividere le funzionalità più complesse in elementi più piccoli, chiarire i requisiti e definire criteri di accettazione. Questo processo garantisce che gli elementi siano chiari e pronti per essere inclusi nel prossimo \textit{Sprint Planning}. La responsabilità principale di questa attività ricade sul \textit{Product Owner}, con il supporto del \textit{team} di sviluppo.
+        
+    \end{itemize}
+    
+    \noindent In sintesi, il modello di sviluppo di SogeaSoft si basa su una gestione iterativa e collaborativa, che consente di rispondere in modo agile alle richieste dei clienti e di mantenere un flusso di lavoro efficace e focalizzato sugli obiettivi aziendali.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{BCS-Tessi/images/scrum_flow.png}
+        \caption{Diagramma del flusso di lavoro del modello Scrum, basato sulla filosofia Agile}
+        \label{fig:scrum_flow}
+    \end{figure}
+    
     \section{Organizzazione interna}
-    Scriverò sui processi di gestione e controllo che l’azienda Sogea S.r.l ha deciso di adottare per
-    garantire la qualità dei prodotti: lo standard implementato, approfondito nelle successive sezioni.
+    SogeaSoft S.r.l. implementa i principi della norma \textbf{UNI EN ISO 9001:2015} per garantire un sistema di gestione della qualità efficace e orientato al miglioramento continuo. 
+    
+    \noindent Pur essendo generica e non specificamente pensata per il settore del software, trova applicazione nell’organizzazione attraverso l’adozione di pratiche che promuovono la standardizzazione dei processi e l’efficienza operativa. L'approccio per processi è alla base della struttura operativa dell'azienda, che organizza il lavoro in unità dedicate (ad esempio SAI, SAIPro e SAICon) e adotta metodologie Agile come Scrum per la pianificazione e gestione delle attività. 
+
+    \noindent Anche i principi dell’approccio per processi e del metodo Plan-Do-Check-Act (PDCA) sono applicati in tutte le fasi operative. Il PDCA si concretizza attraverso la pianificazione accurata delle attività (Plan), la loro esecuzione (Do), l’analisi dei risultati ottenuti (Check) e l’implementazione di eventuali azioni correttive o migliorative (Act).
+
+    \noindent Un esempio evidente dell’applicazione del PDCA è riscontrabile nel modello di sviluppo Scrum, adottato da SogeaSoft per garantire iterazioni rapide e flessibili. Durante gli \textit{Sprint}, il \textit{backlog} viene pianificato e raffinato (\textit{Plan}), le attività vengono eseguite secondo le priorità stabilite (\textit{Do}), e i risultati sono presentati e analizzati attraverso la \textit{Sprint Review} e la \textit{Retrospective} (\textit{Check}). Eventuali miglioramenti vengono quindi incorporati negli \textit{Sprint} successivi (\textit{Act}).
+    
+    \noindent Inoltre, SogeaSoft adotta il \textit{risk-based thinking }per identificare e affrontare rischi e opportunità, integrando questi elementi nella progettazione delle nuove architetture e nel supporto ai clienti. La norma ISO 9001 enfatizza anche l'importanza della leadership e della comunicazione interna, aspetti che l'azienda realizza attraverso il ruolo del \textit{Product Owner}, responsabile di mantenere il contatto con il cliente e garantire che le richieste siano tradotte in requisiti tecnici chiari. L'attenzione alla qualità e alla soddisfazione del cliente è ulteriormente sostenuta dalla gestione del \textit{backlog} e dal raffinamento continuo delle \textit{User Story}, in linea con i principi di trasparenza e tracciabilità richiesti dalla norma. 
+
+    hmm no, da rivedere la norma
+    
         \subsection{Gestione della configurazione}
         Questo capitolo conterrà la descrizione dei protocolli interni adottati per la gestione del
         versionamento, della tracciabilità delle modifiche, e del versionamento della documentazione.
