@@ -12,7 +12,7 @@
         \item \textbf{SAIOnWeb}: si concentra su applicativi correlati agli ERP, ma anche su soluzioni autonome come \textit{Customer Relationship Management} (CRM), \textit{Supplier Relationship Management} (SRM), raccolta ordini e \textit{After Sales Service} (ASS). Inoltre, sviluppa la nuova architettura per la migrazione del gestionale.
         \item \textbf{SAIPro}: fornisce applicativi per la pianificazione e il controllo della produzione, destinati alle aziende manifatturiere.
         \item \textbf{BI}: Sviluppa soluzioni per la \textit{Business Intelligence} (BI), focalizzandosi sull'analisi dei dati aziendali per ottimizzare le \textit{performance} e supportare decisioni strategiche più informate e mirate. 
-        \item \textbf{CS} (\textit{Customer Service}): offre supporto ai clienti tramite due uffici: uno dedicato a SAI e l'altro a SAICon, per garantire assistenza mirata.
+        \item \textbf{CS} (\textit{Customer Service}): offre supporto ai clienti tramite un ufficio dedicato a SAI e un altro dedicato a SAICon, per garantire assistenza mirata.
         \item \textbf{Ufficio sistemistico}: si occupa della gestione dell'infrastruttura \textit{hardware}, sia interna all'azienda che per i clienti che richiedono supporto, oltre a fornire assistenza ai \textit{team} di sviluppo.
     \end{itemize}
     
@@ -85,19 +85,31 @@
     \end{figure}
     
     \section{Organizzazione interna}
-    SogeaSoft S.r.l. implementa i principi della norma \textbf{UNI EN ISO 9001:2015} per garantire un sistema di gestione della qualità efficace e orientato al miglioramento continuo. 
+    SogeaSoft S.r.l. implementa i principi della norma \textbf{UNI EN ISO 9001:2015} per garantire un sistema di gestione della qualità dei prodotti efficace.
     
-    \noindent Pur essendo generica e non specificamente pensata per il settore del software, trova applicazione nell’organizzazione attraverso l’adozione di pratiche che promuovono la standardizzazione dei processi e l’efficienza operativa. L'approccio per processi è alla base della struttura operativa dell'azienda, che organizza il lavoro in unità dedicate (ad esempio SAI, SAIPro e SAICon) e adotta metodologie Agile come Scrum per la pianificazione e gestione delle attività. 
+    \noindent Pur non essendo specificamente pensata per lo sviluppo \textit{software}, la norma trova applicazione nell’organizzazione grazie all’adozione di pratiche volte a standardizzare i processi e migliorare l’efficienza operativa. L'azienda basa la propria struttura sull'approccio per processi, suddividendo il lavoro in unità specializzate (come SAI, SAIPro e SAICon) e adottando metodologie \textit{Agile} per la pianificazione e gestione delle attività, ispirandosi allo standard ISO/IEC/IEEE 12207 (\textit{Systems and software engineering - Software life cycle processes}).
 
     \noindent Anche i principi dell’approccio per processi e del metodo Plan-Do-Check-Act (PDCA) sono applicati in tutte le fasi operative. Il PDCA si concretizza attraverso la pianificazione accurata delle attività (Plan), la loro esecuzione (Do), l’analisi dei risultati ottenuti (Check) e l’implementazione di eventuali azioni correttive o migliorative (Act).
 
-    \noindent Un esempio evidente dell’applicazione del PDCA è riscontrabile nel modello di sviluppo Scrum, adottato da SogeaSoft per garantire iterazioni rapide e flessibili. Durante gli \textit{Sprint}, il \textit{backlog} viene pianificato e raffinato (\textit{Plan}), le attività vengono eseguite secondo le priorità stabilite (\textit{Do}), e i risultati sono presentati e analizzati attraverso la \textit{Sprint Review} e la \textit{Retrospective} (\textit{Check}). Eventuali miglioramenti vengono quindi incorporati negli \textit{Sprint} successivi (\textit{Act}).
+    \noindent Un esempio evidente dell’applicazione del PDCA è riscontrabile nel modello di sviluppo Scrum, adottato da SogeaSoft S.r.l.per garantire iterazioni rapide e flessibili. Durante gli \textit{Sprint}, il \textit{backlog} viene pianificato e raffinato (\textit{Plan}), le attività vengono eseguite secondo le priorità stabilite (\textit{Do}), e i risultati sono presentati e analizzati attraverso la \textit{Sprint Review} e la \textit{Retrospective} (\textit{Check}). Eventuali miglioramenti vengono quindi incorporati negli \textit{Sprint} successivi (\textit{Act}).
     
-    \noindent Inoltre, SogeaSoft adotta il \textit{risk-based thinking }per identificare e affrontare rischi e opportunità, integrando questi elementi nella progettazione delle nuove architetture e nel supporto ai clienti. La norma ISO 9001 enfatizza anche l'importanza della leadership e della comunicazione interna, aspetti che l'azienda realizza attraverso il ruolo del \textit{Product Owner}, responsabile di mantenere il contatto con il cliente e garantire che le richieste siano tradotte in requisiti tecnici chiari. L'attenzione alla qualità e alla soddisfazione del cliente è ulteriormente sostenuta dalla gestione del \textit{backlog} e dal raffinamento continuo delle \textit{User Story}, in linea con i principi di trasparenza e tracciabilità richiesti dalla norma. 
+    \noindent La Figura 1.3 mostra il certificato UNI EN ISO 9001:2015 ottenuto dall’azienda, che conferma l’impegno di SogeaSoft S.r.l. nel mantenere elevati standard di qualità nei propri processi.
 
-    hmm no, da rivedere la norma
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\linewidth]{BCS-Tessi/images/CertificatoSogea.jpg}
+        \caption{Figura 1.3: Certificazione ISO ottenuta da SogeaSoft S.r.l.
+        Fonte: https://sogeasoft.com/p/iso9001 \textit{(ultimo accesso 26/02/2025)}}
+        \label{fig:certificazione-iso}
+    \end{figure}
+
+    \noindent Nelle successive sezioni approfondirò i processi di ciclo di vita del \textit{software} a cui ho avuto modo di partecipare durante il mio \textit{stage}. In particolare, riferendomi allo standard ISO/IEC/IEEE 12207:2017 tratterò i seguenti capitoli: Processi organizzativi e abilitanti e Processi di Gestione Tecnica.
+    
     
         \subsection{Gestione della configurazione}
+        La Gestione della configurazione appartiene alla categoria di Processi di Gestione Tecnica. 
+        Lo scopo del Processo di Gestione della Qualità è garantire che prodotti, servizi e implementazioni dei processi del ciclo di vita soddisfino gli obiettivi di qualità dell'organizzazione e raggiungano la soddisfazione del cliente.
+        
         Questo capitolo conterrà la descrizione dei protocolli interni adottati per la gestione del
         versionamento, della tracciabilità delle modifiche, e del versionamento della documentazione.
         \subsection{Gestione dell’informazione}
