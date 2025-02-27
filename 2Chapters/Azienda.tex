@@ -107,12 +107,21 @@
     
     
         \subsection{Gestione della configurazione}
-        La Gestione della configurazione appartiene alla categoria di Processi di Gestione Tecnica. 
-        Lo scopo del Processo di Gestione della Qualità è garantire che prodotti, servizi e implementazioni dei processi del ciclo di vita soddisfino gli obiettivi di qualità dell'organizzazione e raggiungano la soddisfazione del cliente.
+        Lo scopo del processo di Gestione della configurazione è stabilire e mantenere l'integrità di tutti gli \textit{output} identificati di un progetto o processo e renderli disponibili alle parti interessate. (ref: iso/iec)\\
+        \noindent Nello specifico, un sistema di controllo è importante nell'evoluzione delle funzionalità del software, del codice e della documentazione associata perché essi costituiscono gli \textit{output} in questione. Ciò permette di mantenere traccia delle modifiche e garantire che ogni versione sia controllata, riproducibile e coerente con i requisiti stabiliti, facilitando così la gestione delle evoluzioni del \textit{software} e la collaborazione tra i membri del \textit{team}. 
+
+        \noindent In SogeaSoft S.r.l. il controllo delle modifiche al codice avviene attraverso un \textit{Version Control System} (VCS), che traccia l’evoluzione del \textit{software} in modo strutturato. Le versioni del codice vengono archiviate all’interno di \textit{repository}, strutture dati appositamente organizzate per gestire i cambiamenti. 
+        \noindent Queste \textit{repository} si basano su tre principali tipologie di \textit{branch}:  
+        \begin{itemize}
+            \item \textbf{master}: rappresenta la versione stabile destinata alla produzione, aggiornata manualmente in concomitanza con ogni rilascio ufficiale e avanzamento di versione; 
+            \item \textbf{develop}: funge da \textit{branch} principale per lo sviluppo, raccogliendo le nuove funzionalità prima della loro distribuzione al Cliente; 
+            \item \textbf{release}: include i \textit{branch} dedicati ai rilasci personalizzati, specifici per ogni cliente.  
+        \end{itemize}
+
+        \noindent La documentazione viene gestita all'interno di un'area dedicata dell'ambiente di sviluppo adottato (Sezione 1.5.2) da SogeaSoft S.r.l., denominata Wiki. Questo sistema organizza le informazioni in base ad argomenti, capitoli e finalità d'uso, garantendo una struttura relativamente chiara. Inoltre, ogni modifica è accompagnata da un \textit{timestamp} e dall'identificativo dell'autore, permettendo un tracciamento preciso delle revisioni. 
         
-        Questo capitolo conterrà la descrizione dei protocolli interni adottati per la gestione del
-        versionamento, della tracciabilità delle modifiche, e del versionamento della documentazione.
         \subsection{Gestione dell’informazione}
+        
         Questo capitolo includerà una descrizione dei processi adottati dall’azienda SogeaSoft S.r.l
         per la gestione della documentazione relativa allo sviluppo software.
         \subsection{Processi di formazione}
