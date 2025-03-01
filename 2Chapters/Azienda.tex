@@ -162,11 +162,35 @@
         
 
     \section{Ciclo di vita di un progetto software}
-    Scriverò una breve introduzione al ciclo di vita di un progetto software: che cos’è e in cosa
-    consistono le sue fasi, approfondite nelle seguenti sezioni.
+    Il ciclo di vita di un progetto \textit{software} rappresenta l’insieme delle fasi attraverso cui un sistema viene ideato, sviluppato, verificato e mantenuto nel tempo. Nell’ambito dello sviluppo \textit{Agile}, tale processo assume una natura iterativa e incrementale, consentendo una maggiore flessibilità nell’adattamento ai requisiti in evoluzione e nell’ottimizzazione continua del prodotto. Lo standard SO/IEC 12207 fornisce un quadro di riferimento formale per la gestione del ciclo di vita del \textit{software}, delineando attività strutturate per la pianificazione, lo sviluppo e la manutenzione. Le sezioni successive approfondiranno le principali fasi del ciclo di vita del software nel contesto aziendale di SogeaSoft S.r.l., con particolare riferimento all’esperienza maturata durante il mio \textit{stage}.
         \subsection{Analisi preliminare e raccolta dei requisiti}
-        Scriverò una descrizione dettagliata dell’attività di analisi dei bisogni degli stakeholder e di
-        raccolta dei requisiti che il progetto software dovrà soddisfare.
+        L’analisi dei bisogni degli \textit{stakeholder} e la raccolta dei requisiti rappresentano fasi fondamentali nel ciclo di vita di un progetto \textit{software}, poiché definiscono le basi su cui verrà sviluppato il sistema. Secondo lo standard ISO/IEC 12207, tali attività rientrano nel processo di gestione dei requisiti e hanno l’obiettivo di identificare, documentare e validare le esigenze delle parti interessate, garantendo che il \textit{software} finale sia allineato alle aspettative degli utenti. 
+
+        \noindent Gli stakeholder di un progetto software possono includere clienti, utenti finali, team di sviluppo, responsabili di prodotto e altre figure coinvolte nel ciclo di vita del sistema. L’analisi dei bisogni si concentra sull’identificazione delle problematiche esistenti, sulle necessità operative e sugli obiettivi strategici che il software deve supportare. Tale attività si avvale di tecniche come interviste, workshop, focus group, questionari e l’osservazione diretta dei processi aziendali.
+
+        Nel contesto dello sviluppo \textit{Agile}, questa fase è dinamica e continua: i bisogni vengono esplorati progressivamente, attraverso interazioni frequenti con gli \textit{stakeholder}. Per favorire la collaborazione costante con il \textit{Product Owner}, il quale agisce come intermediario tra il team di sviluppo e le parti interessate, assicurando che le priorità del prodotto riflettano i reali bisogni dell’azienda.
+
+        Una volta analizzati i bisogni, si procede con la definizione e la formalizzazione dei requisiti, ovvero le specifiche funzionali e non funzionali che il software dovrà soddisfare. I requisiti funzionali descrivono le capacità e le operazioni del sistema, mentre quelli non funzionali riguardano aspetti come prestazioni, sicurezza, usabilità e scalabilità.
+
+        Nello specifico SogeaSoft S.r.l. applica il concetto di Domain-Driven Design (DDD), un approccio che permea l’intero ciclo di vita dello sviluppo software, contribuendo a modellare il dominio in maniera coerente e a garantire che il sistema sviluppato risponda in modo preciso e scalabile alle esigenze precedentemente identificate.
+        Nel contesto dell'analisi dei requisiti, l'introduzione di DDD comporta diversi passaggi chiave:
+
+        \begin{itemize}
+        \item Collaborazione con gli esperti del dominio (domain experts): L’elemento distintivo di DDD è il coinvolgimento continuo degli esperti del dominio, che sono coloro che possiedono una conoscenza approfondita del contesto in cui il sistema deve operare. Durante l'analisi dei requisiti, il team di sviluppo e gli esperti di dominio lavorano a stretto contatto per assicurarsi che i requisiti non siano solo funzionali, ma riflettano una comprensione profonda delle dinamiche del business.
+
+        \item Creazione di un linguaggio comune (Ubiquitous Language): Uno degli aspetti centrali di DDD è l’adozione di un linguaggio comune, che consente a tutte le parti coinvolte nel progetto (sia tecniche che non tecniche) di discutere in modo chiaro e preciso i concetti chiave del dominio. Questo linguaggio deve essere utilizzato sin dalla fase di analisi dei requisiti per evitare ambiguità e garantire che tutti i requisiti siano ben definiti. Le User Stories possono essere redatte utilizzando il linguaggio condiviso, facilitando la comprensione tra gli stakeholder e il team di sviluppo.
+
+        \item Definizione di Bounded Contexts: Un altro concetto fondamentale di DDD è la divisione del dominio in Bounded Contexts. Durante l'analisi dei requisiti, i team identificano e definiscono questi contesti limitati, ciascuno con il proprio modello di dominio, che può evolvere in modo indipendente dagli altri. Questo aiuta a evitare conflitti tra requisiti di diverse parti del sistema e facilita la gestione della complessità, permettendo di concentrarsi su una parte specifica del dominio alla volta.
+        \end{itemize}
+
+        In conclusione, l’integrazione del Domain-Driven Design nell’analisi dei requisiti consente di sviluppare un modello del dominio solido e coerente, facilitando la comunicazione tra gli stakeholder e il team di sviluppo. L’adozione di un linguaggio comune e la definizione di Bounded Contexts contribuiscono a ridurre le ambiguità e a migliorare l’allineamento tra le esigenze di business e le soluzioni software. Questo approccio favorisce non solo una progettazione più strutturata, ma anche una maggiore flessibilità nell’evoluzione del sistema, garantendo che il software possa adattarsi nel tempo alle mutevoli esigenze del dominio applicativo.
+        \begin{figure} [H]
+            \centering
+            \includegraphics[width=0.7\linewidth]{BCS-Tessi/images/DDD_requisiti.jpeg}
+            \caption{Figura 1.6: Visualizzazione del processo di analisi dei requisiti con DDD. Fonte :https://medium.com/raa-labs/part-1-domain-driven-design-like-a-pro-f9e78d081f10 (ultimo accesso 1/03/2025)}
+            \label{fig:enter-label}
+        \end{figure}
+        
         \subsection{Progettazione}
         Scriverò una descrizione del processo di progettazione: in cosa consiste, come viene attuato
         dall’azienda, quali risultati produce.
