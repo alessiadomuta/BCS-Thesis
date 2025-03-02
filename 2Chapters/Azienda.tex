@@ -7,7 +7,7 @@
     La Figura 1.1 mostra come Sogeasoft S.r.l. sia strutturata in diverse aree operative, ciascuna dedicata alla gestione e allo sviluppo dei prodotti e servizi descritti nei punti seguenti: 
     
     \begin{itemize}
-        \item \textbf{SAI}: si occupa dello sviluppo dell'\textit{Enterprise Resource Planning} (ERP), in particolare rappresenta la libreria di base e gestisce la contabilità.
+        \item \textbf{SAI}: si occupa dello sviluppo dell'\textit{Enterprise Resource $Planning_G$} ($ERP_G$), in particolare rappresenta la libreria di base e gestisce la contabilità.
         \item \textbf{SAICon}: sviluppa soluzioni verticali per il settore delle confezioni (abbigliamento) e calzaturiero, integrate con l'ERP SAI.
         \item \textbf{SAIOnWeb}: si concentra su applicativi correlati agli ERP, ma anche su soluzioni autonome come \textit{Customer Relationship Management} (CRM), \textit{Supplier Relationship Management} (SRM), raccolta ordini e \textit{After Sales Service} (ASS). Inoltre, sviluppa la nuova architettura per la migrazione del gestionale.
         \item \textbf{SAIPro}: fornisce applicativi per la pianificazione e il controllo della produzione, destinati alle aziende manifatturiere.
@@ -156,7 +156,7 @@
         \begin{figure} [H]
             \centering
             \includegraphics[width=0.8\linewidth]{BCS-Tessi/images/Ore_formazione.png}
-            \caption{Rendicontazione ore dedicate ai processi di formazione durante il mio stage}
+            \caption{Rendicontazione ore (al giorno) dedicate ai processi di formazione durante il mio stage}
             \label{fig:Ore-formazione}
         \end{figure}
         
@@ -192,21 +192,73 @@
         \end{figure}
         
         \subsection{Progettazione}
-        Scriverò una descrizione del processo di progettazione: in cosa consiste, come viene attuato
-        dall’azienda, quali risultati produce.
+        Il processo di progettazione software rappresenta una fase centrale del ciclo di vita dello sviluppo, in cui vengono definite l'architettura, i componenti e le interazioni del sistema al fine di garantire un’implementazione efficiente e conforme ai requisiti precedentemente raccolti. 
+        Come previsto da Scrum (sezione 1.4), le attività di analisi e progettazione le abbiamo iterate, al fine di raggiungere soluzioni soddisfacenti. 
+        In particolare, con l'approccio del Domain-Driven Design, introdotto nella sezione 1.6.1, abbiamo attuato le seguenti attività:
+        Modellazione del dominio: Dopo aver raccolto i requisiti, la fase di progettazione è dove DDD inizia a entrare in gioco più attivamente. I team di sviluppo utilizzano il linguaggio comune e i concetti emersi durante l'analisi per costruire un modello di dominio dettagliato. In questa fase, vengono definiti gli aggregati, le entità, i valori e le funzioni di dominio. Gli aggregati rappresentano le entità principali del sistema che devono essere gestite come una singola unità per garantire la coerenza.
+        Definizione degli eventuali microservizi: In un’architettura basata su microservizi, DDD aiuta a identificare e separare i Bounded Contexts in microservizi distinti, ciascuno con il proprio modello di dominio. Questo processo aiuta a mantenere una struttura chiara, riducendo la complessità e il rischio di conflitti tra le diverse parti del sistema.
+        Pattern di progettazione: Nella progettazione, DDD sfrutta vari pattern architetturali e design patterns come il Repository Pattern, il Factory Pattern e il Specification Pattern, per creare un modello di dominio robusto, flessibile e facilmente estensibile.
+        
         \subsection{Sviluppo}
-        Scriverò una descrizione dell’attività di implementazione delle soluzioni individuate nella
-        fase precedente e tutte le attività a supporto di essa.
+        L'attività di implementazione costituisce una fase essenziale nel ciclo di vita del software, in cui la soluzione progettata viene tradotta in codice eseguibile, rendendola concretamente fruibile dagli utenti finali. Secondo lo standard ISO/IEC 12207, l'implementazione rientra nei processi primari di sviluppo e comprende la scrittura, la verifica e l'integrazione del codice, garantendo che il prodotto software soddisfi i requisiti definiti nelle fasi precedenti.
+
+        Per la gestione e il monitoraggio delle attività di codifica, l'azienda SogeaSoft S.r.l. utilizza Microsoft Azure, una piattaforma che integra un Issue Tracking System (ITS). Questo strumento consente di gestire e tracciare le attività di sviluppo, offrendo una visione olistica del progetto sia dal punto di vista gestionale che implementativo. L'impiego di un ITS favorisce l'organizzazione del lavoro, prevenendo inefficienze e sovrapposizioni tra gli sviluppatori.
+
+        Nel contesto del Domain-Driven Design (DDD), l’implementazione segue principi mirati a garantire la coerenza tra il modello concettuale del dominio e la struttura del codice. In particolare, la fase di sviluppo prevede la codifica del modello di dominio.
+        Quest'ultimo, elaborato durante la fase di progettazione, viene tradotto in codice attraverso l'implementazione delle componenti individuate nella fase precedente. Tali componenti vengono strutturate in modo da rispettare le regole di business definite in precedenza, utilizzando il linguaggio comune (Ubiquitous Language) condiviso tra gli stakeholder per assicurare consistenza semantica.
+        
+        All'interno di SogeaSoft S.r.l., l'attività di sviluppo è organizzata mediante un sistema di task assignment, in cui ogni attività (detta anche Issue) viene assegnata a uno sviluppatore specifico. Questo approccio favorisce un’elevata ownership del lavoro, responsabilizzando il singolo sviluppatore e ottimizzando la gestione delle risorse.
+
+        A seconda del livello di urgenza e priorità, il Team Leader può collocare l’attività di implementazione all’interno dello Sprint Backlog, qualora si tratti di una lavorazione prioritaria, oppure nel Product Backlog, in attesa di essere raffinata e pianificata nei successivi incontri di Raffinamento del backlog.
+
+        Lo sviluppo del codice avviene secondo una strategia di version control strutturata: per ogni attività assegnata, viene creato un branch dedicato a partire dal ramo di sviluppo principale (develop). Tale branch viene nominato seguendo una convenzione specifica, includendo parole chiave come "feature" (nuova funzionalità) o "bug-fix" (correzione di errori), seguite da una breve descrizione dell’attività, al fine di garantire una chiara identificazione e tracciabilità delle modifiche.
+
+
+        Una volta completata la fase di codifica, il codice prodotto è sottoposto a un processo di verifica e validazione (Sezione 1.6.4), il quale si concretizza nell'apertura di una Pull Request (PR). Tramite la PR, lo sviluppatore richiede una revisione formale delle modifiche da parte del Team Leader o di un altro membro del team con pari competenze. Solo a seguito della validazione, il codice viene integrato nella codebase principale attraverso un'operazione di merge nel repository del progetto, garantendo così il mantenimento della qualità del software e la coerenza dell’intero sistema.
+
+        
         \subsection{Verifica e Validazione}
-        Scriverò una descrizione delle attività di verifica del codice per garantire la conformità ai
-        requisiti definiti e l'assenza di errori. Descrizione dettagliata delle varie tipologie di test a       pplicate.
-        Aggiungerò una descrizione delle attività finalizzate a garantire che il prodotto software
-        soddisfi i requisiti del cliente e risponda correttamente alle sue      esigenze operative
-        (validazione).
+        Il processo di verifica ha l’obiettivo di fornire evidenza oggettiva della capacità del software di soddisfare i requisiti e le caratteristiche definite. Durante il mio periodo di osservazione, ho avuto l'opportunità di assistere da vicino all'esecuzione delle attività legate a questo processo.
+
+La **verifica del software** si svolge in più fasi, partendo dalle singole unità di codice fino ad estendersi al sistema nel suo complesso. Le principali tipologie di test utilizzate sono le seguenti:
+
+- **Test di unità**: questi test verificano le singole unità di codice, ovvero porzioni atomiche e eseguibili che espongono un comportamento specifico. Il framework **Synergy** prevede la generazione automatica di alcuni test unitari, sebbene si tratti principalmente di test di tipo triviale, che si limitano a controllare la gestione dei tipi di dati e delle eccezioni. La maggior parte dei test unitari che ho sviluppato ha riguardato invece i comportamenti definiti dai requisiti individuati durante la fase di progettazione.
+
+- **Test di integrazione**: questi test verificano il comportamento e l'interazione tra le diverse parti del sistema, assicurandosi che il software rispetti i requisiti funzionali previsti.
+
+- **Test di sistema**: questi test mirano a verificare la conformità del software nel suo insieme, considerando le dipendenze tra le varie componenti. In questo caso, la gestione delle dipendenze è affidata allo strumento **Gradle**, che facilita l’integrazione e l’esecuzione dei test a livello di sistema.
+
+Il processo di Validazione14 fornisce evidenza oggettiva sulla capacità del software di soddisfare le aspettative e i bisogni del committente, sia esso esterno (ovvero un’azienda cliente) o interno (ovvero una BU di Sanmarco Informatica S.p.A.).
+Durante le prime settimane di stage, la validazione dei risultati delle mie attività (modesti per impatto) spettava ad un Solution Developer.
+ Tuttavia, la validazione delle funzionalità avviene solitamente da parte del Product Owner, durante gli Sprint Grooming o le Sprint Review. In questo modo, si può concentrare in un’unico incontro la maggior parte delle attività di validazione e, in caso di incongruenze, allineare tutto il team ai requisiti.
+In taluni casi, ho avuto la possibilità di partecipare ai meeting di validazione con i rappresentanti delle aziende clienti.
+La validazione, positiva o negativa, è sempre registrata nei relativi documenti di tracciamento, assieme al feedback ottenuto.
+
+SogeaSoft S.r.l. adotta un processo di verifica e validazione strutturato, seppur con una metodologia flessibile. La scrittura di test non è obbligatoria per la presentazione e la validazione del software. Tuttavia, quando presenti, i test vengono sviluppati direttamente all’interno dell'ambiente DevOps, sfruttando le sue pipeline. In questo ambiente, il codice viene compilato e i test vengono eseguiti automaticamente.
+
+Questi test vengono eseguiti sulle Pull Requests (PR) nei branch designati, garantendo che le modifiche apportate non introducano errori nel sistema. La validazione delle PR è un processo collaborativo che coinvolge più sviluppatori: i colleghi svolgono una revisione del codice e, salvo casi particolari, la validazione richiede l’approvazione di due revisori che non siano gli sviluppatori stessi delle modifiche. Questo processo assicura una maggiore qualità del codice e riduce i rischi di errori, mantenendo alta la coerenza del prodotto software.
+        
         \subsection{Manutenzione}
-        Scriverò una descrizione dei processi finalizzati alla manutenzione regolare del prodotto per
-        garantire il soddisfacimento di bisogni e di requisiti che variano con il tempo.
+Il processo di Manutenzione15 ha lo scopo di sostenere la capacità del software di essere usabile, e cioè di soddisfare bisogni e requisiti, anche postumi, dal momento della distribuzione fino al suo ritiro.
+Ciò avviene mediante azioni correttive o migliorative, attuate in modo adattivo (ad esempio, dopo una segnalazione di malfunzionamento) o preventivo (ad esempio, dopo aver individuato internamente ambiti di miglioramento). Lo sviluppo del software, infatti, non termina con la sua pubblicazione, ma prosegue per tutta la sua vita utile. Molti dei software venduti da Sanmarco Informatica S.p.A. sono in uso da decenni e vengono tuttora aggiornati regolarmente: ciò non sarebbe possibile con una cattiva gestione del debito tecnico.
+I software di Factory sono largamente utilizzati in moltissime nicchie dei settori manifatturiero e logistico e, pertanto, sono soggetti a frequenti richieste di cambiamento. La fonte di tali richieste può essere:
+• esterna, ovvero proveniente da un Cliente: in questo caso, può trattarsi di una richiesta di
+manutenzione correttiva (ad esempio per la rimozione di un bug ), oppure di aggiunta di nuove
+funzionalità o ancora di evoluzione delle funzionalità già presenti;
+• interna, ovvero proveniente da una BU: la richiesta pervenuta può mirare:
+– al miglioramento della sicurezza o delle prestazioni del software;
+– all’aggiornamento delle tecnologie abilitanti su cui si basa Synergy;
+– all’introduzione di nuove funzionalità, individuate tramite ricerche interne, atte ad aumentare
+la competitività dei prodotti.
+È importante ricordare che la manutenzione è un costo. Pertanto, è cruciale garantire la manutenibilità del software prodotto, sia tramite l’adozione di buone pratiche di codifica (Sezione 1.5.3.3), che tramite la produzione di documentazione precisa, aggiornata e attendibile (Sezione 1.5.2.2).
+
+        Evoluzione del modello: Il DDD non è un approccio che si ferma alla fase di progettazione e implementazione. Dopo la messa in produzione del software, il modello di dominio potrebbe evolversi man mano che emergono nuove esigenze o nuove informazioni. Poiché DDD enfatizza un approccio iterativo e incrementale, è possibile aggiornare e migliorare il modello di dominio attraverso il feedback degli utenti o la scoperta di nuove parti del dominio.
+Adattamento ai cambiamenti del dominio: Nel corso del tempo, possono verificarsi cambiamenti nelle esigenze aziendali. DDD facilita l'adattamento del sistema a tali cambiamenti, mantenendo un forte allineamento con il business. Durante la manutenzione, è possibile rivedere i Bounded Contexts e le interfacce tra i vari modelli di dominio, migliorando la separazione delle preoccupazioni.
     \section{Tecnologie utilizzate}
+    Per la realizzazione dei suoi prodotti, la BU Factory di Sanmarco Informatica S.p.A. impiega un insieme di tecnologie predefinito e comune a tutti i software sviluppati. Riporto esclusivamente ciò di cui ho avuto esperienza diretta durante il periodo di stage: si tratta di una selezione di tecnologie, strumenti e servizi con licenze d’uso diverse, che assieme costituiscono lo stack tecnologico del framework Synergy.
+I linguaggi di programmazione utilizzati sono:
+
+
     Scriverò una descrizione dettagliata di tutte le tecnologie utilizzate dall’azienda specificamente nello
     sviluppo software. Ai fini di questa trattazione descriverò anche le tecnologie obsolete che non sono
     più utilizzate dai dipendenti ma che sono ancora in uso nei meandri del prodotto principale
@@ -214,5 +266,15 @@
     Nello specifico descriverò: linguaggi di programmazione, tecnologie alla base dei prodotti
     d   ell’azienda, l’ambiente di sviluppo, gli editor utilizzati, e       strumenti per i processi di verifica.
     \section{L’innovazione in Sogea}
+
+    SogeaSoft S.r.l. ha dimostrato una propensione all'innovazione che, pur non essendo caratterizzata da un approccio radicale, si è sviluppata in maniera progressiva e riflessiva. Inizialmente, l'azienda ha adottato un modello di evoluzione del prodotto che seguiva un processo iterativo, dove le modifiche e le migliorie venivano introdotte step-by-step. Questo approccio, pur offrendo una certa stabilità, rifletteva una cautela nell'adozione di nuove tecnologie, in parte dovuta a preoccupazioni relative ai rischi associati a cambiamenti rapidi e non completamente testati.
+
+Nonostante tale prudenza iniziale, SogeaSoft ha saputo sviluppare nel tempo un framework solido e aggiornato, soprattutto per quanto riguarda la gestione dei progetti, che si è adattato alle esigenze emergenti nel settore. In particolare, la parte relativa al sistema ERP (Enterprise Resource Planning) ha subito una lenta ma continua evoluzione, con l'obiettivo di rispondere alle nuove necessità aziendali senza compromettere la stabilità operativa. La transizione verso l'aggiornamento di tale componente è stata attentamente ponderata, con un'analisi costante delle potenzialità offerte da tecnologie emergenti e delle risorse necessarie per implementarle in modo efficace.
+
+Sebbene l'azienda non abbia intrapreso l'adozione di innovazioni radicali, la sua capacità di evolversi in modo costante e sostenibile ha permesso a SogeaSoft di mantenere una posizione competitiva nel mercato. L'approccio adottato, che prevede l'allocazione di risorse umane e finanziarie in base alla necessità percepita, ha favorito l'implementazione di miglioramenti incrementali, garantendo una continua crescita della capacità produttiva e un aggiornamento costante della tecnologia utilizzata. 
+
+Tuttavia, è evidente che la sua strategia innovativa, seppur efficace, si è sempre mantenuta prudente rispetto a quelle di aziende che sono nate più recentemente, spesso con una mentalità più orientata all'adozione rapida di nuove tecnologie. Queste ultime, infatti, pur disponendo di un prodotto giovane, hanno avuto la possibilità di svilupparsi con tecnologie moderne sin dall'inizio, facendo leva su un approccio innovativo più audace. La differenza fondamentale risiede nella volontà di SogeaSoft di integrare l'innovazione in modo graduale, prendendo in considerazione non solo le opportunità tecnologiche ma anche i rischi operativi e finanziari.
     Scriverò una descrizione accurata della propensione all’innovazione di Sogea, spiegando le concrete
     misure che l’azienda sta adottando a tal proposito. Includerò come Bluenext abbia contribuito in ciò.
+
+    Questo è un esempio di citazione\footnote{\small Nome dell'autore, \emph{Titolo del libro}, Anno di pubblicazione, Editore.}.
