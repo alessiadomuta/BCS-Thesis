@@ -1,0 +1,37 @@
+% Define the acronymlist environment
+\newenvironment{acronymlist}
+{\begin{itemize}[label={},leftmargin=*,align=left]}
+{\end{itemize}}
+
+% Command for adding acronyms
+\newcommand{\acronym}[2]{\item \textbf{#1} #2}
+
+% Command to add a letter heading
+\newcommand{\lettergroup}[1]{\item[\textbf{#1}]}
+
+
+\chapter{Lista degli acronimi}
+
+\begin{multicols}{2} % Start two-column layout
+\begin{acronymlist}
+    \lettergroup{A}
+    \acronym{API}{Application Programming Interface}
+    \acronym{AI}{Artificial Intelligence}
+
+    \lettergroup{C}
+    \acronym{CPU}{Central Processing Unit}
+    \acronym{CSS}{Cascading Style Sheets}
+
+    \lettergroup{H}
+    \acronym{HTML}{HyperText Markup Language}
+    \acronym{HTTP}{HyperText Transfer Protocol}
+
+    \lettergroup{S}
+    \acronym{SQL}{Structured Query Language}
+    \acronym{SSH}{Secure Shell}
+
+    \lettergroup{U}
+    \acronym{URL}{Uniform Resource Locator}
+    \acronym{UDP}{User Datagram Protocol}
+\end{acronymlist}
+\end{multicols} % End two-column layout
