@@ -270,27 +270,70 @@
             \caption{Visione d'insieme dell'utilizzo di DDD nello sviluppo \textit{software}. \href{https://medium.com/raa-labs/part-1-domain-driven-design-like-a-pro-f9e78d081f10}{Fonte}, \textit{(ultimo accesso 03/03/2015)}}
             \label{fig:DDD-riassunto}
         \end{figure}
+
+        
     \section{Tecnologie utilizzate}
-    Per la realizzazione dei suoi prodotti, SogeaSoft. impiega un insieme di tecnologie predefinito e comune a tutti i software sviluppati. Riporto esclusivamente ciò di cui ho avuto esperienza diretta durante il periodo di stage: si tratta di una selezione di tecnologie, strumenti e servizi con licenze d’uso diverse, che assieme costituiscono lo stack tecnologico di SAI,
-I linguaggi di programmazione utilizzati sono:
+    
+    Per la realizzazione dei propri prodotti, SogeaSoft S.r.l. adotta un insieme di tecnologie predefinito e condiviso tra tutti i \textit{software} sviluppati. Tuttavia, tali tecnologie si sono progressivamente evolute per garantire l’aggiornamento rispetto agli sviluppi del settore. L’obiettivo dell’azienda è implementare un’architettura esagonaleG nello sviluppo del \textit{software} SAI e delle sue declinazioni, ossia un modello di progettazione che consente la sostituzione o l’aggiornamento delle tecnologie senza alterare il comportamento del sistema sottostante, che rimane tecnologicamente agnostico.  
 
+    \noindent Come si può osservare in Figura 1.9, durante il mio \textit{stage}, una parte del processo di formazione (Sezione 1.5.3) è stata dedicata allo studio dell’evoluzione del sistema SAI, dal suo primo rilascio fino ad oggi, al fine di comprendere in modo più approfondito gli obiettivi del mio progetto. L’analisi delle tecnologie adottate in passato è rilevante perché una parte del progetto prevede l’aggiornamento del sistema tramite l’implementazione di soluzioni tecnologiche più moderne, garantendone la continuità operativa e l’efficienza.
 
-    Scriverò una descrizione dettagliata di tutte le tecnologie utilizzate dall’azienda specificamente nello
-    sviluppo software. Ai fini di questa trattazione descriverò anche le tecnologie obsolete che non sono
-    più utilizzate dai dipendenti ma che sono ancora in uso nei meandri del prodotto principale
-    dell’azienda SogeaSoft S.r.l.
-    Nello specifico descriverò: linguaggi di programmazione, tecnologie alla base dei prodotti
-    d   ell’azienda, l’ambiente di sviluppo, gli editor utilizzati, e       strumenti per i processi di verifica.
-    \section{L’innovazione in Sogea}
+    \noindent I linguaggi di programmazione utilizzati sono:
+    \begin{itemize}
+        \item \textbf{C++}: è un linguaggio di programmazione orientato agli oggetti molto diffuso. In questo caso, è particolarmente apprezzato per la sua efficienza nell'elaborazione di operazioni ad alte prestazioni, la gestione diretta della memoria e la capacità di sviluppare applicazioni di sistema complesse. È alla base di tutto il sistema SAI;
+        \item \textbf{C\#}: è un linguaggio orientato agli oggetti sviluppato da Microsoft, progettato per la creazione di applicazioni su piattaforme come Windows, \textit{web} e dispositivi mobili. È utilizzato in SAIonWeb, oggetto del mio progetto di \textit{stage}.
+    \end{itemize}
+    Questi linguaggi di programmazione sono utilizzati specificamente per lo sviluppo delle applicazioni basate sulla piattaforma SAI, mentre le tecnologie di supporto, che forniscono il fondamento per il funzionamento e la gestione del prodotto, comprendono una serie di strumenti e \textit{framework} integrati. Tali tecnologie sono:
 
-    SogeaSoft S.r.l. ha dimostrato una propensione all'innovazione che, pur non essendo caratterizzata da un approccio radicale, si è sviluppata in maniera progressiva e riflessiva. Inizialmente, l'azienda ha adottato un modello di evoluzione del prodotto che seguiva un processo iterativo, dove le modifiche e le migliorie venivano introdotte step-by-step. Questo approccio, pur offrendo una certa stabilità, rifletteva una cautela nell'adozione di nuove tecnologie, in parte dovuta a preoccupazioni relative ai rischi associati a cambiamenti rapidi e non completamente testati.
+    \begin{itemize}
+        \item \textbf{Qt}: \textit{framework} multipiattaforma utilizzato principalmente per lo sviluppo di applicazioni con interfaccia grafica, alla base del sistema SAI.
+        \item \textbf{KDE}: è un ambiente \textit{desktop} \textit{open-source} per sistemi operativi Linux. Offre un'interfaccia grafica altamente personalizzabile, con un focus sull'usabilità e sull'integrazione di applicazioni. Il suo \textit{framework} di sviluppo è Qt .
+        \item \textbf{Angular}: è un \textit{framework} \textit{open-source} per lo sviluppo di \textit{single-page web applicationG} (SPAG) ossia siti \textit{web} composti da una sola pagina che aggiorna dinamicamente il contenuto senza ricaricare l'intera pagina. Con il suo approccio basato su componenti, Angular promuove lo sviluppo modulare e scalabile, motivo per cui è stato scelto da SogeaSoft S.r.l. in SAIonWeb. 
+        \item \textbf{ASP.NET Core}: è un \textit{framework} \textit{open-source} per lo sviluppo di applicazioni \textit{web} moderne e scalabili. Permette di creare applicazioni \textit{web}, API e microservizi, supportando C\#.
+    \end{itemize}
 
-Nonostante tale prudenza iniziale, SogeaSoft ha saputo sviluppare nel tempo un framework solido e aggiornato, soprattutto per quanto riguarda la gestione dei progetti, che si è adattato alle esigenze emergenti nel settore. In particolare, la parte relativa al sistema ERP (Enterprise Resource Planning) ha subito una lenta ma continua evoluzione, con l'obiettivo di rispondere alle nuove necessità aziendali senza compromettere la stabilità operativa. La transizione verso l'aggiornamento di tale componente è stata attentamente ponderata, con un'analisi costante delle potenzialità offerte da tecnologie emergenti e delle risorse necessarie per implementarle in modo efficace.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{BCS-Tessi/images/Tecnologie.png}
+        \caption[Tecnologie utilizzate in SogeaSoft S.r.l.]{Schema delle tecnologie utilizzate da SogeaSoft S.r.l. Fonte: \textit{slide} utilizzate durante il processo di formazione}
+        \label{fig:Tecnologie}
+    \end{figure}
 
-Sebbene l'azienda non abbia intrapreso l'adozione di innovazioni radicali, la sua capacità di evolversi in modo costante e sostenibile ha permesso a SogeaSoft di mantenere una posizione competitiva nel mercato. L'approccio adottato, che prevede l'allocazione di risorse umane e finanziarie in base alla necessità percepita, ha favorito l'implementazione di miglioramenti incrementali, garantendo una continua crescita della capacità produttiva e un aggiornamento costante della tecnologia utilizzata. 
+    \noindent L'ambiente di sviluppo in SogeaSoft S.r.l. è configurato per operare principalmente su sistemi basati su Linux o, in alternativa, su \textit{container} DockerG eseguiti su sistemi operativi Windows. Questo approccio consente una maggiore flessibilità e compatibilità con diverse configurazioni di sistema. Il processo di codifica si svolge localmente sulle singole \textit{workstation}, dove gli sviluppatori utilizzano Microsoft Visual Studio, un ambiente di sviluppo integrato (IDE) altamente configurabile e supportato.
 
-Tuttavia, è evidente che la sua strategia innovativa, seppur efficace, si è sempre mantenuta prudente rispetto a quelle di aziende che sono nate più recentemente, spesso con una mentalità più orientata all'adozione rapida di nuove tecnologie. Queste ultime, infatti, pur disponendo di un prodotto giovane, hanno avuto la possibilità di svilupparsi con tecnologie moderne sin dall'inizio, facendo leva su un approccio innovativo più audace. La differenza fondamentale risiede nella volontà di SogeaSoft di integrare l'innovazione in modo graduale, prendendo in considerazione non solo le opportunità tecnologiche ma anche i rischi operativi e finanziari.
-    Scriverò una descrizione accurata della propensione all’innovazione di Sogea, spiegando le concrete
-    misure che l’azienda sta adottando a tal proposito. Includerò come Bluenext abbia contribuito in ciò.
+    \noindent Il tracciamento delle modifiche apportate al codice secondo il controllo di versione avviene con l'uso di GitG, un particolare \textit{Version Control System} (VCS). 
 
-    Questo è un esempio di citazione\footnote{\small Nome dell'autore, \emph{Titolo del libro}, Anno di pubblicazione, Editore.}.
+    \noindent 
+    SAI è il \textit{framework} di base su cui si fondano tutti i prodotti derivati di SogeaSoft S.r.l. Si tratta di un sistema piuttosto datato, che utilizza tecnologie oggi difficili da manutenere, da cui nasce la necessità di migrare verso un'architettura a microservizi. La logica sottostante risulta complessa da modificare, pertanto sono state adottate diverse soluzioni. Ad esempio, il sistema impiega un'architettura basata su \textit{web service}, che adotta il modello \textit{Representational State TransferG} (RESTG) per lo scambio di dati tra i moduli. Questo modello architetturale prevede che le informazioni transitino tramite connessioni dedicate, note come \textit{Application Programming InterfacesG} (APIG). Tuttavia, tale modello non definisce l'intero sistema, poiché la fase di migrazione è ancora in corso e rappresenta il focus principale del mio progetto di \textit{stage}, come verrà approfondito nella Sezione 2.
+    
+    \vspace{1em}
+    
+    \noindent Nel dettaglio si utilizzano:
+    \begin{itemize}
+        \item \textbf{Advanced Message Queuing Protocol (AMQP)}:  è un protocollo di messaggistica \textit{open-source} progettato per la gestione affidabile e sicura delle code di messaggi tra sistemi distribuiti. È utilizzato da SogeaSoft S.r.l. per facilitare l'integrazione tra le applicazioni e la gestione dei flussi di dati.
+        
+        \item \textbf{RabbitMQ}: è un \textit{Message BrokerG} \textit{open-source} che implementa il protocollo AMQP per la gestione di code di messaggi tra applicazioni. Permette una comunicazione asincrona e affidabile tra sistemi distribuiti.
+
+        \item \textbf{Debezium}: è una piattaforma \textit{open-source} per il cambiamento di dati in tempo reale che consente di monitorare e registrare le modifiche apportate ai database. Essa si integra con sistemi di messaggistica come RabbitMQ per diffondere le modifiche ai dati attraverso flussi di eventi.
+        
+        \item \textbf{Swagger}: è uno strumento che fornisce un'interfaccia grafica interattiva per esplorare e testare le API RESTful. Permette agli sviluppatori di testare \textit{endpointG} API direttamente dal \textit{browserG} senza bisogno di scrivere codice aggiuntivo.
+        
+        \item \textbf{DBeaver}: \textit{client} utilizzato per accedere, interrogare e manipolare \textit{database} relazionali basati sul \textit{Structured Query LanguageG} (SQLG), un linguaggio di manipolazione dei dati ampiamente diffuso.
+    \end{itemize}
+
+    \noindent Riguardo ai sistemi di gestione dei \textit{database}, SogeaSoft S.r.l. supporta una varietà di \textit{Database Management SystemsG} (DBMSG), offrendo così una notevole flessibilità nella gestione e nell'archiviazione dei dati. Durante il mio \textit{stage}, ho avuto l'opportunità di interagire con diversi DBSM, tra cui PostgreSQL, SQL Server e IBM DB2, che sono tra le soluzioni più comunemente utilizzate dalle aziende clienti.
+    
+    
+    \section{L’innovazione in SogeaSoft}
+
+    Le informazioni sulle innovazioni tecnologiche adottate da SogeaSoft S.r.l. mi sono state fornite principalmente tramite i racconti del mio \textit{tutor}, che ha condiviso con me le pratiche aziendali e i progetti più recenti. Non essendo disponibili dati documentati diretti o misurazioni quantitative, mi sono basata sulla descrizione dei processi e delle soluzioni adottate durante il mio periodo di \textit{stage}.
+
+    \vspace{0.5 em}
+    \noindent Sebbene l'azienda non abbia intrapreso l'adozione di innovazioni radicali, la sua capacità di evolversi in modo continuo e sostenibile le ha consentito di mantenere una posizione competitiva nel mercato. L'approccio adottato, che prevede l'allocazione di risorse umane e finanziarie in base alle necessità percepite, ha favorito l'implementazione di miglioramenti incrementali, garantendo così una continua crescita della capacità produttiva e un aggiornamento regolare delle tecnologie impiegate.
+    
+    \vspace{0.5 em}
+    \noindent Tuttavia, SogeaSoft S.r.l. ha considerato la migrazione verso un'architettura a microservizi solo quando il processo di manutenzione del \textit{software} (Sezione 1.6.5) è diventato eccessivamente oneroso. Questo è avvenuto a causa della crescente difficoltà di gestire le tecnologie obsolete, che richiedevano modifiche strutturali complete del sistema, una soluzione che si è rivelata non praticabile nel lungo periodo. 
+
+    \vspace{0.5 em}
+    \noindent Una volta che l'azienda ha riconosciuto l'importanza di integrare nuove tecnologie pur mantenendo intatto il sistema di base, si è manifestato un crescente interesse per l'innovazione. Ad esempio, durante il mio \textit{stage}, ho avuto l'opportunità di implementare una \textit{demonstration} utilizzando la tecnologia RabbitMQ (approfondita nella Sezione 1.7), in cui ho sviluppato un sistema di aggiornamento dei dati in tempo reale. Questa \textit{demo} ha comportato l'impiego di tecnologie relativamente recenti e, nel caso di Debezium (Sezione 1.7), non ufficialmente documentate per questa combinazione specifica\footnote{Fonte: \href{https://debezium.io/documentation/reference/3.1/connectors/index.html}{Documentazione ufficiale di Debezium, Source Connectors.}}. 
+
