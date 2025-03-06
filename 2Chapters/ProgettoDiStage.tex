@@ -21,9 +21,33 @@
     \noindent Un ulteriore fattore determinante nell’impiego di tirocinanti per lo sviluppo di soluzioni innovative è la gestione delle risorse interne. Il personale aziendale è prevalentemente impegnato nel mantenimento e nell’evoluzione dei sistemi attualmente in produzione, rendendo complesso il reindirizzamento delle competenze su progetti sperimentali. L’inserimento di studenti permette di destinare risorse dedicate a iniziative di ricerca e innovazione, garantendo al contempo un processo di trasferimento di conoscenze tra le diverse generazioni di sviluppatori.
     
     \section{Il \textit{software} SAI}
-    Descriverò il \textit{software} SAI, oggetto del mio \textit{stage}.
+    
+    Il tema principale del mio \textit{stage} ha riguardato lo sviluppo e l’evoluzione di SAIonWeb, un \textit{software} basato sul \textit{framework} SAI (Sistema Aziendale Integrato). SAIonWeb è uno strumento progettato per la gestione dei processi aziendali nell’ambito dell’\textit{Enterprise Resource Planning} (ERP). In particolare, il \textit{software} è destinato al settore manifatturiero, con un \textit{focus} specifico sull'industria dell’abbigliamento, supportando l'intero ciclo di vita del prodotto: dalla gestione delle materie prime, alla fase di confezionamento, fino alla distribuzione finale.  
+
+    \vspace{0.2 em}
+    \noindent Il \textit{framework} SAI, alla base di SAIonWeb, è caratterizzato da un'architettura monolitica, un modello in cui tutti i componenti del sistema – dall’interfaccia utente alla logica applicativa e alla gestione dei dati – sono strettamente integrati all’interno di un'unica applicazione.  
+
+    \vspace{0.2 em}
+    \noindent L'obiettivo del mio stage è stato analizzare il funzionamento di SAI, identificando il dominio applicativo, i \textit{bounded $contexts_G$} e le possibili suddivisioni in microservizi. Il lavoro ha comportato un'attività di studio approfondita dell'architettura esistente, al fine di individuare i servizi che potevano essere estratti e trasformati in unità indipendenti, contribuendo così al processo di migrazione verso SAIonWeb, pensata per adottare un'architettura a microservizi. Inoltre, il progetto ha previsto la valutazione delle scelte progettuali già adottate dai dipendenti, con la possibilità di proseguire il lavoro esistente o, ove necessario, modificarlo per garantire una transizione più efficace e coerente con i principi del \textit{Domain-Driven Design} (DDD). 
+    
         \subsection{Funzionalità generali di SAI}
-        Descriverò le sue funzionalità di base, come viene utilizzato, come funzionano le interazioni tra le parti. (ad alto livello)
+        SAI *Enterprise Resource Planning* (ERP) è un sistema software gestionale progettato per integrare e automatizzare i processi aziendali, consentendo alle organizzazioni di gestire in modo efficiente risorse, dati e operazioni. Questi sistemi offrono un ambiente centralizzato in cui le diverse aree aziendali – dalla produzione alla logistica, dalla contabilità alla gestione delle risorse umane – possono operare in modo coordinato, migliorando la tracciabilità delle informazioni e ottimizzando la produttività.  
+
+        \vspace{0.2 em}
+        \noindent SAI è un ERP specificamente sviluppato per il settore dell'abbigliamento, supportando l’intero ciclo di produzione e distribuzione di capi di moda. Le sue funzionalità principali includono:  
+        \begin{itemize}
+            \item Gestione delle materie prime**: monitoraggio degli approvvigionamenti, delle scorte e della qualità dei materiali.  
+            \item Pianificazione della produzione**: organizzazione delle fasi produttive, assegnazione delle risorse e gestione dei tempi di lavorazione.  
+            \item Tracciabilità dei prodotti**: controllo dell’avanzamento di ciascun capo, dalla fase iniziale di lavorazione fino alla distribuzione.  
+            \item Gestione degli ordini e delle vendite**: registrazione degli ordini, gestione delle consegne e fatturazione automatizzata.  
+            \item Logistica e distribuzione**: coordinamento delle spedizioni, gestione dei magazzini e ottimizzazione delle scorte.  
+            \item Integrazione con il sistema contabile**: gestione di pagamenti, bilanci e rendicontazione finanziaria.  
+            \item Monitoraggio delle performance aziendali**: generazione di report analitici e strumenti di *business intelligence* per supportare il processo decisionale.  
+        \end{itemize}
+
+        \vspace{0.2 em}
+        \noindent Attraverso queste funzionalità, SAI consente alle aziende del settore moda di migliorare la gestione delle operazioni, ridurre i tempi di produzione e garantire una maggiore efficienza operativa.
+        
         \subsection{Architettura di SAI}
         Descriverò nel dettaglio l'architettura monolitica del sistema, approfondendo (a basso livello) le interazioni tra le parti, la gestione dei dati, per introdurre il capitolo successivo.
     \section{Obiettivi del progetto di \textit{stage}}
