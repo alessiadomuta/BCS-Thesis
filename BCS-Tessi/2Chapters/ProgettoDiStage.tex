@@ -138,20 +138,168 @@
         
     \section{Obiettivi del progetto di \textit{stage}}
         \subsection{Obiettivi aziendali}
-        Scriverò degli obiettivi dello \textit{stage}, introducendo il desiderio dell'azienda di migrazione verso un'architettura a microservizi. Racconterò delle motivazioni in modo più approfondito, e riporterò gli obiettivi obbligatori, desiderabili e opzionali decisi all'inizio dell'attività di \textit{stage}.
+        Nel contesto del mio progetto di \textit{stage}, SogeaSoft S.r.l. ha deciso di intraprendere un percorso di approfondimento riguardante la suddivisione del monolite in microservizi. Tale scelta si inserisce nell'ottica di favorire una maggiore modularità e flessibilità del sistema, nonché di facilitare futuri interventi di manutenzione e aggiornamento tecnologico.  
+
+        Considerando che l’obiettivo dello stage è dimostrare concretamente le competenze acquisite, si è ritenuto opportuno effettuare l’estrazione di un microservizio come risultato tangibile dell’attività svolta. Questa operazione costituisce un esempio pratico del processo di migrazione verso un'architettura a microservizi e consente di valutare criticamente le scelte tecniche adottate.  
+
+        A supporto dell’intero progetto, il tutor aziendale ha redatto un Piano di lavoro, un documento esaustivo che descrive l’azienda, gli obiettivi progettuali, i vincoli eventualmente presenti, la metodologia adottata e i risultati attesi. Tale documento costituisce un riferimento fondamentale per garantire la coerenza e la chiarezza delle attività intraprese durante lo stage. 
+
+        \begin{table}[H]
+        \centering
+        \renewcommand{\arraystretch}{1.8} % Increase row height by 50%
+        \begin{tabular}{|>{\bfseries}c|m{15cm}|} % Use 'm{}' for vertical centering
+          \hline
+          \multicolumn{2}{|c|}{\textbf{Obiettivi Aziendali}} \\ % First row, merged columns
+          \hline
+          \multicolumn{2}{|c|}{\textbf{Obbligatori}} \\ % Second row, merged columns
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}OB1\vspace*{\fill}} & Studio della letteratura esistente sulle architetture monolitiche, sulle architetture a microservizi e sui metodi di migrazione \\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}OB2\vspace*{\fill}} & Documentazione relativa ai requsiti\\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}OB3\vspace*{\fill}} & Documentazione dei servizi esistenti e delle relazioni tra essi \\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}OB4\vspace*{\fill}} & Individuazione di un piano indicativo \\ 
+          \hline
+          \multicolumn{2}{|c|}{\textbf{Desiderabili}} \\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}DE1\vspace*{\fill}} & Documentazione dei rischi\\ 
+          \hline
+          \multicolumn{2}{|c|}{\textbf{Facoltativi}} \\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}FA1\vspace*{\fill}} & Realizzazione del PoC\\ 
+          \hline
+        \end{tabular}
+        \caption[Descrizione degli obiettivi aziendali per il progetto di stage]{Descrizione degli obiettivi aziendali per il progetto di stage; corrispondono agli obiettivi redatti dal tutor aziendale nel Piano di lavoro.}
+        \label{tab:obiettivi}
+        \end{table}
+
+        Gli obiettivi aziendali riportati nella Tabella ~\ref{tab:obiettivi} sono classificati secondo la seguente notazione:
+        \begin{itemize}
+            \item \textbf{Obiettivo obbligatorio (OB)}: rappresentano i requisiti obbligatori, vincolanti, che dovranno necessariamente essere soddisfatti;
+            \item \textbf{Obiettivo desiderabile (DE)}: rappresentano i requsiti desiderabili, non vincolanti, ma dal riconoscibile valore aggiunto;
+            \item \textbf{Obiettivo facoltativo (FA)}: rappresentano i requisiti facoltativi, rappresentanti di valore aggiunto ma non strettamente competitivo.
+        \end{itemize}
+        La rappresentazione tabellare utilizza la notazione [sigla][identificativo], dove la sigla indica la tipologia di obiettivo secondo la classificazione sopra descritta, mentre l’identificativo è un numero progressivo che garantisce l’univocità del requisito in combinazione con la sigla. 
+
         \subsection{Vincoli}
-        Descriverò i vincoli relativi all'attività di \textit{stage}, saranno temporali e tecnologici. 
+        
+        Per quanto concerne i \textbf{vincoli temporali}, lo \textit{stage} curricolare deve svolgersi nell’arco di un monte ore compreso tra 300 e 320 ore, come previsto dal corso di studi, al fine di garantire un carico di lavoro equivalente a 12 crediti formativi universitari. Nel caso specifico del mio percorso formativo, tali ore sono state distribuite su un periodo di 8 settimane, con un impegno settimanale di 40 ore, articolate dal lunedì al venerdì, dalle ore 8:30 alle ore 17:00.   
+
+        Per quanto riguarda i \textbf{vincoli tecnologici}, il piano di lavoro ha indicato i seguenti strumenti e metodologie:  
+        \begin{itemize}
+            \item Linguaggio di sviluppo: C\#;
+            \item Ambiente di sviluppo: Visual Studio, Visual Studio Code;  
+            \item Metodologia di sviluppo: Scrum (nell’ambito del framework \textit{Agile}) e $DevOps_G$, un insieme di pratiche e strumenti che integrano lo sviluppo software (Dev) e le operazioni (Ops) volte alla gestione delle infrastrutture tecnologiche. 
+        \end{itemize}
+
+        Tuttavia, nel corso dello \textit{stage} ho avuto l’opportunità di interagire anche con numerose altre tecnologie, che ho approfondito nella Sezione 1.7.
 
     \section{Metodo di Lavoro}
         \subsection{Piainificazione}
-        Riporterò il piano di lavoro iniziale e descriverò la suddivisione delle ore, la pianificazione temporale delle attività e il tempo di perseguimento degli obiettivi di avanzamento. 
-        \subsection{Modello di sviluppo}
-        Rifacendomi alla sezione 1.4, racconterò quanto effettivamente il modello di sviluppo adottato da SogeaSoft S.r.l. sia stato applicato durante il mio \textit{stage} rispetto agli accordi iniziali. 
-        \subsection{Strumenti}
-        Descriverò, gli strumenti utilizzati a supporto della mia esperienza di \textit{stage}, tra cui gli appunti, le presentazioni, i \textit{report} etc. 
-        \subsection{Revisioni di Progresso}
-        Riporterò tutte le occasioni di confronto con il \textit{tutor}, le revisioni ufficiali del lavoro svolto ed altri eventuali strumenti messi a disposizione per il monitoraggio del progresso. 
-    \section{Motivazioni della scelta}
-    Descriverò le motivazioni della mia personale scelta riguardo questo particolare progetto di \textit{stage}, raccontando perché l'ho scelto rispetto ad altri. Descriverò anche gli obiettivi e le aspettative personali, che riprenderò nella sezione 4.1.2
-    
         
+        Sulla base degli obiettivi di progetto delineati nella Sezione 2.3.1 (Tabella 2.1) e della pianificazione oraria proposta nel Piano di lavoro (Tabella 2.2), insieme al tutor aziendale, abbiamo stabilito le principali tappe intermedie (milestone) per monitorare il progresso del progetto. La collocazione temporale di queste milestone è stata determinata tenendo conto sia delle attività che dipendono strettamente l'una dall'altra, in particolare per quanto riguarda gli aspetti formativi, sia della necessità di produrre risultati tangibili, quali documentazione e codice, in modo regolare. Ciò ha permesso al tutor di monitorare il progresso del progetto e individuare tempestivamente eventuali rallentamenti.
+
+        La definizione dettagliata delle singole attività è avvenuta nel corso delle sessioni di **sprint planning** con il Product Owner. Durante questi incontri, mi venivano assegnate le attività specifiche, venivano chiariti i risultati attesi e venivano fissati appuntamenti per valutare il grado di avanzamento, fornire supporto in caso di difficoltà o testare i risultati raggiunti. 
+
+        Le sessioni di **sprint planning**, **sprint grooming** o **raffinamento del backlog** si sono svolte con una cadenza variabile, determinata in modo intuitivo in base alle necessità specifiche dei task a me assegnati, e si sono adattate di volta in volta al contesto e agli obiettivi da raggiungere.
+
+        \begin{table}[h!]
+        \centering
+        \renewcommand{\arraystretch}{1.8} % Increase row height by 50%
+        \begin{tabular}{|>{\bfseries}c|m{15cm}|} % Use 'm{}' for vertical centering
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}Durata in ore\vspace*{\fill}} & Descrizione attività \\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}16\vspace*{\fill}} & Conoscenza ambiente di lavoro e contesto\\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}32\vspace*{\fill}} & Studio della letteratura esistente sulle architetture monolitiche, sulle architetture a microservizi e sui metodi di migrazione\\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}24\vspace*{\fill}} & Analisi dell'applicazione esistente per identificare i servizi e le funzionalità da suddividere in microservizi\\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}16\vspace*{\fill}} & Stesura della documentazione relativa ai requisiti\\
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}24\vspace*{\fill}} & Studio dell'architettura a microservizi già esistente e analisi dei possibili miglioramenti per facilitarne la migrazione\\
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}32\vspace*{\fill}} & Identificazione dei servizi monolitici da decomporre e delle relazioni tra essi.\\
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}24\vspace*{\fill}} & Documentazione dei servizi esistenti e delle relazioni tra essi e del piano\\
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}16\vspace*{\fill}} & Identificazione dei potenziali rischi e delle sfide associate alla migrazione\\
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}24\vspace*{\fill}} & Inizio dello sviluppo di un Proof of Concept\\
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}16\vspace*{\fill}} & Documentazione dei rischi\\
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}8\vspace*{\fill}} & Individuazione di un piano indicativo di migrazione\\
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}24\vspace*{\fill}} & Proseguimento del Proof of Concept\\
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}16\vspace*{\fill}} & Valutazione teorica dell'architettura\\
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}32\vspace*{\fill}} & Revisione della documentazione e del Proof of Concept\\
+          \hline
+          \multicolumn{2}{|c|}{\textbf{304 ore totali}} \\ % First row, merged columns
+          \hline
+        \end{tabular}
+        \caption{Ripartizione delle ore in base alle attività}
+        \label{tab:pianificazione-ore}
+        \end{table}
+        
+        \subsection{Modello di sviluppo}
+        SogeaSoft S.r.l. adotta un modello di sviluppo Agile basato su Scrum, come approfondito nella Sezione 1.4. Tuttavia, durante il mio stage, non ho partecipato a tutte le cerimonie previste dal framework Scrum. In particolare, sebbene il Daily Scrum meeting si svolgesse quotidianamente con il mio tutor (che si alternava al Product Owner, a causa della disponibilità e delle necessità di ciascuno), il mio coinvolgimento nelle altre cerimonie è stato limitato. Infatti, ho partecipato esclusivamente allo sprint planning e alla sprint review, che non avevano una durata fissa, ma variavano a seconda dei task assegnati e della disponibilità del Product Owner. Nel complesso, il mio lavoro è stato principalmente solitario, con sviluppo individuale e il supporto del tutor limitato a momenti specifici, come durante le sprint review o quando necessario durante i Daily. Uno schema utile per visualizzare il processo che ha caratterizzato le attività di sviluppo durante il mio stage è visibile in Figura \ref{fig:sprint-effettivi}.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.7\linewidth]{BCS-Tessi/images/Sprint_true.png}
+            \caption[Rappresentazione dell'attività di sviluppo effettiva secondo Agile (Scrum)]{Rappresentazione grafica dell'attività di sviluppo effettiva che ha caratterizzato il mio stage secondo Agile, nel contesto Scrum.}
+            \label{fig:sprint-effettivi}
+        \end{figure}
+        
+        \subsection{Strumenti}
+        Gli strumenti utilizzati durante il mio stage, oltre alle tecnologie approfondite nella Sezione 1.7, sono stati diversificati e funzionali a diversi aspetti del lavoro. In primo luogo, ho impiegato la documentazione che redigevo progressivamente, utilizzando la Wiki di Azure come base di lavoro. Inoltre, per facilitare la gestione delle attività quotidiane e il processo di redazione della tesi, ho creato dei documenti personali in cui annotavo le cose da fare e le note importanti. 
+
+        Ogni sessione di sprint planning è stata accompagnata dalla definizione dettagliata dei task da parte del Product Owner, al fine di evitare ambiguità nell’interpretazione delle attività. Questi task sono stati organizzati e conservati in una cartella Drive, dove ho anche archiviato libri, articoli e altre fonti utili trovate durante il progetto. 
+
+        Poiché le pianificazioni erano gestite in modo intuitivo, non è stato necessario un ricorso frequente al calendario, in quanto il Product Owner mi comunicava direttamente le date degli incontri successivi. Un ulteriore strumento di monitoraggio utile è stato il report settimanale, che inviavo al mio tutor interno. Questi report mi hanno permesso di tracciare lo stato di avanzamento del progetto, identificare eventuali rallentamenti o problematiche, e di valutare se fosse opportuno rivedere le priorità tra le attività in corso.
+        
+        \subsection{Revisioni di Progresso}
+
+        Durante l'intero periodo di stage, le interazioni con il tutor aziendale sono state caratterizzate da una costante frequenza e prossimità. La vicinanza fisica delle postazioni lavorative ha notevolmente facilitato le opportunità di confronto professionale, contribuendo a mitigare la naturale difficoltà nell'avanzare richieste di supporto. Ciononostante, uno dei primi feedback che ho ricevuto ha riguardato la necessità di incrementare la frequenza delle richieste di assistenza, evitando un'eccessiva ostinazione nella ricerca autonoma di soluzioni, e di migliorare la comunicazione complessiva, sia in merito ai progressi conseguiti che alle criticità riscontrate.
+
+        In aggiunta agli incontri giornalieri individuali (Daily meeting), che si svolgevano successivamente alle riunioni del tutor relative ai suoi progetti, ho sistematicamente beneficiato dell'opportunità di comunicare l'avanzamento delle attività o le problematiche incontrate, senza la necessità di attendere la successiva sessione programmata.
+
+        Le valutazioni formali dei progressi, condotte con l'ulteriore Product Owner, avvenivano nell'ambito degli Sprint Review, durante i quali il PO verificava l'efficacia funzionale del lavoro svolto. In due circostanze distinte ho presentato il prototipo sviluppato all'intero team di sviluppo, considerata l'immediata applicabilità dello stesso. Tali presentazioni hanno costituito di fatto l'illustrazione del prodotto finale. La seconda occasione ha riguardato lo sviluppo di una dimostrazione funzionale (Proof of Concept) relativa a una funzionalità di particolare interesse: la sincronizzazione dei dati in tempo reale.
+        
+    \section{Motivazioni della scelta}
+    La selezione dell'opportunità di tirocinio è stata guidata da una riflessione evolutiva sulla natura e sugli obiettivi formativi di tale esperienza. Inizialmente, consideravo lo stage prevalentemente come un'occasione di applicazione pratica delle conoscenze teoriche acquisite durante il percorso accademico. Tuttavia, la partecipazione all'evento STAGE-IT, tenutosi a Padova nell'aprile 2024, ha determinato un significativo ampliamento di tale prospettiva, conducendomi a pensare l'esperienza di tirocinio anche come un'opportunità di sviluppo professionale e di confronto con sfide innovative.
+
+    Tale evoluzione concettuale ha orientato la mia scelta verso un progetto caratterizzato non da una mera applicazione di competenze consolidate, bensì da elementi di complessità e innovazione che potessero costituire stimoli significativi per l'apprendimento e la crescita professionale.
+
+    L'architettura a microservizi, approfondita teoricamente durante il corso di Ingegneria del Software, aveva suscitato in me un particolare interesse, che non aveva trovato adeguate opportunità di esplorazione pratica nell'ambito dei progetti didattici. L'individuazione di una proposta di tirocinio focalizzata su tale paradigma architetturale ha rappresentato pertanto un'opportunità particolarmente rilevante per il mio percorso formativo. La reciproca soddisfazione nella selezione è stata ulteriormente confermata dall'interesse manifestato dall'azienda per la mia candidatura, considerata la limitata attrattività del progetto tra gli altri studenti.
+
+    Tra i fattori secondari considerati nella valutazione, la collocazione geografica dell'azienda e l'accessibilità mediante trasporto pubblico hanno costituito elementi favorevoli alla scelta.
+
+    È opportuno precisare che la decisione è stata principalmente determinata dall'interesse per la tematica progettuale, piuttosto che da una preesistente conoscenza o affinità con l'azienda ospitante. La natura manifatturiera di SogeaSoft non ha rappresentato un elemento determinante nella selezione, nonostante le mie personali preferenze per modalità produttive artigianali rispetto alla produzione industriale su larga scala.
+
+    Gli aspetti economici e l'assenza di benefit aggiuntivi non hanno influenzato la valutazione, essendo stati considerati subordinati all'opportunità di approfondimento tecnico-professionale nell'ambito dei microservizi.
+    
+        \subsection{Obiettivi e aspettative personali}
+        La scelta dello stage è stata dunque già motivata da ragioni personali quali la curiosità verso questo specifico argomento.
+
+        \begin{table}[H]
+        \centering
+        \renewcommand{\arraystretch}{1.8} % Increase row height by 50%
+        \begin{tabular}{|>{\bfseries}c|m{15cm}|} % Use 'm{}' for vertical centering
+          \hline
+          \multicolumn{2}{|c|}{\textbf{Obiettivi Aziendali}} \\ % First row, merged columns
+          \hline
+          \multicolumn{2}{|c|}{\textbf{Obbligatori}} \\ % Second row, merged columns
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}P1\vspace*{\fill}} & Capire cosa sono le api\\ 
+          \hline
+          
+        \end{tabular}
+        \caption{}
+        \label{tab:obiettivi-personali}
+        \end{table}
