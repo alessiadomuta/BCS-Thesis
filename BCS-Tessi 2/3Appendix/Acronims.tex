@@ -1,0 +1,64 @@
+% Define the acronymlist environment
+\newenvironment{acronymlist}
+{\begin{itemize}[label={},leftmargin=*,align=left]}
+{\end{itemize}}
+
+% Command for adding acronyms
+\newcommand{\acronym}[2]{\item \textbf{#1} #2}
+
+% Command to add a letter heading
+\newcommand{\lettergroup}[1]{\item[\textbf{#1}]}
+
+
+\chapter{Lista degli acronimi}
+
+\begin{multicols}{2} % Start two-column layout
+\begin{acronymlist}
+    \lettergroup{A}
+    \acronym{AMQP}{Advanced Message Queuing Protocol}
+    \acronym{API}{Application Programming Interface}
+    \acronym{ASS}{After Sales Service}
+
+    \lettergroup{B}
+    \acronym{BI}{Business Intelligence}
+
+    \lettergroup{C}
+    \acronym{CRM}{Customer Relationship Management}
+    \acronym{CRP}{Capacity Requirements Planning}
+    \acronym{CS}{Customer Service}
+
+    \lettergroup{D}
+    \acronym{DBSM}{Database Management System}
+    \acronym{DDD}{Domain-Driven Design}
+
+    \lettergroup{E}
+    \acronym{ERP}{Enterprise Resource Planning}
+
+    \lettergroup{F}
+    \acronym{FCS}{Finite Capacity Scheduling}
+
+    \lettergroup{I}
+    \acronym{ITS}{Issue Tracking System}
+
+    \lettergroup{M}
+    \acronym{MPS}{Master Production Scheduling}
+    \acronym{MRP}{Material Requirements Planning}
+
+    \lettergroup{P}
+    \acronym{PDCA}{Plan-Do-Check-Act}
+    \acronym{PMI}{Piccole Medie Imprese}
+    \acronym{PR}{Pull Request}
+
+    \lettergroup{R}
+    \acronym{REST}{Representational State Transfer}
+    
+    \lettergroup{S}
+    \acronym{SAI}{Sistema Aziendale Integrato}
+    \acronym{SQL}{Structured Query Language}
+    \acronym{SRM}{Supplier Relationship Management}
+
+    \lettergroup{V}
+    \acronym{VCS}{Version Control System}
+
+\end{acronymlist}
+\end{multicols} % End two-column layout
