@@ -65,7 +65,7 @@
         
             \subsubsection{Il monolite}
             
-            Il \textit{software} SAI è caratterizzato da un’architettura monolitica, termine che evoca l’idea di una struttura compatta e unitaria, in cui le varie componenti sono strettamente interconnesse e formano un insieme indivisibile. Nel contesto dell'architettura \textit{software}, tale espressione indica un sistema in cui tutte le funzionalità sono integrate in un’unica unità di \textit{deployment}, costituendo una struttura unificata in cui ciascun componente dipende dagli altri per garantire il corretto funzionamento dell’intero sistema\footnote{O. Al-Debagy and P. Martinek, "A Comparative Review of Microservices and Monolithic Architectures," International Journal of Computer Science and Information Security, vol. 17, no. 3, pp. 123-131, 2019.}.  
+            Il \textit{software} SAI è caratterizzato da un’architettura monolitica, termine che evoca l’idea di una struttura compatta e unitaria, in cui le varie componenti sono strettamente interconnesse e formano un insieme indivisibile. Nel contesto dell'architettura \textit{software}, tale espressione indica un sistema in cui tutte le funzionalità sono integrate in un’unica unità, costituendo una struttura unificata in cui ciascun componente dipende dagli altri per garantire il corretto funzionamento dell’intero sistema\footnote{O. Al-Debagy and P. Martinek, "A Comparative Review of Microservices and Monolithic Architectures," International Journal of Computer Science and Information Security, vol. 17, no. 3, pp. 123-131, 2019.}.  
 
             \vspace{0.2 em}
             \noindent Le principali caratteristiche di un’architettura monolitica sono le seguenti:  
@@ -74,6 +74,7 @@
                 \item \textbf{integrazione delle funzionalità in un unico blocco applicativo}: tutte le funzionalità sono raccolte in un’unica entità, che viene distribuita come un blocco indivisibile. Questo implica che ogni modifica apportata a una parte del codice può avere ripercussioni su altre parti del sistema, rendendo complessi gli aggiornamenti e la manutenzione. Di conseguenza, con l’evolversi del progetto, l’accumulo di \text{debito tecnico\textsubscript{G}} può far sì che il \textit{software} diventi eccessivamente complesso e difficilmente adattabile a nuove tecnologie\footnote{J. Fritzsch, J. Bogner, A. Zimmermann, and S. Wagner, "From Monolith to Microservices: A Classification of Refactoring Approaches," in Proceedings of the IEEE International Conference on Software Architecture (ICSA), Stuttgart, Germany, 2018.};
                 \item  \textbf{scalabilità verticale}: la scalabilità in un sistema monolitico si ottiene potenziando l’intera applicazione per affrontare un aumento del carico di lavoro. Anche qualora solo alcune funzionalità necessitassero di risorse aggiuntive, l’intero sistema deve essere aggiornato, comportando uno spreco di risorse. Non essendo possibile una scalabilità modulare, si tende a duplicare l’intera applicazione per garantire le prestazioni richieste;
                 \item \textbf{bassa} \text{\textbf{granularità}\textsubscript{G}}: l’architettura monolitica presenta una scarsa separazione delle funzionalità, che risultano strettamente integrate e difficilmente isolabili\footnote{M. Cojocaru, A. Uta, and A.-M. Oprescu, "MicroValid: A Validation Framework for Automatically Decomposed Microservices," in Proceedings of the 11th IEEE/ACM International Conference on Cloud Computing (CloudCom), December 2019.}. Questo limita significativamente la flessibilità del sistema e ostacola l’integrazione di nuovi moduli o tecnologie senza compromettere la stabilità complessiva; 
+                \item \textbf{database centralizzato}: ciò implica che tutte le componenti dell’applicazione accedono e manipolano direttamente gli stessi dati. Questo comporta un \textbf{forte accoppiamento} tra i moduli e rende complessi gli aggiornamenti o le modifiche al database, poiché qualsiasi cambiamento può avere ripercussioni sull’intero sistema.
             \end{itemize}  
 
             \vspace{0.2 em}
@@ -83,33 +84,21 @@
             \noindent L'obiettivo del mio \textit{stage} è quello di fornire una base formale e metodologica al lavoro empirico già avviato da SogeaSoft S.r.l. riguardo alla migrazione verso un'architettura a microservizi, con l’intento di superare i limiti strutturali del sistema attuale e di garantire una maggiore flessibilità e scalabilità in futuro. Una rappresentazione visuale di questa attività è visibile nella Figura 2.3.
 
             \subsubsection{I microservizi}
-        
-            L'architettura a microservizi si caratterizza per la natura decentralizzata e per l’unità di esecuzione non strettamente dipendente dalle altre componenti del sistema. I microservizi comunicano tra loro tramite reti di comunicazione, configurandosi come una forma di sistema distribuito. Un principio fondamentale di questa architettura è il \textit{$deploy_G$} indipendente, che si realizza garantendo un basso grado di accoppiamento (\textit{loose $coupling_G$}) tra i servizi\footnote{A. Makris, K. Tserpes, and T. Varvarigou, "Transition from monolithic to microservice-based applications: Challenges from the developer perspective," arXiv, vol. 1, 2020.}.  
+            Al contrario, un’architettura basata su microservizi presenta caratteristiche distintive che la differenziano in modo significativo da quella monolitica, garantendo maggiore flessibilità e modularità. Le principali caratteristiche sono le seguenti:  
 
-            \vspace{0.2 em}
-            \noindent Una caratteristica distintiva dei microservizi è l’assenza di un \textit{database} condiviso: ogni servizio mantiene il proprio \textit{database} locale e, qualora necessiti di accedere ai dati di un altro servizio, deve effettuare una richiesta esplicita. Questo approccio consente di definire con precisione quali dati sono visibili e quali rimangono nascosti, favorendo il \textit{deployment} indipendente\footnote{F. Hassan, "Software architecture between monolithic and microservices approach: Literature review," Department of Computer Science, University of Colorado, Boulder, CO, USA, 2020.}.  
-
-            \vspace{0.2 em}
-            \noindent Per garantire un’architettura efficace, i microservizi devono rispettare due principi fondamentali:  
             \begin{itemize}
-                \item \textbf{Basso accoppiamento (\textit{Loose coupling})}: un microservizio è considerato debolmente accoppiato se è possibile modificarlo senza la necessità di aggiornare altri servizi correlati. Questo principio favorisce la manutenibilità e l'evoluzione del sistema, evitando effetti a cascata.
-                \item \textbf{Alta coesione funzionale (\textit{High $\textbf{cohesion}_G$})}: ogni microservizio dovrebbe avere un unico e ben definito scopo, raggruppando le funzionalità in modo tale da minimizzare le modifiche in punti distinti del sistema. 
-            \end{itemize} 
-
-            \vspace{0.2 em}
-            \noindent Inoltre, secondo i principi del \textit{Domain-Driven Design} ogni microservizio dovrebbe:  
-            \begin{itemize}
-                \item Incapsulare il \textit{domain $knowledge_G$} dai clienti, concentrandosi sulla propria responsabilità specifica. 
-                \item Definire l’architettura e i confini in base al rispettivo dominio anziché all’intero sistema, garantendo una chiara separazione delle responsabilità e una gestione modulare delle funzionalità\footnote{E. Evans, Domain-Driven Design: Tackling Complexity in the Heart of Software, Addison-Wesley, 2003}..
+                \item \textbf{funzionalità distribuite in più \textit{codebase}}: le funzionalità del sistema sono organizzate in servizi separati, ognuno dei quali dispone di una propria codebase autonoma. I microservizi comunicano tra loro tramite reti, spesso utilizzando API, mantenendo un elevato grado di indipendenza;
+                \item \textbf{scalabilità orizzontale}: è possibile aumentare le risorse relative a una singola funzionalità semplicemente aggiungendo istanze del microservizio corrispondente, senza dover stratificare l’intera applicazione. In un contesto di \textit{Domain-Driven Design} (DDD), si parla di \textbf{evoluzione del dominio}, ossia della capacità di migliorare e adattare il sistema in funzione dei cambiamenti del dominio applicativo, evitando di creare monoliti stratificati e complessi da gestire.  
+                \item \textbf{alta granularità}: l’architettura a microservizi è caratterizzata da un’elevata granularità, in cui ogni servizio è dedicato a una specifica funzionalità e opera in modo autonomo. Questa separazione netta consente di mantenere una chiara distinzione tra le responsabilità dei vari servizi, agevolando la manutenibilità e l’evoluzione del sistema. Il DDD supporta questa fase attraverso la definizione di \textbf{Bounded Contexts} e l’applicazione del principio di \textbf{Separation of Concerns}, che garantiscono una chiara demarcazione tra i diversi ambiti di competenza e funzionalità.  
+                \item \textbf{database distribuito}: i microservizi dispongono di database indipendenti. Ogni microservizio è responsabile della gestione dei propri dati e, qualora necessiti di informazioni da un altro servizio, effettua una richiesta esplicita tramite meccanismi di comunicazione inter-servizio, spesso implementati tramite \textbf{Domain Events}. Questo approccio riduce il forte accoppiamento (\textbf{\textit{loose coupling}}) tra le componenti, garantendo maggiore modularità e resilienza del sistema. 
             \end{itemize}  
 
-            \vspace{0.2 em}
-            \noindent Questo approccio consente di costruire sistemi resilienti e scalabili, in cui l'evoluzione tecnologica può avvenire in modo graduale e senza compromettere l'integrità complessiva del sistema.
+            Queste caratteristiche rendono l’architettura a microservizi particolarmente adatta a contesti dinamici e complessi, in cui la capacità di adattamento e la modularità rivestono un ruolo fondamentale nel garantire la qualità e la manutenibilità del sistema.
 
             \begin{figure}[H]
                 \centering
                 \includegraphics[width=1.0\linewidth]{BCS-Tessi/images/Monolith-Microservices.png}
-                \caption[Differenza tra un sistema monolitico e uno a microservizi]{Differenza tra un'architettura monolitica e un'architettura basata su microservizi.}
+                \caption[Rappresentazione grafica della suddivisione in microservizi]{Rappresentazione grafica della suddivisione in microservizi}
                 \label{fig:monolith-vs-microservices}
             \end{figure}
 
@@ -285,7 +274,15 @@
     Gli aspetti economici e l'assenza di benefit aggiuntivi non hanno influenzato la valutazione, essendo stati considerati subordinati all'opportunità di approfondimento tecnico-professionale nell'ambito dei microservizi.
     
         \subsection{Obiettivi e aspettative personali}
-        La scelta dello stage è stata dunque già motivata da ragioni personali quali la curiosità verso questo specifico argomento.
+        La scelta del tirocinio è stata guidata da motivazioni personali, in particolare dalla curiosità verso l'argomento specifico dei microservizi.
+
+        L'esperienza precedente con il progetto di Ingegneria del \textit{Software} mi ha permesso di identificare alcuni aspetti personali da migliorare e argomenti tecnici da approfondire. Tra questi, il mio interesse per i microservizi, che ho descritto in dettaglio nella sezione 2.5, e per le API come metodi di comunicazione tra microservizi. Durante il progetto universitario, non ho avuto l'opportunità di esplorare adeguatamente questi temi, sia per una non ottimale organizzazione del gruppo di lavoro, sia per una distribuzione inefficace delle attività. Mi sono ritrovata infatti a dedicare tempo ad attività poco significative (shallow work) a discapito di altre più formative, tra cui l'approfondimento di queste tecnologie che producono reale valore, che rappresentano un esempio di attività di deep work.
+
+        Questa esperienza mi ha fatto comprendere come la scarsa fiducia nelle mie capacità e la difficoltà nel comunicare apertamente sia le difficoltà che i progressi abbiano portato ad una situazione in cui le decisioni venivano prese da altri per me. Questi aspetti sono diventati obiettivi di miglioramento personale, per i quali lo stage ha rappresentato un'importante opportunità di crescita.
+
+        Sebbene ritenessi di aver già fatto progressi nelle mie capacità comunicative, i feedback ricevuti dal tutor aziendale mi hanno fatto comprendere che ero solo all'inizio di questo percorso di sviluppo personale.
+
+        Analogamente, l'esperienza del corso di Ingegneria del Software mi ha insegnato l'importanza di accettare l'assenza di soluzioni perfette nello sviluppo software e di comprendere la naturalezza della curva di apprendimento. Durante lo stage, ho voluto lavorare sulla capacità di non pretendere risultati perfetti fin da subito, accettando che il processo di apprendimento implica necessariamente la possibilità di non conoscere tutto e di commettere errori come parte integrante della crescita professionale.
 
         \begin{table}[H]
         \centering
@@ -296,9 +293,22 @@
           \hline
           \multicolumn{2}{|c|}{\textbf{Obbligatori}} \\ % Second row, merged columns
           \hline
-          \multirow{2}{*}{\vspace*{\fill}P1\vspace*{\fill}} & Capire cosa sono le api\\ 
+          \multirow{2}{*}{\vspace*{\fill}P1\vspace*{\fill}} & Sviluppare maggiore fiducia nelle mie capacità di problem solving e ampliare il repertorio di approcci risolutivi\\ 
           \hline
-          
+          \multirow{2}{*}{\vspace*{\fill}P2\vspace*{\fill}} & Approfondire la conoscenza teorica e pratica delle architetture a microservizi, con particolare attenzione ai meccanismi di comunicazione tra servizi\\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}P3\vspace*{\fill}} & Acquisire la capacità di valutare criticamente le soluzioni tecniche, considerando i compromessi necessari in contesti \textbf{reali} piuttosto che perseguire soluzioni teoricamente perfette\\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}P4\vspace*{\fill}} & Consolidare la comprensione dei principi di progettazione delle API tra microservizi e delle relative best practices implementative\\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}P5\vspace*{\fill}} & Potenziare le competenze di comunicazione professionale, con particolare riferimento alla presentazione tecnica dei risultati durante gli sprint review\\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}P6\vspace*{\fill}} & Migliorare le capacità di comunicazione interpersonale in ambito lavorativo, sia nella richiesta di supporto che nella condivisione dei progressi conseguiti\\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}P7\vspace*{\fill}} & Sviluppare una maggiore consapevolezza del processo di apprendimento professionale, accettando la naturale curva di apprendimento e la progressiva acquisizione di competenze\\ 
+          \hline
+          \multirow{2}{*}{\vspace*{\fill}P8\vspace*{\fill}} & Ottimizzare la gestione del tempo lavorativo attraverso un approccio più strutturato e consapevole, privilegiando periodi prolungati di deep work, ossia concentrazione profonda\\ 
+          \hline
         \end{tabular}
         \caption{}
         \label{tab:obiettivi-personali}
