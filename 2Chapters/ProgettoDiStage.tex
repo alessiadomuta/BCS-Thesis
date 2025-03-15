@@ -6,7 +6,7 @@
     \noindent Da ciò che ho potuto comprendere durante il mio periodo a SogeaSoft S.r.l., le attività svolte nell'ambito degli \textit{stage} possono includere: 
     \begin{itemize}
         \item l'integrazione di nuove funzionalità nei sistemi esistenti, con l'obiettivo di migliorarne le prestazioni e l'efficienza;
-        \item lo studio e lo sviluppo di strumenti autonomi a supporto dei processi di sviluppo o dei prodotti in uso, come ad esempio Swagger, una piattaforma per la documentazione e il testing delle API (approfondite nella Sezione 1.7);  
+        \item lo studio e lo sviluppo di strumenti autonomi a supporto dei processi di sviluppo o dei prodotti in uso, come ad esempio Swagger, una piattaforma per la documentazione e il \textit{testing} delle API (approfondite nella Sezione 1.7);  
         \item l'analisi formale di strumenti già utilizzati in azienda, ma impiegati prevalentemente in modo empirico, al fine di standardizzarne e ottimizzarne l’uso;  
         \item la conduzione di attività di monitoraggio sulle \textit{performance} di determinati sistemi, per identificarne eventuali criticità e proporre soluzioni migliorative.  
     \end{itemize}
@@ -25,27 +25,31 @@
     \noindent SogeaSoft S.r.l. attribuisce particolare valore agli \textit{stage}, poiché rappresentano un'opportunità strategica per affrontare una delle sue principali sfide tecnologiche: la migrazione del proprio prodotto da un’architettura $monolitica_G$ a un’architettura a $microservizi_G$, come discusso nella Sezione 1.8. Gli \textit{stage} costituiscono una risorsa vantaggiosa sotto molteplici aspetti: da un lato, permettono di ottimizzare l’investimento in ricerca e sviluppo grazie a costi contenuti; dall’altro, consentono all’azienda di entrare in contatto con prospettive innovative, idee originali e persone non condizionate da paradigmi consolidati. 
 
     \vspace{0.2 em}
-    \noindent Un ulteriore fattore determinante nell’impiego di tirocinanti per lo sviluppo di soluzioni innovative è la gestione delle risorse interne. Il personale aziendale è prevalentemente impegnato nel mantenimento e nell’evoluzione dei sistemi attualmente in produzione, rendendo complesso il reindirizzamento delle competenze su progetti sperimentali. L’inserimento di studenti permette di destinare risorse dedicate a iniziative di ricerca e innovazione, garantendo al contempo un processo di trasferimento di conoscenze tra le diverse generazioni di sviluppatori.
+    \noindent Un ulteriore fattore determinante nell’impiego di tirocinanti per lo sviluppo di soluzioni innovative è la gestione delle risorse interne. Il personale aziendale è prevalentemente impegnato nel mantenimento e nell’evoluzione dei sistemi attualmente in produzione, rendendo complesso il reindirizzamento delle competenze su progetti sperimentali. L’inserimento di studenti permette di destinare risorse dedicate a iniziative di ricerca e innovazione, permettendo al contempo un processo di trasferimento di conoscenze tra le diverse generazioni di sviluppatori.
     
     \section{Il \textit{software} SAIonWeb}
     
-    Il tema principale del mio \textit{stage} ha riguardato lo sviluppo e l’evoluzione di SAIonWeb, un \textit{software} basato sul \textit{framework} SAI (Sistema Aziendale Integrato). SAIonWeb è uno strumento progettato per la gestione dei processi aziendali nell’ambito dell’\textit{Enterprise Resource Planning} (ERP). In particolare, il \textit{software} è destinato al settore manifatturiero, con un \textit{focus} specifico sull'industria dell’abbigliamento, supportando l'intero ciclo di vita del prodotto: dalla gestione delle materie prime, alla fase di confezionamento, fino alla distribuzione finale\footnote{Fonte: https://sogeasoft.com/p/sai \textit{(ultima visita 12/03/2025)}}. 
+    Il tema principale del mio \textit{stage} ha riguardato lo sviluppo e l’evoluzione di SAIonWeb, un \textit{software} basato sul \textit{framework} SAI (Sistema Aziendale Integrato). SAIonWeb è uno strumento progettato per la gestione dei processi aziendali nell’ambito dell’\textit{Enterprise Resource Planning} (ERP). In particolare, il \textit{software} è stato concepito per rispondere alle esigenze specifiche del settore manifatturiero, nello specifico all'industria dell'abbigliamento, offrendo supporto integrato all'intero ciclo di vita del prodotto: dalla gestione e approvvigionamento delle materie prime, attraverso la fase di confezionamento e produzione, fino alla distribuzione e commercializzazione finale\footnote{Fonte: https://sogeasoft.com/p/sai \textit{(ultima visita 12/03/2025)}}. 
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\linewidth]{BCS-Tessi//images/ERP.png}
+        \caption[Esempio di un ERP generico]{Esempio di un ERP generico. Fonte:https://www.bo.camcom.gov.it/it/promozione-interna/sistemi-gestionali-erp \textit{(ultima visita 15/03/2025)}}
+        \label{fig:ERP}
+    \end{figure}
 
     \vspace{0.2 em}
-    \noindent Il \textit{framework} SAI, alla base di SAIonWeb, è caratterizzato da un'architettura monolitica, un modello in cui tutti i componenti del sistema, dall’interfaccia utente alla logica applicativa e alla gestione dei dati, sono strettamente integrati all’interno di un'unica applicazione\footnote{S. Newman, Monolith to Microservices: Evolutionary Patterns to Transform Your Monolith, O'Reilly Media, 2019.}.  
-
-    \vspace{0.2 em}
-    \noindent L'obiettivo del mio stage è stato analizzare il funzionamento di SAI, identificando il dominio applicativo, i \textit{bounded $contexts_G$} e le possibili suddivisioni in microservizi. Il lavoro ha comportato un'attività di studio approfondita dell'architettura esistente, al fine di individuare i servizi che potevano essere estratti e trasformati in unità indipendenti, contribuendo così al processo di migrazione verso SAIonWeb, pensata per adottare un'architettura a microservizi. Inoltre, il progetto ha previsto la valutazione delle scelte progettuali già adottate dai dipendenti, con la possibilità di proseguire il lavoro esistente oppure, ove necessario, modificarlo per garantire una transizione più efficace e coerente con i principi del \textit{Domain-Driven $Design_G$} (DDD). 
+    \noindent Come anticipato nella Sezione 1.2, SAIonWeb costituisce uno strumento di elevata rilevanza strategica, implementato da diverse realtà imprenditoriali operanti nel settore manifatturiero, con l'obiettivo di automatizzare e ottimizzare molteplici processi operativi aziendali. I processi specifici supportati dal sistema e le relative implicazioni funzionali sono oggetto di approfondimento nella sezione successiva.
     
         \subsection{Funzionalità generali di SAIonWeb}
         SAI ERP (e dunque anche SAIonWeb) è un sistema \textit{software} gestionale progettato per integrare e automatizzare i processi aziendali, consentendo alle organizzazioni di gestire in modo efficiente risorse, dati e operazioni. Questi sistemi offrono un ambiente centralizzato in cui le diverse aree aziendali, dalla produzione alla logistica, dalla contabilità alla gestione delle risorse umane, possono operare in modo coordinato, migliorando la tracciabilità delle informazioni e ottimizzando la produttività.  
 
         \vspace{0.2 em}
-        \noindent SAI è un ERP specificamente sviluppato per il settore dell'abbigliamento, supportando l’intero ciclo di produzione e distribuzione di capi di moda. Le sue funzionalità principali includono:  
+        \noindent Le sue funzionalità principali includono:  
         \begin{itemize}
             \item \textbf{gestione delle materie prime}: monitoraggio degli approvvigionamenti, delle scorte e della qualità dei materiali;
             \item \textbf{pianificazione della produzione}: organizzazione delle fasi produttive, assegnazione delle risorse e gestione dei tempi di lavorazione;
-            \item \textbf{tracciabilità dei prodotti}: controllo dell’avanzamento di ciascun capo, dalla fase iniziale di lavorazione fino alla distribuzione. In particolare, una schermata d'esempio è visibile in Figura 2.1;
+            \item \textbf{tracciabilità dei prodotti}: controllo dell’avanzamento di ciascun capo, dalla fase iniziale di lavorazione fino alla distribuzione. In particolare, una schermata d'esempio è visibile in Figura \ref{fig:screenSAI};
             \item \textbf{gestione degli ordini e delle vendite}: registrazione degli ordini, gestione delle consegne e fatturazione automatizzata;
             \item \textbf{logistica e distribuzione}: coordinamento delle spedizioni, gestione dei magazzini e ottimizzazione delle scorte;
             \item \textbf{integrazione con il sistema contabile}: gestione di pagamenti, bilanci e rendicontazione finanziaria;
@@ -61,7 +65,6 @@
             \caption[Schermata del \textit{software} SAI di SogeaSoft S.r.l.]{Schermata del \textit{software} SAI. Fonte: \textit{slide} di presentazione utilizzate durante la fase di formazione}
             \label{fig:screenSAI}
         \end{figure}
-        \newpage
         
         \subsection{L'architettura di SAI}
         
@@ -74,7 +77,7 @@
 
             \begin{itemize}
                 \item \textbf{integrazione delle funzionalità in un unico blocco applicativo}: tutte le funzionalità sono raccolte in un’unica entità, che viene distribuita come un blocco indivisibile. Questo implica che ogni modifica apportata a una parte del codice può avere ripercussioni su altre parti del sistema, rendendo complessi gli aggiornamenti e la manutenzione. Di conseguenza, con l’evolversi del progetto, l’accumulo di \text{debito tecnico\textsubscript{G}} può far sì che il \textit{software} diventi eccessivamente complesso e difficilmente adattabile a nuove tecnologie\footnote{J. Fritzsch, J. Bogner, A. Zimmermann, and S. Wagner, "From Monolith to Microservices: A Classification of Refactoring Approaches," in Proceedings of the IEEE International Conference on Software Architecture (ICSA), Stuttgart, Germany, 2018.};
-                \item  \textbf{scalabilità verticale}: la scalabilità in un sistema monolitico si ottiene potenziando l’intera applicazione per affrontare un aumento del carico di lavoro\ap{3}. Anche qualora solo alcune funzionalità necessitassero di risorse aggiuntive, l’intero sistema deve essere aggiornato, comportando uno spreco di risorse. Non essendo possibile una scalabilità modulare, si tende a duplicare l’intera applicazione per garantire le prestazioni richieste;
+                \item  \textbf{scalabilità verticale}: la scalabilità in un sistema monolitico si ottiene potenziando l’intera applicazione per affrontare un aumento del carico di lavoro\ap{3}. Anche qualora solo alcune funzionalità necessitassero di risorse aggiuntive, l’intero sistema deve essere aggiornato, comportando uno spreco di risorse. Non essendo sempre possibile una scalabilità modulare, si tende a duplicare l’intera applicazione per garantire le prestazioni richieste;
                 \item \textbf{bassa} \text{\textbf{granularità}\textsubscript{G}}: l’architettura monolitica presenta una scarsa separazione delle funzionalità, che risultano strettamente integrate e difficilmente isolabili\footnote{M. Cojocaru, A. Uta, and A.-M. Oprescu, "MicroValid: A Validation Framework for Automatically Decomposed Microservices," in Proceedings of the 11th IEEE/ACM International Conference on Cloud Computing (CloudCom), December 2019.}. Questo limita significativamente la flessibilità del sistema e ostacola l’integrazione di nuovi moduli o tecnologie senza compromettere la stabilità complessiva; 
                 \item \textbf{\textit{database} centralizzato}: ciò implica che tutte le componenti dell’applicazione accedono e manipolano direttamente gli stessi dati. Questo comporta un \textbf{forte accoppiamento \textit{(tightly coupled)}}\footnote{Fonte: https://martinfowler.com/articles/break-monolith-into-microservices.html \textit{(ultima visita 14/03/2025)}} tra i moduli e rende complessi gli aggiornamenti o le modifiche al \textit{database}, poiché qualsiasi cambiamento può avere ripercussioni sull’intero sistema.
             \end{itemize}  
@@ -117,7 +120,7 @@
         \noindent Come si può osservare nella Figura \ref{fig:migrazione}, uno degli elementi centrali della migrazione riguarda l'introduzione di una componente denominata MicroService-Middleware, implementata come un \textit{Anti-Corruption $Layer_G$} ($ACL_G$). In ambito architetturale, un ACL è un modello progettuale che funge da interfaccia tra sistemi $legacy_G$ e nuove componenti, prevenendo la propagazione di modelli obsoleti o incoerenti nelle parti più moderne del sistema. Nel contesto di SogeaSoft S.r.l., il MicroService-Middleware si occupa di ricevere le richieste provenienti dall'ERP monolitico e, tramite un \textit{Message $Broker_G$}, instradare tali richieste verso il microservizio appropriato. Il \textit{Message Broker}, infatti, svolge il ruolo di intermediario per lo scambio di messaggi tra componenti \textit{software}, garantendo una comunicazione asincrona ed efficiente tra i vari microservizi.  
 
         \vspace{0.2 em}
-        \noindent Ogni microservizio, una volta attivato, dopo aver effettuato l'autenticazione attraverso l'applicazione nativa di SAI chiamata \textit{Identity $Server_G$}, esso esegue la funzione richiesta in modo autonomo e indipendente, restituendo l’esito tramite lo stesso meccanismo di messaggistica. Per rendere accessibili le funzionalità esposte dai microservizi, l'azienda ha implementato una \textit{WebAPI Gateway}, che rappresenta un punto di accesso centralizzato alle API dei vari servizi. La \textit{WebAPI Gateway} consente di aggregare e orchestrare le chiamate ai microservizi, creando un'interfaccia unificata verso l'utente finale.  
+        \noindent Ogni microservizio, una volta attivato, dopo aver effettuato l'autenticazione attraverso l'applicazione nativa di SAI chiamata \textit{Identity Server}, esso esegue la funzione richiesta in modo autonomo e indipendente, restituendo l’esito tramite lo stesso meccanismo di messaggistica. Per rendere accessibili le funzionalità esposte dai microservizi, l'azienda ha implementato una \textit{WebAPI Gateway}, che rappresenta un punto di accesso centralizzato alle API dei vari servizi. La \textit{WebAPI Gateway} consente di aggregare e orchestrare le chiamate ai microservizi, creando un'interfaccia unificata verso l'utente finale.  
 
         \vspace{0.2 em}
         \noindent Grazie a questa architettura, il sistema è in grado di supportare una \textit{Single Page $Application_G$} (SPA), un tipo di applicazione \textit{web} che carica una singola pagina \textit{web} e aggiorna dinamicamente il contenuto man mano che l'utente interagisce. Questo approccio garantisce un'esperienza utente più fluida e interattiva, riducendo i tempi di caricamento e ottimizzando le \textit{performance} dell'applicazione.  
@@ -147,7 +150,7 @@
         \renewcommand{\arraystretch}{1.8} % Increase row height by 50%
         \begin{tabular}{|>{\bfseries}c|m{15cm}|} % Use 'm{}' for vertical centering
           \hline
-          \multicolumn{2}{|c|}{\textbf{Obiettivi Aziendali}} \\ % First row, merged columns
+          \multicolumn{2}{|c|}{\textbf{Obiettivi aziendali}} \\ % First row, merged columns
           \hline
           \multicolumn{2}{|c|}{\textbf{Obbligatori}} \\ % Second row, merged columns
           \hline
@@ -194,131 +197,145 @@
         \noindent Tuttavia, nel corso dello \textit{stage} ho avuto l’opportunità di interagire anche con numerose altre tecnologie, che ho approfondito nella Sezione 1.7.
 
     \section{Metodo di Lavoro}
-        \subsection{Piainificazione}
+        \subsection{Pianificazione}
         
-        Sulla base degli obiettivi di progetto delineati nella Sezione 2.3.1 (Tabella \ref{tab:obiettivi}) e della pianificazione oraria proposta nel Piano di lavoro (Tabella \ref{tab:pianificazione-ore}), insieme al tutor aziendale, abbiamo stabilito le principali tappe intermedie (milestone) per monitorare il progresso del progetto. La collocazione temporale di queste milestone è stata determinata tenendo conto sia delle attività che dipendono strettamente l'una dall'altra, in particolare per quanto riguarda gli aspetti formativi, sia della necessità di produrre risultati tangibili, quali documentazione e codice, in modo regolare. Ciò ha permesso al tutor di monitorare il progresso del progetto e individuare tempestivamente eventuali rallentamenti.
+        Sulla base degli obiettivi di progetto delineati nella Sezione 2.3.1 (Tabella \ref{tab:obiettivi}) e della pianificazione oraria proposta nel Piano di lavoro (Tabella \ref{tab:pianificazione-ore}), insieme al \textit{tutor} aziendale, abbiamo stabilito le principali tappe intermedie (\textit{milestone}) per monitorare il progresso del progetto. La collocazione temporale di queste \textit{milestone} è stata determinata tenendo conto sia delle attività che dipendono strettamente l'una dall'altra, in particolare per quanto riguarda gli aspetti formativi, sia della necessità di produrre risultati tangibili, quali documentazione e codice in modo regolare. Ciò ha permesso al \textit{tutor} di monitorare il progresso del progetto e individuare tempestivamente eventuali rallentamenti.
 
-        La definizione dettagliata delle singole attività è avvenuta nel corso delle sessioni di **sprint planning** con il Product Owner. Durante questi incontri, mi venivano assegnate le attività specifiche, venivano chiariti i risultati attesi e venivano fissati appuntamenti per valutare il grado di avanzamento, fornire supporto in caso di difficoltà o testare i risultati raggiunti. 
+        \vspace{0.2 em}
+        \noindent La definizione dettagliata delle singole attività è avvenuta nel corso delle sessioni di \textit{Sprint planning} con il \textit{Product Owner}. Durante questi incontri, mi venivano assegnate le attività specifiche, venivano chiariti i risultati attesi e venivano fissati appuntamenti per valutare il grado di avanzamento, fornire supporto in caso di difficoltà o testare i risultati raggiunti. 
 
-        Le sessioni di **sprint planning**, **sprint grooming** o **raffinamento del backlog** si sono svolte con una cadenza variabile, determinata in modo intuitivo in base alle necessità specifiche dei task a me assegnati, e si sono adattate di volta in volta al contesto e agli obiettivi da raggiungere.
+        \renewcommand{\arraystretch}{2} % Increase row height globally
+        \setlength{\tabcolsep}{9pt} % Increase horizontal padding in cells
+        
+        \begin{longtable}{|>{\bfseries}c|m{13cm}|}
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}Durata in ore\vspace*{5mm}}} & \textbf{Descrizione attività} \\ 
+          \hline
+          \endfirsthead % Header for the first page
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}Durata in ore\vspace*{5mm}}} & \textbf{Descrizione attività} \\ 
+          \hline
+          \endhead % Header for subsequent pages
+          \hline
+          \multicolumn{2}{|r|}{{Continua nella pagina successiva}} \\ 
+          \endfoot % Footer for all pages except the last
+          
+          \endlastfoot
+        
+          \multirow{2}{*}{\makecell{\vspace*{5mm}16\vspace*{5mm}}} & Conoscenza ambiente di lavoro e contesto\\ 
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}32\vspace*{5mm}}} & Studio della letteratura esistente sulle architetture monolitiche, sulle architetture a microservizi e sui metodi di migrazione\\ 
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}24\vspace*{5mm}}} & Analisi dell'applicazione esistente per identificare i servizi e le funzionalità da suddividere in microservizi\\ 
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}16\vspace*{5mm}}} & Stesura della documentazione relativa ai requisiti\\
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}24\vspace*{5mm}}} & Studio dell'architettura a microservizi già esistente e analisi dei possibili miglioramenti per facilitarne la migrazione\\
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}32\vspace*{5mm}}} & Identificazione dei servizi monolitici da decomporre e delle relazioni tra essi.\\
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}24\vspace*{5mm}}} & Documentazione dei servizi esistenti e delle relazioni tra essi e del piano\\
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}16\vspace*{5mm}}} & Identificazione dei potenziali rischi e delle sfide associate alla migrazione\\
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}24\vspace*{5mm}}} & Inizio dello sviluppo di un Proof of Concept\\
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}16\vspace*{5mm}}} & Documentazione dei rischi\\
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}8\vspace*{5mm}}} & Individuazione di un piano indicativo di migrazione\\
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}24\vspace*{5mm}}} & Proseguimento del Proof of Concept\\
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}16\vspace*{5mm}}} & Valutazione teorica dell'architettura\\
+          \hline
+          \multirow{2}{*}{\makecell{\vspace*{5mm}32\vspace*{5mm}}} & Revisione della documentazione e del Proof of Concept\\
+          \hline
+          \multicolumn{2}{|c|}{\textbf{304 ore totali}} \\ % Last row, merged columns
+          \hline
+          \caption{Ripartizione delle ore in base alle attività} % Caption after the last row
+          \label{tab:pianificazione-ore}
+        \end{longtable}
 
-        \begin{table}[h!]
-        \centering
-        \renewcommand{\arraystretch}{1.8} % Increase row height by 50%
-        \begin{tabular}{|>{\bfseries}c|m{15cm}|} % Use 'm{}' for vertical centering
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}Durata in ore\vspace*{\fill}} & Descrizione attività \\ 
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}16\vspace*{\fill}} & Conoscenza ambiente di lavoro e contesto\\ 
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}32\vspace*{\fill}} & Studio della letteratura esistente sulle architetture monolitiche, sulle architetture a microservizi e sui metodi di migrazione\\ 
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}24\vspace*{\fill}} & Analisi dell'applicazione esistente per identificare i servizi e le funzionalità da suddividere in microservizi\\ 
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}16\vspace*{\fill}} & Stesura della documentazione relativa ai requisiti\\
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}24\vspace*{\fill}} & Studio dell'architettura a microservizi già esistente e analisi dei possibili miglioramenti per facilitarne la migrazione\\
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}32\vspace*{\fill}} & Identificazione dei servizi monolitici da decomporre e delle relazioni tra essi.\\
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}24\vspace*{\fill}} & Documentazione dei servizi esistenti e delle relazioni tra essi e del piano\\
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}16\vspace*{\fill}} & Identificazione dei potenziali rischi e delle sfide associate alla migrazione\\
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}24\vspace*{\fill}} & Inizio dello sviluppo di un Proof of Concept\\
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}16\vspace*{\fill}} & Documentazione dei rischi\\
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}8\vspace*{\fill}} & Individuazione di un piano indicativo di migrazione\\
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}24\vspace*{\fill}} & Proseguimento del Proof of Concept\\
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}16\vspace*{\fill}} & Valutazione teorica dell'architettura\\
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}32\vspace*{\fill}} & Revisione della documentazione e del Proof of Concept\\
-          \hline
-          \multicolumn{2}{|c|}{\textbf{304 ore totali}} \\ % First row, merged columns
-          \hline
-        \end{tabular}
-        \caption{Ripartizione delle ore in base alle attività}
-        \label{tab:pianificazione-ore}
-        \end{table}
+
         
         \subsection{Modello di sviluppo}
-        SogeaSoft S.r.l. adotta un modello di sviluppo Agile basato su Scrum, come approfondito nella Sezione 1.4. Tuttavia, durante il mio stage, non ho partecipato a tutte le cerimonie previste dal framework Scrum. In particolare, sebbene il Daily Scrum meeting si svolgesse quotidianamente con il mio tutor (che si alternava al Product Owner, a causa della disponibilità e delle necessità di ciascuno), il mio coinvolgimento nelle altre cerimonie è stato limitato. Infatti, ho partecipato esclusivamente allo sprint planning e alla sprint review, che non avevano una durata fissa, ma variavano a seconda dei task assegnati e della disponibilità del Product Owner. Nel complesso, il mio lavoro è stato principalmente solitario, con sviluppo individuale e il supporto del tutor limitato a momenti specifici, come durante le sprint review o quando necessario durante i Daily. Uno schema utile per visualizzare il processo che ha caratterizzato le attività di sviluppo durante il mio stage è visibile in Figura \ref{fig:sprint-effettivi}.
+        SogeaSoft S.r.l. adotta un modello di sviluppo \textit{Agile} basato su Scrum, come approfondito nella Sezione 1.4. Tuttavia, durante il mio stage, non ho partecipato a tutte le cerimonie previste dal \textit{framework} Scrum. In particolare, sebbene il \textit{Daily Scrum meeting} si svolgesse quotidianamente con il mio \textit{tutor} (che si alternava al \textit{Product Owner}, in base alla disponibilità e alle necessità di ciascuno), il mio coinvolgimento nelle altre cerimonie è stato limitato. Infatti, ho partecipato esclusivamente allo \textit{Sprint planning} e alla \textit{Sprint review}, che non avevano una durata fissa, ma variavano a seconda dei \textit{task} assegnati e della disponibilità del \textit{Product Owner}. Nel complesso, il mio lavoro è stato principalmente solitario, con sviluppo individuale e il supporto del \textit{tutor} limitato a momenti specifici. Uno schema utile per visualizzare il processo che ha caratterizzato le attività di sviluppo durante il mio \textit{stage} è visibile in Figura \ref{fig:Sprint-effettivi}.
 
         \begin{figure}[H]
             \centering
             \includegraphics[width=0.7\linewidth]{BCS-Tessi/images/Sprint_true.png}
-            \caption[Rappresentazione dell'attività di sviluppo effettiva secondo Agile (Scrum)]{Rappresentazione grafica dell'attività di sviluppo effettiva che ha caratterizzato il mio stage secondo Agile, nel contesto Scrum.}
-            \label{fig:sprint-effettivi}
+            \caption[Rappresentazione dell'attività di sviluppo effettiva secondo \textit{Agile} (Scrum)]{Rappresentazione grafica dell'attività di sviluppo effettiva che ha caratterizzato il mio \textit{stage} secondo \textit{Agile}, nel contesto Scrum.}
+            \label{fig:Sprint-effettivi}
         \end{figure}
         
         \subsection{Strumenti}
-        Gli strumenti utilizzati durante il mio stage, oltre alle tecnologie approfondite nella Sezione 1.7, sono stati diversificati e funzionali a diversi aspetti del lavoro. In primo luogo, ho impiegato la documentazione che redigevo progressivamente, utilizzando la Wiki di Azure come base di lavoro. Inoltre, per facilitare la gestione delle attività quotidiane e il processo di redazione della tesi, ho creato dei documenti personali in cui annotavo le cose da fare e le note importanti. 
+        Gli strumenti utilizzati durante il mio \textit{stage}, oltre alle tecnologie approfondite nella Sezione 1.7, sono stati diversificati e funzionali a diversi aspetti del lavoro. In primo luogo, ho impiegato la documentazione che redigevo progressivamente, utilizzando la \textit{Wiki} di Azure come base di lavoro. Inoltre, per facilitare la gestione delle attività quotidiane e il processo di redazione della tesi, ho creato dei documenti personali in cui annotavo le cose da fare e le note importanti. 
 
-        Ogni sessione di sprint planning è stata accompagnata dalla definizione dettagliata dei task da parte del Product Owner, al fine di evitare ambiguità nell’interpretazione delle attività. Questi task sono stati organizzati e conservati in una cartella Drive, dove ho anche archiviato libri, articoli e altre fonti utili trovate durante il progetto. 
+        \vspace{0.2 em}
+        \noindent Ogni sessione di \textit{Sprint planning} è stata accompagnata dalla definizione dettagliata dei \textit{task} da parte del \textit{Product Owner}, al fine di evitare ambiguità nell’interpretazione delle attività. Questi \textit{task} sono stati organizzati e conservati in una cartella Drive, dove ho anche archiviato libri, articoli e altre fonti utili trovate durante il progetto. 
 
-        Poiché le pianificazioni erano gestite in modo intuitivo, non è stato necessario un ricorso frequente al calendario, in quanto il Product Owner mi comunicava direttamente le date degli incontri successivi. Un ulteriore strumento di monitoraggio utile è stato il report settimanale, che inviavo al mio tutor interno. Questi report mi hanno permesso di tracciare lo stato di avanzamento del progetto, identificare eventuali rallentamenti o problematiche, e di valutare se fosse opportuno rivedere le priorità tra le attività in corso.
+        \vspace{0.2 em}
+        \noindent Poiché le pianificazioni erano gestite in modo intuitivo, non è stato necessario un ricorso frequente al calendario, in quanto il \textit{Product Owner} mi comunicava direttamente le date degli incontri successivi. Un ulteriore strumento di monitoraggio utile è stato il \textit{report} settimanale, che inviavo al mio \textit{tutor} interno. Questi \textit{report} mi hanno permesso di tracciare lo stato di avanzamento del progetto, identificare eventuali rallentamenti o problematiche, e di valutare se fosse opportuno rivedere le priorità tra le attività in corso.
         
         \subsection{Revisioni di Progresso}
 
-        Durante l'intero periodo di stage, le interazioni con il tutor aziendale sono state caratterizzate da una costante frequenza e prossimità. La vicinanza fisica delle postazioni lavorative ha notevolmente facilitato le opportunità di confronto professionale, contribuendo a mitigare la naturale difficoltà nell'avanzare richieste di supporto. Ciononostante, uno dei primi feedback che ho ricevuto ha riguardato la necessità di incrementare la frequenza delle richieste di assistenza, evitando un'eccessiva ostinazione nella ricerca autonoma di soluzioni, e di migliorare la comunicazione complessiva, sia in merito ai progressi conseguiti che alle criticità riscontrate.
+        Durante l'intero periodo di \textit{stage}, le interazioni con il \textit{tutor} aziendale sono state caratterizzate da una costante frequenza e prossimità. La vicinanza fisica delle postazioni lavorative ha notevolmente facilitato le opportunità di confronto professionale, contribuendo a mitigare la naturale difficoltà nell'avanzare richieste di supporto. Ciononostante, uno dei primi \textit{feedback} che ho ricevuto ha riguardato la necessità di incrementare la frequenza delle richieste di assistenza, evitando un'eccessiva ostinazione nella ricerca autonoma di soluzioni, e di migliorare la comunicazione complessiva, sia in merito ai progressi conseguiti che alle criticità riscontrate.
 
-        In aggiunta agli incontri giornalieri individuali (Daily meeting), che si svolgevano successivamente alle riunioni del tutor relative ai suoi progetti, ho sistematicamente beneficiato dell'opportunità di comunicare l'avanzamento delle attività o le problematiche incontrate, senza la necessità di attendere la successiva sessione programmata.
+        \vspace{0.2 em}
+        \noindent In aggiunta agli incontri giornalieri individuali (\textit{Daily meeting}), che si svolgevano successivamente alle riunioni del \textit{tutor} relative ai suoi progetti, ho sistematicamente beneficiato dell'opportunità di comunicare l'avanzamento delle attività o le problematiche incontrate, senza la necessità di attendere la successiva sessione programmata.
 
-        Le valutazioni formali dei progressi, condotte con l'ulteriore Product Owner, avvenivano nell'ambito degli Sprint Review, durante i quali il PO verificava l'efficacia funzionale del lavoro svolto. In due circostanze distinte ho presentato il prototipo sviluppato all'intero team di sviluppo, considerata l'immediata applicabilità dello stesso. Tali presentazioni hanno costituito di fatto l'illustrazione del prodotto finale. La seconda occasione ha riguardato lo sviluppo di una dimostrazione funzionale (Proof of Concept) relativa a una funzionalità di particolare interesse: la sincronizzazione dei dati in tempo reale.
+        \vspace{0.2 em}
+        \noindent Le valutazioni formali dei progressi, condotte con l'altro \textit{Product Owner}, avvenivano nell'ambito degli \textit{Sprint Review}, durante i quali questo verificava l'efficacia funzionale del lavoro svolto. In due circostanze distinte ho presentato il prototipo sviluppato all'intero \textit{team} di sviluppo, considerata l'immediata applicabilità dello stesso. Tali presentazioni hanno costituito di fatto l'illustrazione del prodotto finale. La seconda occasione ha riguardato lo sviluppo di una dimostrazione funzionale (PoC) relativa a una funzionalità di particolare interesse: la sincronizzazione dei dati in tempo reale.
         
     \section{Motivazioni della scelta}
-    La selezione dell'opportunità di tirocinio è stata guidata da una riflessione evolutiva sulla natura e sugli obiettivi formativi di tale esperienza. Inizialmente, consideravo lo stage prevalentemente come un'occasione di applicazione pratica delle conoscenze teoriche acquisite durante il percorso accademico. Tuttavia, la partecipazione all'evento STAGE-IT, tenutosi a Padova nell'aprile 2024, ha determinato un significativo ampliamento di tale prospettiva, conducendomi a pensare l'esperienza di tirocinio anche come un'opportunità di sviluppo professionale e di confronto con sfide innovative.
+    La selezione dell'opportunità di \textit{stage} è stata guidata da una riflessione evolutiva sulla natura e sugli obiettivi formativi di tale esperienza. Inizialmente, consideravo lo \textit{stage} prevalentemente come un'occasione di applicazione pratica delle conoscenze teoriche acquisite durante il percorso accademico. Tuttavia, la partecipazione all'evento STAGE-IT, tenutosi a Padova nell'aprile 2024, ha determinato un ampliamento di tale prospettiva, conducendomi a pensare l'esperienza di \textit{stage} anche come un'opportunità di sviluppo professionale e personale nonché di confronto con sfide innovative.
 
-    Tale evoluzione concettuale ha orientato la mia scelta verso un progetto caratterizzato non da una mera applicazione di competenze consolidate, bensì da elementi di complessità e innovazione che potessero costituire stimoli significativi per l'apprendimento e la crescita professionale.
+    \vspace{0.2 em}
+    \noindent L'architettura a microservizi, approfondita teoricamente durante il corso di Ingegneria del \textit{Software}, aveva suscitato in me un particolare interesse, che non aveva trovato adeguate opportunità di esplorazione pratica nell'ambito dei progetti didattici. L'individuazione di una proposta di \textit{stage} focalizzata su tale paradigma architetturale ha rappresentato pertanto un'opportunità particolarmente rilevante per il mio percorso formativo. La reciproca soddisfazione nella selezione è stata ulteriormente confermata dall'interesse manifestato dall'azienda per la mia candidatura, considerata la limitata attrattività del progetto tra gli altri studenti.
 
-    L'architettura a microservizi, approfondita teoricamente durante il corso di Ingegneria del Software, aveva suscitato in me un particolare interesse, che non aveva trovato adeguate opportunità di esplorazione pratica nell'ambito dei progetti didattici. L'individuazione di una proposta di tirocinio focalizzata su tale paradigma architetturale ha rappresentato pertanto un'opportunità particolarmente rilevante per il mio percorso formativo. La reciproca soddisfazione nella selezione è stata ulteriormente confermata dall'interesse manifestato dall'azienda per la mia candidatura, considerata la limitata attrattività del progetto tra gli altri studenti.
+    \vspace{0.2 em}
+    \noindent Sottolineo che la decisione è stata principalmente determinata dall'interesse per la tematica progettuale, piuttosto che da una preesistente conoscenza o affinità con l'azienda ospitante. La natura manifatturiera di SogeaSoft S.r.l. non ha costituito un elemento determinante nella selezione, poiché un'attività di tipo artigianale sarebbe risultata maggiormente in linea con i miei ideali, in contrapposizione all’ottimizzazione della produzione industriale su larga scala. Inoltre, è emerso come l’interesse principale dell’azienda sia di natura economica, senza una significativa considerazione per la sostenibilità o l’impatto ambientale. Sebbene sia vero che il miglioramento dell’efficienza possa talvolta contribuire alla riduzione degli sprechi, qualora ciò sia avvenuto si tratta di un esito accidentale piuttosto che intenzionale.
 
-    Tra i fattori secondari considerati nella valutazione, la collocazione geografica dell'azienda e l'accessibilità mediante trasporto pubblico hanno costituito elementi favorevoli alla scelta.
-
-    È opportuno precisare che la decisione è stata principalmente determinata dall'interesse per la tematica progettuale, piuttosto che da una preesistente conoscenza o affinità con l'azienda ospitante. La natura manifatturiera di SogeaSoft non ha rappresentato un elemento determinante nella selezione, nonostante le mie personali preferenze per modalità produttive artigianali rispetto alla produzione industriale su larga scala.
-
-    Gli aspetti economici e l'assenza di benefit aggiuntivi non hanno influenzato la valutazione, essendo stati considerati subordinati all'opportunità di approfondimento tecnico-professionale nell'ambito dei microservizi.
     
         \subsection{Obiettivi e aspettative personali}
-        La scelta del tirocinio è stata guidata da motivazioni personali, in particolare dalla curiosità verso l'argomento specifico dei microservizi.
+        \noindent La scelta dello \textit{stage} è stata dunque guidata da motivazioni personali, in particolare dalla curiosità verso l'argomento specifico dei microservizi.
 
-        L'esperienza precedente con il progetto di Ingegneria del \textit{Software} mi ha permesso di identificare alcuni aspetti personali da migliorare e argomenti tecnici da approfondire. Tra questi, il mio interesse per i microservizi, che ho descritto in dettaglio nella sezione 2.5, e per le API come metodi di comunicazione tra microservizi. Durante il progetto universitario, non ho avuto l'opportunità di esplorare adeguatamente questi temi, sia per una non ottimale organizzazione del gruppo di lavoro, sia per una distribuzione inefficace delle attività. Mi sono ritrovata infatti a dedicare tempo ad attività poco significative (shallow work) a discapito di altre più formative, tra cui l'approfondimento di queste tecnologie che producono reale valore, che rappresentano un esempio di attività di deep work.
+        \vspace{0.2 em}
+        \noindent L'esperienza precedente con il progetto di Ingegneria del \textit{Software} mi ha permesso di identificare alcuni aspetti personali da migliorare e argomenti tecnici da approfondire. Tra questi, il mio interesse per i microservizi, che ho descritto in dettaglio nella sezione 2.5, e per le API come metodi di comunicazione tra microservizi. Durante il progetto universitario, non ho avuto l'opportunità di esplorare adeguatamente questi temi, sia per una non ottimale organizzazione del gruppo di lavoro, sia per una distribuzione inefficace delle attività. Mi sono ritrovata infatti a dedicare tempo ad attività poco significative (\textit{shallow work}) a discapito di altre più formative, tra cui l'approfondimento di queste tecnologie che producono reale valore, che rappresentano un esempio di attività di \textit{deep work}\footnote{C. Newport, Deep Work: Rules for Focused Success in a Distracted World, Grand Central Publishing, 2016}.
 
-        Questa esperienza mi ha fatto comprendere come la scarsa fiducia nelle mie capacità e la difficoltà nel comunicare apertamente sia le difficoltà che i progressi abbiano portato ad una situazione in cui le decisioni venivano prese da altri per me. Questi aspetti sono diventati obiettivi di miglioramento personale, per i quali lo stage ha rappresentato un'importante opportunità di crescita.
+        \vspace{0.2 em}
+        \noindent Questa esperienza mi ha fatto comprendere come la scarsa fiducia nelle mie capacità e la difficoltà nel comunicare apertamente (sia le difficoltà che i progressi) mi abbiano portato ad una situazione in cui le decisioni venivano prese da altri per me. Questi aspetti sono diventati obiettivi di miglioramento personale, per i quali lo \textit{stage} ha rappresentato un'importante opportunità di crescita.
 
-        Sebbene ritenessi di aver già fatto progressi nelle mie capacità comunicative, i feedback ricevuti dal tutor aziendale mi hanno fatto comprendere che ero solo all'inizio di questo percorso di sviluppo personale.
+        \vspace{0.2 em}
+        \noindent Sebbene ritenessi di aver già fatto progressi nelle mie capacità comunicative, i \textit{feedback} ricevuti dal \textit{tutor} aziendale mi hanno fatto comprendere che ero solo all'inizio di questo percorso di sviluppo personale.
 
-        Analogamente, l'esperienza del corso di Ingegneria del Software mi ha insegnato l'importanza di accettare l'assenza di soluzioni perfette nello sviluppo software e di comprendere la naturalezza della curva di apprendimento. Durante lo stage, ho voluto lavorare sulla capacità di non pretendere risultati perfetti fin da subito, accettando che il processo di apprendimento implica necessariamente la possibilità di non conoscere tutto e di commettere errori come parte integrante della crescita professionale.
+        \vspace{0.2 em}
+        \noindent Analogamente, sempre l'esperienza del corso di Ingegneria del \textit{Software} mi ha insegnato l'importanza di accettare l'assenza di soluzioni perfette nello sviluppo \textit{software} e di comprendere la naturalezza della curva di apprendimento. Durante lo \textit{stage}, ho voluto lavorare sulla capacità di non pretendere risultati perfetti fin da subito, accettando che il processo di apprendimento implica necessariamente la possibilità di non conoscere tutto e di commettere errori come parte integrante della crescita professionale.
 
         \begin{table}[H]
         \centering
         \renewcommand{\arraystretch}{1.8} % Increase row height by 50%
         \begin{tabular}{|>{\bfseries}c|m{15cm}|} % Use 'm{}' for vertical centering
           \hline
-          \multicolumn{2}{|c|}{\textbf{Obiettivi Aziendali}} \\ % First row, merged columns
+          \multicolumn{2}{|c|}{\textbf{Obiettivi personali}} \\ % First row, merged columns
           \hline
-          \multicolumn{2}{|c|}{\textbf{Obbligatori}} \\ % Second row, merged columns
-          \hline
-          \multirow{2}{*}{\vspace*{\fill}P1\vspace*{\fill}} & Sviluppare maggiore fiducia nelle mie capacità di problem solving e ampliare il repertorio di approcci risolutivi\\ 
+          \multirow{2}{*}{\vspace*{\fill}P1\vspace*{\fill}} & Sviluppare maggiore fiducia nelle mie capacità di \textit{problem solving} e ampliare il repertorio di approcci risolutivi\\ 
           \hline
           \multirow{2}{*}{\vspace*{\fill}P2\vspace*{\fill}} & Approfondire la conoscenza teorica e pratica delle architetture a microservizi, con particolare attenzione ai meccanismi di comunicazione tra servizi\\ 
           \hline
           \multirow{2}{*}{\vspace*{\fill}P3\vspace*{\fill}} & Acquisire la capacità di valutare criticamente le soluzioni tecniche, considerando i compromessi necessari in contesti \textbf{reali} piuttosto che perseguire soluzioni teoricamente perfette\\ 
           \hline
-          \multirow{2}{*}{\vspace*{\fill}P4\vspace*{\fill}} & Consolidare la comprensione dei principi di progettazione delle API tra microservizi e delle relative best practices implementative\\ 
+          \multirow{2}{*}{\vspace*{\fill}P4\vspace*{\fill}} & Consolidare la comprensione dei principi di progettazione delle API tra microservizi e delle relative \textit{best practices} implementative\\ 
           \hline
-          \multirow{2}{*}{\vspace*{\fill}P5\vspace*{\fill}} & Potenziare le competenze di comunicazione professionale, con particolare riferimento alla presentazione tecnica dei risultati durante gli sprint review\\ 
+          \multirow{2}{*}{\vspace*{\fill}P5\vspace*{\fill}} & Migliorare nelle competenze di comunicazione professionale, con particolare riferimento alla presentazione tecnica dei risultati durante gli \textit{Sprint review}\\ 
           \hline
           \multirow{2}{*}{\vspace*{\fill}P6\vspace*{\fill}} & Migliorare le capacità di comunicazione interpersonale in ambito lavorativo, sia nella richiesta di supporto che nella condivisione dei progressi conseguiti\\ 
           \hline
           \multirow{2}{*}{\vspace*{\fill}P7\vspace*{\fill}} & Sviluppare una maggiore consapevolezza del processo di apprendimento professionale, accettando la naturale curva di apprendimento e la progressiva acquisizione di competenze\\ 
           \hline
-          \multirow{2}{*}{\vspace*{\fill}P8\vspace*{\fill}} & Ottimizzare la gestione del tempo lavorativo attraverso un approccio più strutturato e consapevole, privilegiando periodi prolungati di deep work, ossia concentrazione profonda\\ 
+          \multirow{2}{*}{\vspace*{\fill}P8\vspace*{\fill}} & Ottimizzare la gestione del tempo lavorativo attraverso un approccio più strutturato e consapevole, privilegiando periodi prolungati di \textit{deep work}, ossia concentrazione profonda\\ 
           \hline
         \end{tabular}
-        \caption{}
+        \caption[Tabella degli obiettivi personali]{Tabella degli obiettivi personali nel contesto dello svolgimento dello \textit{stage}}
         \label{tab:obiettivi-personali}
         \end{table}

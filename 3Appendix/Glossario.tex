@@ -10,6 +10,7 @@
     \item \textbf{Advanced Message Queuing Protocol (AMQP)}: protocollo di messaggistica aperto che consente la comunicazione tra applicazioni distribuite.
     \item \textbf{After Sales Service (ASS)}: è l'insieme delle attività di assistenza e supporto fornite al cliente dopo l'acquisto di un prodotto o servizio, con l'obiettivo di garantirne il corretto utilizzo e la soddisfazione.
     \item \textbf{Aggregato}: è un insieme coerente di oggetti del dominio, con un'entità principale che garantisce la consistenza e l'integrità dei dati all'interno dei suoi confini.
+    \item \textbf{Anti-Corruption Layer (ACL)}: è un \textit{pattern} architetturale che crea una barriera tra il dominio di un'applicazione e sistemi esterni, prevenendo che logiche o modelli di altri sistemi influenzino la struttura interna del sistema.
     \item \textbf{Application Programming Interface (API)}: insieme di regole e protocolli che consente a diverse applicazioni di comunicare tra loro. Le API definiscono i metodi e le strutture dati necessari per interagire con i servizi e le funzionalità di un sistema.
     \item \textbf{Architettura Esagonale}: è un modello di progettazione \textit{software} che separa il \textit{core} dell'applicazione dalle interfacce esterne, come \textit{database}, servizi o interfacce utente, tramite porte e adattatori.
 \end{glossaryitemize}
@@ -36,6 +37,8 @@
 {\color{lightgray}\rule{\textwidth}{0.4pt}} % Thin line separator
 \begin{glossaryitemize}
     \item \textbf{Database Management System (DBSM)}: sistema che include sia il \textit{software} che le strutture necessarie per gestire e organizzare i dati. Si occupa della creazione, manutenzione e manipolazione dei database, gestendo l'accesso, la sicurezza e l'integrità dei dati.
+    \item \textbf{Debito tecnico}: accumulo di problemi o inefficienze nel codice causati da scelte progettuali rapide o soluzioni provvisorie, che richiedono interventi correttivi nel lungo termine.
+    \item \textbf{DevOps}: è una pratica che unisce lo sviluppo \textit{software} (Dev) e le operazioni IT (Ops) per migliorare la collaborazione, l'automazione e l'efficienza nel ciclo di vita delle applicazioni, dalla progettazione alla distribuzione e manutenzione.
     \item \textbf{Docker}: piattaforma di containerizzazione che consente di creare, distribuire ed eseguire applicazioni in ambienti isolati chiamati \textit{container}, garantendo coerenza e portabilità tra diversi sistemi.
     \item \textbf{Domain-Driven Design (DDD)}: è un approccio allo sviluppo software che pone al centro la complessità del dominio applicativo, modellandolo attraverso concetti e strutture direttamente ispirate al contesto reale.
     \item \textbf{Domain expert}: è una persona con una conoscenza approfondita di un settore specifico, il cui ruolo è fornire informazioni e guida nello sviluppo di un sistema che rispecchi accuratamente le esigenze del dominio applicativo.
@@ -60,6 +63,7 @@
 {\color{lightgray}\rule{\textwidth}{0.4pt}} % Thin line separator
 \begin{glossaryitemize}
     \item \textbf{Git}: sistema di controllo versione distribuito che permette di gestire e tracciare le modifiche al codice, facilitando la collaborazione tra sviluppatori e la gestione delle versioni di un progetto.
+    item \textbf{Granularità}: in un contesto di sviluppo \textit{software} indica il livello di dettaglio o suddivisione con cui una funzionalità, un modulo o un componente è progettato o implementato.
 \end{glossaryitemize}
 
 \section*{I}
@@ -68,11 +72,19 @@
     \item \textbf{Issue Tracking System (ITS)}: è un \textit{software} utilizzato per gestire, monitorare e risolvere i problemi o le richieste di miglioramento durante lo sviluppo di un progetto, consentendo una gestione efficiente delle attività e delle priorità.
 \end{glossaryitemize}
 
+\section*{L}
+{\color{lightgray}\rule{\textwidth}{0.4pt}} % Thin line separator
+\begin{glossaryitemize}
+    \item \textbf{Legacy}: nello sviluppo \textit{software}, il termine \textit{\textbf{legacy}} si riferisce a un sistema, codice o tecnologia obsoleta che è ancora in uso, spesso difficile da mantenere o integrare con soluzioni moderne, ma che è fondamentale per il funzionamento dell'organizzazione.
+\end{glossaryitemize}
+
 \section*{M}
 {\color{lightgray}\rule{\textwidth}{0.4pt}} % Thin line separator
 \begin{glossaryitemize}
     \item \textbf{Message Broker}: intermediario che gestisce la ricezione, l'instradamento e la distribuzione di messaggi tra applicazioni o servizi, facilitando la comunicazione tra sistemi.
     \item \textbf{Microservizio}: è un'architettura \textit{software} che suddivide un'applicazione in piccoli servizi autonomi e indipendenti, ognuno dei quali gestisce una specifica funzionalità. Ogni microservizio può essere sviluppato, distribuito e scalato in modo separato, facilitando l'evoluzione e la manutenzione del sistema nel suo complesso.
+    \item \textbf{Minimum Viable Product (MVP)}: è una versione base di un prodotto che include solo le funzionalità essenziali, utile per validare l'idea sul mercato con il minimo sforzo di sviluppo.
+    \item \textbf{Monolite}: in un contesto di sviluppo \textit{software} è un'applicazione costruita come un unico blocco indivisibile, in cui tutte le funzionalità e componenti sono strettamente interconnessi e distribuiti come un'unica unità.
 \end{glossaryitemize}
 
 \section*{P}
@@ -81,6 +93,8 @@
     \item \textbf{Pattern}: Un \textit{pattern} è una soluzione ripetibile e collaudata a un problema ricorrente, che può essere applicata in vari contesti per risolvere specifiche difficoltà nel processo di progettazione o sviluppo.  I \textit{pattern} architetturali si riferiscono a soluzioni generali per la struttura di un sistema \textit{software}, come il \textit{pattern} a microservizi, che definisce come organizzare i componenti di un sistema. I \textit{pattern} di \textit{design} riguardano soluzioni a problemi di progettazione a livello di componenti. I \textit{pattern} di comportamento si concentrano su come gli oggetti interagiscono tra loro.
     \item \textbf{Pipeline}: in Azure è un processo automatizzato che consente di compilare, testare e distribuire il codice attraverso diverse fasi, facilitando l'integrazione continua e la consegna continua per le applicazioni.
     \item \textbf{Plan-Do-Check-Act (PDCA)}: metodo iterativo di gestione del lavoro utilizzato per il miglioramento continuo di processi o prodotti. Anche noto come ciclo di Deming.
+    \item \textbf{Proof of Concept (PoC)}: è una dimostrazione pratica volta a verificare la fattibilità o l'efficacia di un'idea o soluzione tecnica. Viene utilizzata per validare un concetto prima di investire risorse nello sviluppo completo.
+    \item \textbf{Prototipo}: è una versione preliminare di un prodotto o sistema, realizzata per testare e valutare funzionalità, \textit{design} o prestazioni prima della produzione definitiva.
     \item \textbf{Pull Request (PR)}: è una proposta di modifica al codice in un sistema di controllo versione, che consente di revisionare e integrare le modifiche da un ramo a un altro, tipicamente dalla versione di sviluppo alla versione principale.
 \end{glossaryitemize}
 
