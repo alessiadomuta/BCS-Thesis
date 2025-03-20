@@ -1,27 +1,265 @@
 \chapter{Svolgimento dello \textit{stage}}
     \section{Conoscenza del dominio di applicazione}
-    Descriverò, seguendo il processo a cui sono stata esposta per lo svolgimento di questo progetto, la prima fase: acquisire familiarità con il dominio di applicazione. Dunque riprenderò la Sezione 2.2.2 descrivendo in breve il "punto di partenza". Introdurrò il singolo modello di Dominio preso in considerazione, meglio descritto nella sezione successiva. 
+    La fase iniziale del progetto ha previsto un'immersione approfondita nel dominio applicativo, costituito da un ecosistema manifatturiero dedicato alla produzione di beni per aziende terze. Il sistema in esame presenta caratteristiche di notevole versatilità, configurandosi come soluzione trasversale implementabile in molteplici realtà produttive che adottano metodologie operative analoghe. L'architettura attuale è basata sulla piattaforma SAI, mentre l'obiettivo del tirocinio è stato quello di condurre un'analisi completa finalizzata alla rimodellazione del dominio.
+    
+    Caratteristiche principali del sistema attuale:
+
+    Tracciabilità delle risorse umane: Il sistema mantiene un registro completo del personale operativo, con identificazione univoca di ciascun lavoratore all'interno dell'ecosistema informativo.
+
+    Monitoraggio del processo produttivo: Ogni fase della catena di lavorazione è dettagliatamente documentata, con registrazione sistematica dello stato avanzamento lavori per ciascuna operazione in corso.
+
+    Gestione dell'inventario: Implementazione di meccanismi di controllo delle materie prime, con funzionalità di rilevamento delle soglie critiche e conseguente attivazione di processi di approvvigionamento, alcuni dei quali completamente automatizzati.
+
+    Amministrazione integrata: Il sistema incorpora moduli per la gestione contabile, l'elaborazione documentale e la pianificazione logistica del trasporto.
+
+    Obiettivi del progetto di tirocinio:
+
+    Il progetto di tirocinio si è concentrato sulla realizzazione di un'analisi approfondita del dominio, con particolare attenzione alla definizione di un modello concettuale aggiornato e completo. Tale processo ha comportato la meticolosa identificazione e delimitazione dei bounded contexts secondo i principi metodologici del Domain-Driven Design, garantendo una rappresentazione coerente delle diverse aree funzionali del sistema. L'attività è proseguita con l'elaborazione dettagliata dei casi d'uso rilevanti, fornendo una visione esaustiva delle interazioni tra gli attori del sistema e le funzionalità implementate. La fase conclusiva ha previsto la formalizzazione dei requisiti funzionali e non funzionali, definendo così il perimetro tecnico e prestazionale entro cui sviluppare l'eventuale reingegnerizzazione del sistema attualmente basato sulla piattaforma SAI. 
+
+    Come anticipato nella sezione sui modelli di dominio, le situazioni sopra elencate possono rappresentare appunto un modello di dominio. la priorità del progetto di stage era quella di individuarne uno e realizzare dunque un prototipo, dunque abbiamo selezionato il monitoraggio del processo produttivo. 
+    Ho potuto anche comprendere che è difficile separare completamente i modelli di dominio, in quanto alcuni si intersecano naturalmente, e ciò mi ha fatto comprendere che non esiste una soluzione perfetta in sè, bensì tutto è un compromesso. 
+    
+
+    
     \section{Attività svolte}
         \subsection{Analisi dei requisiti}
-        Riprendendo la sezione 1.6.1, descriverò nel dettaglio: L'individuazione nel dettaglio del modello di dominio, l'individuazione di \textit{bounded contexts}, i casi d'uso presi in esame, il linguaggio comune utilizzato per una comprensione univoca di tutte le parti coinvolte. 
-            \subsubsection{Requisiti}
-            Descriverò nel dettaglio i requisiti singoli individuati per i singoli casi d'uso.
+        Tra tutti i modelli di dominio individuati abbiamo selezionato quello riguardo il monitoraggio del processo produttivo. processo che fa parte dell'analisi sei requisiti, come approfondito nella corrispettiva sezione. 
+        L'analisi dei requisiti si è svolta così: allora prima di tutto insieme al Product Owner abbiamo analizzato la situazione descritta nell'immagine \ref{fig:Dominio}.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.6\linewidth]{BCS-Tessi//images/Dominio.png}
+            \caption{Schema visuale del modello di dominio preso in esame}
+            \label{fig:Dominio}
+        \end{figure}
+        
+        L'immagine descrive una situazione reale semplificata con cui l'azienda si interfaccia: la gestione della produzione di un certo Articolo finito, la cui produzione prevede un certo CicloDiLavoro composto da diverse Fasi che sono predefinite. 
+        - La produzione di un Articolo richiede un OrdineProduzione, che rappresenta la quantità da produrre e la quantità prodotta.
+        - OrdineProduzioneFasi tiene traccia dello stato di avanzamento della produzione considerando quante unità sono state prodotte in base alla fase e anche in base ai materiali disponibili. Può infatti succedere che la quantità richiesta non venga raggiunta per mancanza di materiali sufficienti: il conteggio si ferma automaticamente quando il numero di unità è stato raggiunto o manualmente quando le risorse sono state esaurite. Tiene conto della quantità da produrre, della quantità prodotta e dello stato (aperto, in corso, chiuso).
+        - Il riquadro nell'immagine comprende il caso d'uso preso in analisi. Il Rilevamento prevede che ogni operatore segnali (attraverso un badge) al sistema il momento di inizio del lavoro e il momento della fine dello stesso, con il numero di pezzi prodotti in base alla fase di lavoro corrispondente. Il completamento di una fase di Rilevamento fa avanzare anche Lavorazione che tiene conto della quantità prodotta e della quantità da produrre.
+        - Una Risorsa è rappresentata dall'operatore, la macchina che utilizza per la fase determinata, la fase, il numero di unità prodotte, l'ora di inizio del lavoro e l'ora di fine.
+        Il problema principale è far comunicare in tempo reale Rilevamento e OrdineProduzioneFasi. Infatti Rilevamento è un microservizio a sé stante e l'obiettivo è quello di farlo comunicare con OrdineProduzioneFasi senza che quest'ultimo debba essere portato all'interno del microservizio Rilevamento.
+        Una possibile soluzione proposta dall'azienda è quella di far leggere al monolite le modifiche avvenute in Rilevamento attraverso delle viste e far fare a Rilevamento un batch delta copier a intervalli regolari per avere le modifiche avvenute nel database del monolite. Questa soluzione permette una sincronizzazione dei dati, anche se non in tempo reale, ma è un compromesso accettabile per l'azienda.
+
+        
+
+        nello specifico
+        La soluzione ideale sarebbe quella di includere OrdineProduzione e OrdineProduzioneFasi in un unico microservizio MSRilevamento. Questo perché secondo i principi del Domain-Driven Design la divisione in Bounded Contexts dovrebbe prevedere che i diversi microservizi siano poco accoppiati tra di loro. In questo caso infatti c'è un alto grado di accoppiamento con Lavorazione.
+        
+        - Questa soluzione non è applicabile al momento perché il monolite è strettamente collegato in vari punti con OrdineProduzione e con OrdineProduzioneFasi. La priorità è dunque estrarre Rilevamento e Lavorazione, e in un secondo momento completare la divisione ideale.
+        Il monolite è molto grande, non presenta una netta separazione tra backend e frontend e non è nemmeno possibile avere una netta divisione del database tra microservizi, almeno per il momento. E' dunque importante valutare quali sono le priorità, i costi dell'applicazione di certi pattern rispetto ad altri, il tutto ricordando che è un sistema attualmente attivo. Ne consegue che i cambiamenti devono essere pensati per essere graduali e incrementali, trovando dei metodi che risolvano temporaneamente i problemi che emergono dalla migrazione verso i microservizi.
+
+
         \subsection{Progettazione}
-        Riprendendo la Sezione 1.6.2, descriverò nel dettaglio: la modellazione del dominio, la definizione dei microservizi individuati, e i \textit{pattern} individuati per la comunicazione tra essi, nonché per la sincroniccazione dei dati tra monolite e il microservizio preso in esame.
+        Durante il mio stage l'analisi dei requisiti e la progettazione sono andate di pari passo. Man mano che aumentava la nostra conoscenza del dominio di applicazione e si individuavano i requisiti, la progettazione veniva spontanea, senza una separazione formale delle attività. 
+        Ma la progettazione spiega anche come fare le cose individuate nell'analisi dei requisiti, quindi questo capitolo parlerà dei pattern individuati per poter effettivamente svolgere i requisiti individuati.
+
+        La soluzione individuata dunque ha questo aspetto, come si vede nell'immagine \ref{fig:progettazione}:
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\linewidth]{BCS-Tessi//images/Progettazione.png}
+            \caption{Enter Caption}
+            \label{fig:progettazione}
+        \end{figure}
+
+        che è in linea con quanto si desiderava fare e con l'immagine \ref{fig:migrazione}
+        Rimane il problema della sinronizzazione dei dati e infatti La soluzione proposta è quella di introdurre il pattern per la sincronizzazione bidirezionale dei dati oppure il pattern di real-time data syncronization. Per avere una buona sincronizzazione dei dati da entrambe le parti e per assicurarne la consistenza può essere utile il bi-directional sync data integration pattern, nonostante aggiunga un tempo di latenza. Il real-time data syncronization pattern può essere one-way o two-ways avvicinandosi molto al bidirezionale. Un vantaggio non trascurabile è la disponibilità immediata dei dati modificati, che può adattarsi bene al nostro caso.
+        Se si desidera invece mantenere il pattern Database View, si può comunque considerare un real-time data syncronization pattern al posto del Change Data Capture attualmente applicato, per avere le modifiche ai dati in tempo reale anche di OrdineProduzioneFasi. L'implementazione di un nuovo pattern può richiedere più tempo di quello immediatamente a disposizione nonché del lavoro aggiuntivo per studiarlo e implementarlo. Considerando inoltre che il servizio non può essere lasciato inattivo per il tempo richiesto, una possibilità potrebbe essere quella di mantenere le soluzioni attualmente in uso e lavorare su un branch astratto mediante l'uso del pattern Branch By Abstraction. In questo modo è possibile lavorare sull'implementazione del pattern più definitivo senza compromettere la funzionalità attuale, e con la quantità di tempo che l'azienda può mettere a disposizione per questo specifico task.
+        Alla luce delle considerazioni espresse fino a questo momento e date le dimensioni molto grandi del monolite in esame, l'azienda ha scelto di optare per una migrazione graduale. Inoltre, il fatto che non ci sia una divisione netta tra front-end e back-end molti dei pattern studiati non sono applicabili. La soluzione più ragionevole è risultata dunque quella di applicare l'Anti-corruption Layer, prevedendo la lunga convivenza del monolite e del nuovo sistema a microservizi. Un altro pattern proposto è il Change Data Capture, infatti l'azienda lo aveva già applicato per le comunicazioni con il database. E' stato scelto dall'azienda anche il modello di architettura esagonale, noto anche come pattern di porte e adattatori che mira a creare architetture liberamente accoppiate in cui i componenti delle applicazioni possano essere testati in modo indipendente, senza dipendenze da archivi di dati o interfacce utente. Viene utilizzato per isolare la logica aziendale (logica di dominio) dal codice dell'infrastruttura correlato. E' possibile collegare facilmente i componenti della business logic ad altri componenti nell'architettura dell'applicazione tramite porte e adattatori. Le porte sono punti di ingresso indipendenti dalla tecnologia in un componente dell'applicazione. Queste interfacce personalizzate determinano l'interfaccia che consente agli attori esterni di comunicare con il componente dell'applicazione, indipendentemente da chi o cosa implementa l'interfaccia. Gli adattatori interagiscono con l'applicazione tramite una porta utilizzando una tecnologia specifica. Gli adattatori si collegano a queste porte, ricevono o forniscono dati alle porte e li trasformano per un'ulteriore elaborazione. Ad esempio, un REST adattatore consente agli attori di comunicare con il componente dell'applicazione tramite un RESTAPI. Le porte dunque si connettono all'applicazione e gli adattatori fungono da connessione con il mondo esterno. Gli handler sono componenti fondamentali nell'architettura esagonale, poiché gestiscono le richieste di comando e comunicano con il dominio dell'applicazione. Sono classi o metodi che si occupano di eseguire specifiche operazioni sul dominio di applicazione. Queste operazioni possono includere la creazione, la lettura, l'aggiornamento o la cancellazione di dati.
+
+        La progettazione dell'API per un caso d'uso.
+        Caso d'uso: Registrazione di una Lavorazione
+        Quando viene registrata una lavorazione, il sistema dovrebbe aggiornare automaticamente la quantità prodotta nell'entità OrdineProduzioneFasi. Se lo stato della fase corrispondente risulta "chiuso", l'operazione non deve essere registrata e deve restituire un errore, evitando ulteriori modifiche.
+        soluzione webapi n questo approccio, ogni microservizio o componente invia richieste al monolite in maniera sincrona e attende una risposta prima di proseguire. Il flusso di lavoro è bloccante, quindi il servizio attende una risposta dal monolite prima di continuare. Se si verifica un errore (come nel caso in cui la fase sia chiusa), la situazione può essere gestita immediatamente, permettendo di effettuare un rollback e annullare le modifiche già effettuate, ripristinando lo stato precedente. Sebbene questo approccio crei un maggiore accoppiamento tra il microservizio e il monolite, è generalmente più semplice da implementare rispetto alla soluzione basata su sagas.
+
+        Problema: Necessità di dati da due fonti
+        MSRILEVAMENTO: serve per verificare se esiste già una lavorazione in corso per quella specifica fase dell'Ordine di Produzione. In tal caso, il sistema dovrebbe proporre automaticamente la lavorazione in corso.
+        Monolite: necessario per ottenere informazioni aggiuntive sull'Ordine di Produzione, come il codice, la data prevista di evasione, e i dettagli della fase (es. descrizione e numero della fase).
+        In pratica, per completare correttamente questa operazione, è necessario combinare i dati provenienti da entrambi i sistemi: uno per monitorare lo stato attuale della lavorazione e l'altro per accedere ai dati essenziali dell'ordine e della fase da lavorare.
+        Soluzione
+        Effettuare due letture:
+        Una su MSRILEVAMENTO tramite un adapter PostgreSQL su un database locale.
+        Una su ERP tramite una connessione PostgreSQL al database del monolite.
+        Si propongono due approcci per gestire queste letture:
+        Pattern Database View: si crea una vista nel database che unisce i dati da MSRILEVAMENTO e dal monolite. Tuttavia, questo crea un accoppiamento diretto tra il sistema e la struttura del database dell'ERP.Il sistema attualmente adottato per unire questi dati consiste nel prodotto cartesiano sulle tabelle. Questo significa che tutte le combinazioni possibili tra le righe delle due tabelle vengono generate, creando un insieme di dati potenzialmente molto grande. Successivamente, per estrarre le informazioni rilevanti, vengono applicate delle viste. Questo può portare a rallentamenti notevoli, nonché difficoltà nella gestione della complessità dei dati.Una soluzione migliore potrebbe essere applicare il Database Wrapping Service.
+        Pattern Database Wrapping Service (Preferibile): si crea un servizio intermedio (wrapping service) che si occupa di esporre le informazioni dell'ERP tramite delle Web API senza esporre direttamente il database sottostante. In questo modo, il team che gestisce l'ERP è responsabile dell’aggiornamento delle API in caso di modifiche alla struttura del database, e il team di MSRILEVAMENTO non deve preoccuparsi dei cambiamenti interni all'ERP. Questo approccio riduce l'accoppiamento tra i sistemi, rendendo più facile l'evoluzione della struttura dei dati.
+
+        Demo debezium per data sincronization 
+
+        
         \subsection{Implementazione}
         Descriverò l'attività di implementazione, riprendendo la sezione relativa nel primo capitolo. 
         Racconterò nel dettaglio i miei \textit{task}, le difficoltà incontrate e le soluzioni ottenute, sia riguardo all'estrazione del microservizio che riguardo la gestione del \textit{database}. 
         Descriverò i \textit{pattern} scelti, come li ho implementati, ed eventuali risultati rilevanti. 
+
+        STRUTTURA DEL CODICE, altri pattern che ho applicato tramite il learn by doing ma non parte del processo di progettazione. 
+        Tecnologie utilizzate sono già state approfondite, ma di particolare rilevanza Debezium.
+
+        Ai fini di questa trattazione, come sono state implementate le singole cose non è particolarmente rilevante, nonostante sia entrata in contatto con diversi pattern molto interessanti come: CQRS, DTO. 
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.5\linewidth]{BCS-Tessi//images/code_structure.png}
+            \caption{Struttura del codice utilizzata per l'estrazione del microservizio.}
+            \label{fig:code-structure}
+        \end{figure}
+
+        
+        Analizzando più approfonditamente la struttura del microservizio Sogea.RilevamentoProduzione, possiamo espandere i seguenti concetti architetturali:
+
+**Domain-Driven Design (DDD)**:
+- Il microservizio implementa chiaramente i principi DDD attraverso la separazione in namespace come Domain, Abstractions e Commands
+- Il namespace Domain contiene probabilmente le entità di dominio, aggregati, value objects e domain services che rappresentano il nucleo del business
+- Le Abstractions forniscono interfacce e contratti che definiscono comportamenti senza implementazioni concrete
+- Questa separazione permette di mantenere il dominio al centro dell'applicazione, isolandolo dalle preoccupazioni tecniche
+
+**Command Query Responsibility Segregation (CQRS)**:
+- La separazione esplicita tra Commands e Queries evidenzia l'implementazione del pattern CQRS
+- I Commands (in Sogea.RilevamentoProduzione.Commands) gestiscono le operazioni di scrittura e modifica dello stato
+- Le Queries (in Sogea.RilevamentoProduzione.Queries) gestiscono le operazioni di lettura dei dati
+- I QueryHandlers specifici (Sogea.RilevamentoProduzione.QueriesHandlers) elaborano le query e interagiscono con PostgreSQL, suggerendo un'implementazione completa del pattern
+
+**Event Sourcing**:
+- Il namespace Events indica l'implementazione di Event Sourcing, dove le modifiche allo stato sono registrate come eventi
+- Gli eventi rappresentano fatti immutabili che sono accaduti nel sistema
+- Questa architettura permette di ricostruire lo stato del sistema riapplicando gli eventi in sequenza
+- La presenza di questo modulo suggerisce che il sistema mantiene un log degli eventi come fonte di verità
+
+**Data Transfer Objects (DTOs)**:
+- Il namespace DTOs (Sogea.RilevamentoProduzione.DTOs) contiene oggetti utilizzati per trasferire dati tra i diversi livelli dell'applicazione
+- I DTOs sono oggetti immutabili che incapsulano dati per il trasferimento tra componenti
+- Separano la rappresentazione dei dati nel dominio dalla loro rappresentazione per la comunicazione, prevenendo l'esposizione diretta delle entità di dominio
+
+**Handlers**:
+- I QueriesHandlers (Sogea.RilevamentoProduzione.QueriesHandlers) implementano la logica di gestione delle query
+- Probabilmente il sistema utilizza anche command handlers (non visibili direttamente ma presumibilmente presenti in Commands)
+- I handlers rappresentano il punto di contatto tra l'infrastruttura e il dominio, traducendo le richieste in operazioni sul dominio
+- La presenza di handlers specifici per PostgreSQL (Sogea.RilevamentoProduzione.QueriesHandlers.PostgreSQL) indica un'implementazione per database specifici, permettendo flessibilità e potenziali sostituzioni
+
+Questa struttura modulare facilita la manutenzione, il testing e la scalabilità del microservizio, consentendo modifiche e aggiornamenti localizzati senza impattare l'intero sistema. L'architettura complessiva suggerisce un'implementazione matura di principi di progettazione avanzati orientati ai microservizi.
+
+sull'implementazione della webapi
+i microservizi sono intrinsecamente caratterizzati da lavori di integration, ossia di comunicazione tra le parti, infatti per la risoluzione del problema delle due letture, si è implementata una webapi che legge i dati sia da SAI che dal microservizio. 
+
+Per spiegare che l'API effettua un'operazione di lettura, dovresti concentrarti sul metodo `FindByFaseAsync`, in particolare sulla parte che gestisce la chiamata REST. Ecco lo snippet più rilevante:
+
+\begin{verbatim}
+public async Task<OrdineProduzione> FindByFaseAsync(int ordineProduzioneFaseId)
+{
+  string url = this.Configuration.Server.Replace("{productionOrderId}", 
+  ordineProduzioneFaseId.ToString());
+  RestClient client = new RestClient(url);
+  RestRequest request = new RestRequest(Method.GET);
+  request.AddHeader("DITTA", this.Configuration.Ditta);
+  IRestResponse response = await client.ExecuteAsync(request);
+  if (response.IsSuccessful && response.Content != null)
+  {
+    RootDto rootDto = JsonConvert.DeserializeObject<RootDto>(response.Content);
+    // ... elaborazione della risposta ...
+  }
+  return null;
+}
+\end{verbatim}
+
+# Analisi dell'Operazione di Lettura nell'API di Rilevamento Produzione
+
+Il componente fondamentale che implementa l'operazione di lettura all'interno dell'API è il metodo `FindByFaseAsync` della classe `OrdineProduzioneRepository`. Questo metodo esemplifica l'implementazione di un'operazione di recupero dati (Read) secondo il paradigma REST.
+
+L'operazione di lettura si articola attraverso i seguenti passaggi:
+
+1. **Costruzione dell'endpoint**: L'URL di destinazione viene dinamicamente generato sostituendo il parametro `{productionOrderId}` con l'identificativo della fase di produzione richiesta.
+
+2. **Configurazione della richiesta HTTP**: Viene istanziato un client REST e configurata una richiesta di tipo GET, che per definizione nel protocollo HTTP rappresenta un'operazione di lettura non modificante.
+
+3. **Contestualizzazione della richiesta**: L'header "DITTA" viene aggiunto per specificare il contesto aziendale della richiesta, consentendo al servizio di rispondere con i dati pertinenti.
+
+4. **Esecuzione asincrona**: La richiesta viene eseguita in modalità asincrona (`await client.ExecuteAsync`), ottimizzando l'utilizzo delle risorse del sistema durante l'attesa della risposta.
+
+5. **Elaborazione dei dati**: In caso di risposta positiva, i dati JSON ricevuti vengono deserializzati e trasformati in oggetti del dominio applicativo.
+
+Questa implementazione rappresenta un esempio paradigmatico di pattern Repository, che isola la logica di business dalla complessità dell'accesso ai dati esterni, fornendo un'interfaccia coerente per il recupero delle informazioni relative agli ordini di produzione.
+
+Per affrontare la complessa problematica della sincronizzazione dei dati, è stata implementata un'architettura specializzata basata sulla tecnologia Debezium, una piattaforma di Change Data Capture (CDC) open source, che viene dettagliatamente analizzata nella sezione dedicata alle tecnologie utilizzate nel progetto. Questa soluzione è stata applicata specificamente ai componenti del sistema che richiedevano un aggiornamento costante e affidabile dei dati tra diverse applicazioni o servizi.
+L'architettura di sincronizzazione adottata ha integrato Debezium con RabbitMQ, quest'ultimo utilizzato come message broker per la gestione efficiente del flusso di informazioni. Questa combinazione tecnologica ha consentito la realizzazione di un sistema di code di messaggi altamente reattivo, in grado di catturare e propagare le modifiche ai dati nel momento stesso in cui queste venivano apportate nel sistema di origine.
+Il principio operativo fondamentale di questa soluzione si basa sul meccanismo di Change Data Capture, attraverso il quale Debezium monitora continuamente il log delle transazioni del database, identifica le operazioni di inserimento, aggiornamento o eliminazione dei dati e trasforma queste informazioni in eventi che vengono successivamente instradati attraverso RabbitMQ verso i sistemi destinatari.
+L'implementazione di questo pattern architetturale ha permesso di ottenere una sincronizzazione dei dati in tempo reale, eliminando i ritardi tipicamente associati ai tradizionali processi batch di aggiornamento e garantendo così una maggiore coerenza informativa tra i diversi componenti del sistema
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{BCS-Tessi//images/queue.PNG}
+    \caption{RabbitMQ queue}
+    \label{fig:queue}
+\end{figure}
+
+        
         \subsection{Verifica e validazione}
-        Racconterò il processo di verifica dei risultati raggiunti nella precedente sezione: dai \textit{test} unitari alla validazione con il \textit{team} di sviluppo.
+        Durante il processo di sviluppo software, ho adottato un approccio sistematico all'implementazione dei test unitari, integrandoli organicamente nel ciclo di sviluppo iterativo. L'esecuzione dei test unitari avveniva contestualmente all'implementazione di nuove funzionalità, seguendo la metodologia di sviluppo incrementale. Questo mi ha permesso di attuare una copertura totale di test del codice.
+Le sessioni di sprint review costituivano un momento di verifica, durante il quale le funzionalità sviluppate erano sottoposte a un processo di validazione che coinvolgeva anche il Product Owner, garantendo così un controllo di qualità multidimensionale e una verifica della conformità rispetto ai requisiti iniziali.
+Per quanto concerne la tipologia di test implementati, ho principalmente eseguito verifiche di integrazione per assicurare la corretta esposizione delle funzionalità sviluppate nell'ambiente server. A tal fine, ho utilizzato Swagger come strumento primario di verifica e documentazione delle API. Questo framework mi ha permesso di visualizzare in tempo reale l'effettivo funzionamento delle nuove implementazioni, offrendo un'interfaccia intuitiva per l'interazione con i servizi esposti.
+La visualizzazione grafica fornita da Swagger ha rappresentato un elemento fondamentale nel processo di verifica, consentendomi di monitorare efficacemente l'integrazione delle nuove funzionalità nel sistema esistente e di identificare tempestivamente eventuali incongruenze o malfunzionamenti. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\linewidth]{BCS-Tessi//images/swagger.PNG}
+    \caption{Swagger}
+    \label{fig:swagger}
+\end{figure}
+
+Il processo di validazione delle funzionalità sviluppate è stato caratterizzato da un approccio collegiale e multidisciplinare, coinvolgendo diverse figure professionali all'interno dell'organizzazione. La responsabilità primaria di tale validazione è stata assunta dal Product Owner, figura deputata alla verifica della conformità del prodotto rispetto ai requisiti di business, in sinergia con il Team Leader, che ha supervisionato gli aspetti tecnici dell'implementazione.
+Un elemento distintivo del processo di validazione è stato il coinvolgimento attivo dell'intero team di sviluppo, creando così un contesto di revisione collettiva che ha favorito l'identificazione tempestiva di potenziali problematiche e l'ottimizzazione della qualità complessiva del prodotto. Questo approccio partecipativo si è concretizzato in particolare durante le sessioni di Sprint Review, eventi formali previsti dalla metodologia Agile.
+Durante tali sessioni, la presenza simultanea di tutti i membri del team ha consentito un'analisi approfondita e multidimensionale delle funzionalità implementate. Questa modalità operativa ha permesso di sottoporre il prodotto a un esame critico da diverse prospettive professionali, garantendo una valutazione olistica che ha abbracciato sia gli aspetti funzionali che quelli tecnici dell'implementazione.
+La Sprint Review ha rappresentato pertanto non solo un momento di verifica formale del lavoro svolto, ma anche un'occasione strutturata di confronto e condivisione, durante la quale il team nella sua interezza ha potuto osservare, analizzare e valutare sia le singole funzionalità implementate che il prodotto nella sua configurazione complessiva.
+
+
     \section{Risultati raggiunti}
         \subsection{Il microservizio}
         Descriverò le funzionalità del servizio estratto e l'efficacia dell'aggiornamento dei dati con il monolite.
         Scriverò una visione qualitativa degli obiettivi raggiunti, il loro allineamento al modello di dominio individuato.
+
+        L'operazione di estrazione del microservizio dal sistema monolitico preesistente ha raggiunto l'obiettivo prefissato, conseguendo il risultato fondamentale di preservare integralmente le funzionalità originarie pur trasferendole in un'architettura indipendente. L'esito positivo di questa migrazione architetturale è evidenziato dalla piena operatività del componente estratto, ora funzionante come entità autonoma al di fuori del contesto monolitico in cui era originariamente integrato.
+È doveroso precisare che il processo di estrazione ha richiesto l'implementazione di soluzioni tecniche che, sotto il profilo dell'eleganza architetturale, potrebbero essere considerate sub-ottimali. Tuttavia, tali compromessi sono stati consapevolmente accettati in considerazione dell'obiettivo primario del progetto, che consisteva nell'estrazione funzionale del microservizio piuttosto che nella realizzazione di un'architettura ideale dal punto di vista teorico.
+Al termine del periodo di stage, il microservizio estratto ha raggiunto un livello di autonomia operativa significativo, pur mantenendo specifici canali di comunicazione con il sistema monolitico originario per garantire la continuità dei processi aziendali. Questa configurazione ha consentito al microservizio di assumere la responsabilità esclusiva della gestione dei rilevamenti e delle lavorazioni associate alle fasi produttive, interfacciandosi con il sistema di gestione degli ordini di produzione e delle relative fasi.
+Come illustrato nella documentazione grafica di riferimento, l'architettura risultante dimostra la capacità del microservizio di operare come componente indipendente all'interno dell'ecosistema applicativo complessivo, rappresentando un significativo passo avanti nel processo di decomposizione del monolite verso un'architettura orientata ai microservizi.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\linewidth]{BCS-Tessi//images/FinalSwagger.PNG}
+            \caption{Final Swagger}
+            \label{fig:final-Swagger}
+        \end{figure}
+        
+        L'estrazione del microservizio ha prodotto un significativo miglioramento nell'efficienza operativa dell'organizzazione, risolvendo problematiche strutturali che affliggevano il sistema precedente. La transizione architetturale ha permesso di superare le limitazioni imposte dall'approccio precedentemente adottato, basato sul pattern "batch delta copier", che rappresentava un significativo collo di bottiglia nei flussi informativi aziendali.
+Nella configurazione precedente, l'aggiornamento dei dati avveniva attraverso procedure batch eseguite con cadenza giornaliera, imponendo un ritardo sistematico di 12 ore nella disponibilità delle informazioni aggiornate. Questa latenza costituiva un ostacolo significativo per gli operatori, che si trovavano a lavorare con dati non allineati alla situazione corrente, compromettendo potenzialmente l'efficacia dei processi decisionali e operativi.
+L'implementazione della tecnologia Debezium ha rivoluzionato questo paradigma, introducendo un meccanismo di aggiornamento in tempo reale che elimina la latenza informativa. Questo cambiamento ha permesso ai lavoratori di accedere immediatamente ai dati aggiornati, senza dover attendere l'esecuzione delle procedure batch notturne, con un conseguente incremento della reattività operativa e della qualità delle decisioni basate su informazioni tempestive.
+È importante sottolineare che questa transizione verso un modello event-driven comporta un inevitabile compromesso in termini di consumo di risorse computazionali. La maggiore reattività del sistema si traduce in un più intenso utilizzo dell'infrastruttura IT, richiedendo un bilanciamento attento tra benefici operativi e costi infrastrutturali. In considerazione di questo trade-off, l'implementazione della sincronizzazione in tempo reale è stata strategicamente limitata ai soli dati per i quali la tempestività dell'aggiornamento rappresenta un requisito critico per i processi aziendali, ottimizzando così l'allocazione delle risorse disponibili.
+
+        
         \subsection{Risultati quantitativi}
         Descriverò i risultati quantitativi raggiunti: sia riguardo alla documentazione effettivamente scritta, al codice sviluppato, eventuali \textit{report} e diagrammi, sia riguardo al miglioramento della \textit{performance} del sistema in generale, il \textit{tradeoff} tra miglioramenti e rallentamenti, in base agli obiettivi del progetto (e quindi del dominio).
+
+        Durante il periodo di stage, ho conseguito con successo tre dei quattro obiettivi obbligatori inizialmente concordati, unitamente all'obiettivo facoltativo. L'obiettivo classificato come "desiderabile" non è stato affrontato, in seguito a una riconfigurazione strategica delle priorità progettuali. Tale riallineamento ha privilegiato lo sviluppo di una Proof of Concept (PoC), identificata come attività facoltativa (FA1), rispetto alla documentazione esaustiva dell'ecosistema dei servizi preesistenti e delle loro interdipendenze (OB3).
+Questa riprioritizzazione delle attività si è rivelata funzionale al rispetto del vincolo temporale delle 304 ore allocate per l'esperienza formativa. L'efficiente gestione del tempo ha inoltre consentito l'estensione delle attività oltre il perimetro inizialmente definito, permettendo la realizzazione di un prototipo funzionale che rappresenta l'evoluzione naturale della Proof of Concept sviluppata.
+I risultati tangibili prodotti durante il periodo di stage comprendono:
+
+Un elaborato di analisi della letteratura scientifica concernente le metodologie di migrazione verso architetture a microservizi
+Un documento tecnico sui pattern di migrazione, con particolare enfasi sugli approcci ritenuti più pertinenti per il contesto specifico di SogeaSoft
+Un'analisi formale dei requisiti che sintetizza le esigenze funzionali e non funzionali identificate
+Un corpus di 5826 linee di codice sorgente, sottoposte a processi di verifica e successivamente integrate nel branch di sviluppo del progetto
+
+
+
+        
     \section{Sviluppi futuri}
     Racconterò di quanto il mio progetto di stage sia rilevante per SogeaSoft S.r.l. rispetto al loro obiettivo di migrazione completa del loro sistema verso un'architettura a microservizi.
 
+    Il progetto di stage da me intrapreso riveste una particolare rilevanza per SogeaSoft in quanto si inserisce in un contesto di crescente esigenza di innovazione e miglioramento continuo del sistema software SAIonWeb. In seguito all’acquisizione da parte di Bluenext, come descritto nella Sezione 1.1, l’applicativo è destinato a gestire un numero sempre maggiore di clienti. Questa evoluzione comporta la necessità di aggiornamenti più frequenti e tempestivi, nonché l’adattamento del software alle specifiche esigenze aziendali e al relativo dominio di riferimento.  
+
+Un aspetto cruciale risiede nella capacità di garantire ai clienti l’accesso ai dati in tempo reale, superando l’attuale limite che impone tempi di attesa di 24 ore per ottenere i dati del giorno precedente. Per raggiungere tale obiettivo, risulta imprescindibile scomporre l’architettura monolitica esistente e procedere verso una migrazione a un’architettura basata su microservizi.  
+Immagino che la prima cosa che caratterizzerà anche i progetti di stage futuri sarà l'approfondimento della tecnologia Debezium, proprio a questo proposito. 
+Ma non solo, anche l'esplorazione di nuovi pattern, dato che per ogni bounded context può corrispondere un microservizio, dunque il lavoro da fare è ancora molto. 
+
+Tuttavia, il processo di migrazione si presenta come un percorso complesso e articolato, principalmente a causa della natura stessa del monolite SAI, il quale risulta stratificato e accoppiato a seguito di anni di sviluppo e aggiornamenti continui. La trasformazione dell’architettura monolitica in un insieme di microservizi richiederà dunque un notevole sforzo organizzativo e tecnico, nonché una pianificazione accurata e progressiva.  
+
+In tale contesto, il progetto di stage ha costituito un primo passo significativo verso l’obiettivo più ampio della migrazione completa. Pur rappresentando solo una parte del progetto di lungo termine, il lavoro svolto ha permesso di delineare e testare approcci metodologici e tecnici che potranno essere riutilizzati e ampliati nelle fasi successive. La mia attività ha quindi contribuito a gettare le basi per un percorso di trasformazione che, nel medio-lungo periodo, porterà a una maggiore flessibilità e scalabilità del sistema SAIonWeb.
+    
     
     
