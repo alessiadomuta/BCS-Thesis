@@ -1,72 +1,84 @@
 \chapter{Svolgimento dello \textit{stage}}
     \section{Conoscenza del dominio di applicazione}
-    La fase iniziale del progetto ha previsto un'immersione approfondita nel dominio applicativo, costituito da un ecosistema manifatturiero dedicato alla produzione di beni per aziende terze. Il sistema in esame presenta caratteristiche di notevole versatilità, configurandosi come soluzione trasversale implementabile in molteplici realtà produttive che adottano metodologie operative analoghe. L'architettura attuale è basata sulla piattaforma SAI, mentre l'obiettivo del tirocinio è stato quello di condurre un'analisi completa finalizzata alla rimodellazione del dominio.
+    La fase iniziale del progetto ha previsto un'immersione approfondita nel dominio applicativo, costituito da un ecosistema manifatturiero dedicato alla produzione di beni per aziende terze. Il sistema in esame si configura come una soluzione trasversale e implementabile in molteplici realtà produttive che adottano metodologie operative simili. L'architettura attuale è basata sulla piattaforma SAI, mentre l'obiettivo dello \textit{stage} è stato quello di condurre un'analisi completa finalizzata alla rimodellazione del dominio.
+
+    \vspace{0.2 em}
+    \noindent Le caratteristiche principali del sistema attuale sono:
+
+    \begin{itemize}
+        \item \textbf{tracciabilità delle risorse umane}: il sistema mantiene un registro completo del personale operativo, con identificazione univoca di ciascun lavoratore all'interno dell'ecosistema informativo;
+
+        \item \textbf{monitoraggio del processo produttivo}: ogni fase della catena di lavorazione è dettagliatamente documentata, con registrazione sistematica dello stato avanzamento lavori per ciascuna operazione in corso;
+
+        \item \textbf{gestione dell'inventario}: implementazione di meccanismi di controllo delle materie prime, con funzionalità di rilevamento delle soglie critiche e conseguente attivazione di processi di approvvigionamento, alcuni dei quali completamente automatizzati;
+
+        \item \textbf{amministrazione integrata}: il sistema incorpora moduli per la gestione contabile, l'elaborazione documentale e la pianificazione logistica del trasporto.
+
+    \end{itemize}
     
-    Caratteristiche principali del sistema attuale:
+    \vspace{0.2 em}
+    \noindent Il progetto di \textit{stage} si è focalizzato principalmente sull’analisi approfondita del dominio applicativo, con l’obiettivo di aggiornare e ridefinire il modello esistente. Questo processo ha previsto l’identificazione e la delimitazione dei \textit{bounded contexts} secondo i principi del \textit{Domain-Driven Design}, cercando di mantenere una rappresentazione chiara e coerente delle diverse aree funzionali del sistema. La fase successiva ha riguardato la formalizzazione dei requisiti funzionali e non funzionali, definendo così i confini tecnici e prestazionali necessari per sviluppare un’eventuale reingegnerizzazione del sistema attualmente basato sulla piattaforma SAI. Come anticipato nella Sezione 1.6.2, le situazioni descritte possono costituire un modello di dominio completo.  
 
-    Tracciabilità delle risorse umane: Il sistema mantiene un registro completo del personale operativo, con identificazione univoca di ciascun lavoratore all'interno dell'ecosistema informativo.
-
-    Monitoraggio del processo produttivo: Ogni fase della catena di lavorazione è dettagliatamente documentata, con registrazione sistematica dello stato avanzamento lavori per ciascuna operazione in corso.
-
-    Gestione dell'inventario: Implementazione di meccanismi di controllo delle materie prime, con funzionalità di rilevamento delle soglie critiche e conseguente attivazione di processi di approvvigionamento, alcuni dei quali completamente automatizzati.
-
-    Amministrazione integrata: Il sistema incorpora moduli per la gestione contabile, l'elaborazione documentale e la pianificazione logistica del trasporto.
-
-    Obiettivi del progetto di tirocinio:
-
-    Il progetto di tirocinio si è concentrato sulla realizzazione di un'analisi approfondita del dominio, con particolare attenzione alla definizione di un modello concettuale aggiornato e completo. Tale processo ha comportato la meticolosa identificazione e delimitazione dei bounded contexts secondo i principi metodologici del Domain-Driven Design, garantendo una rappresentazione coerente delle diverse aree funzionali del sistema. L'attività è proseguita con l'elaborazione dettagliata dei casi d'uso rilevanti, fornendo una visione esaustiva delle interazioni tra gli attori del sistema e le funzionalità implementate. La fase conclusiva ha previsto la formalizzazione dei requisiti funzionali e non funzionali, definendo così il perimetro tecnico e prestazionale entro cui sviluppare l'eventuale reingegnerizzazione del sistema attualmente basato sulla piattaforma SAI. 
-
-    Come anticipato nella sezione sui modelli di dominio, le situazioni sopra elencate possono rappresentare appunto un modello di dominio. la priorità del progetto di stage era quella di individuarne uno e realizzare dunque un prototipo, dunque abbiamo selezionato il monitoraggio del processo produttivo. 
-    Ho potuto anche comprendere che è difficile separare completamente i modelli di dominio, in quanto alcuni si intersecano naturalmente, e ciò mi ha fatto comprendere che non esiste una soluzione perfetta in sè, bensì tutto è un compromesso. 
+    \vspace{0.2 em}
+    \noindent L’obiettivo principale del progetto di \textit{stage} era individuare un modello di dominio specifico e svilupparne un prototipo. Dopo un’attenta valutazione, è stato scelto il \textbf{monitoraggio del processo produttivo} come ambito di intervento. Durante il lavoro, ho potuto constatare quanto sia complesso separare completamente i modelli di dominio, poiché alcuni si intersecano inevitabilmente. Questo mi ha portato alla consapevolezza che non esiste una soluzione perfetta in senso assoluto, ma piuttosto un compromesso tra le diverse esigenze e realtà operative. 
     
-
     
     \section{Attività svolte}
         \subsection{Analisi dei requisiti}
-        Tra tutti i modelli di dominio individuati abbiamo selezionato quello riguardo il monitoraggio del processo produttivo. processo che fa parte dell'analisi sei requisiti, come approfondito nella corrispettiva sezione. 
-        L'analisi dei requisiti si è svolta così: allora prima di tutto insieme al Product Owner abbiamo analizzato la situazione descritta nell'immagine \ref{fig:Dominio}.
+        Tra i vari modelli di dominio individuati, è stato dunque selezionato quello relativo al \textbf{monitoraggio del processo produttivo}, il quale rientra nell’ambito dell’analisi dei requisiti, come descritto nella Sezione 1.6.1. 
+
+        \vspace{0.2 em}
+        \noindent L’analisi dei requisiti è stata condotta in collaborazione con il \textit{Product Owner}, partendo dall’esame approfondito della situazione rappresentata nell’Immagine \ref{fig:Dominio}. Tale attività ha permesso di delineare con precisione le necessità operative e gli obiettivi funzionali, costituendo la base per lo sviluppo del prototipo.
 
         \begin{figure}[H]
             \centering
             \includegraphics[width=0.6\linewidth]{BCS-Tessi//images/Dominio.png}
-            \caption{Schema visuale del modello di dominio preso in esame}
+            \caption[Modello di dominio preso in esame]{Schema visuale del modello di dominio preso in esame durante l'attività di analisi dei requisiti}
             \label{fig:Dominio}
         \end{figure}
-        
-        L'immagine descrive una situazione reale semplificata con cui l'azienda si interfaccia: la gestione della produzione di un certo Articolo finito, la cui produzione prevede un certo CicloDiLavoro composto da diverse Fasi che sono predefinite. 
-        - La produzione di un Articolo richiede un OrdineProduzione, che rappresenta la quantità da produrre e la quantità prodotta.
-        - OrdineProduzioneFasi tiene traccia dello stato di avanzamento della produzione considerando quante unità sono state prodotte in base alla fase e anche in base ai materiali disponibili. Può infatti succedere che la quantità richiesta non venga raggiunta per mancanza di materiali sufficienti: il conteggio si ferma automaticamente quando il numero di unità è stato raggiunto o manualmente quando le risorse sono state esaurite. Tiene conto della quantità da produrre, della quantità prodotta e dello stato (aperto, in corso, chiuso).
-        - Il riquadro nell'immagine comprende il caso d'uso preso in analisi. Il Rilevamento prevede che ogni operatore segnali (attraverso un badge) al sistema il momento di inizio del lavoro e il momento della fine dello stesso, con il numero di pezzi prodotti in base alla fase di lavoro corrispondente. Il completamento di una fase di Rilevamento fa avanzare anche Lavorazione che tiene conto della quantità prodotta e della quantità da produrre.
-        - Una Risorsa è rappresentata dall'operatore, la macchina che utilizza per la fase determinata, la fase, il numero di unità prodotte, l'ora di inizio del lavoro e l'ora di fine.
-        Il problema principale è far comunicare in tempo reale Rilevamento e OrdineProduzioneFasi. Infatti Rilevamento è un microservizio a sé stante e l'obiettivo è quello di farlo comunicare con OrdineProduzioneFasi senza che quest'ultimo debba essere portato all'interno del microservizio Rilevamento.
-        Una possibile soluzione proposta dall'azienda è quella di far leggere al monolite le modifiche avvenute in Rilevamento attraverso delle viste e far fare a Rilevamento un batch delta copier a intervalli regolari per avere le modifiche avvenute nel database del monolite. Questa soluzione permette una sincronizzazione dei dati, anche se non in tempo reale, ma è un compromesso accettabile per l'azienda.
 
-        
+        \vspace{0.2 em}
+        \noindent L'immagine descrive una situazione reale semplificata con cui l'azienda si interfaccia: la gestione della produzione di un certo \texttt{Articolo} finito, la cui produzione prevede un certo \texttt{CicloDiLavoro} composto da diverse \texttt{Fasi} che sono predefinite. Consideriamo ogni componente corrispondere a un \textit{bounded context}.
+        Nello specifico: 
+        \begin{itemize}
+            \item La produzione di un \texttt{Articolo} richiede un \texttt{OrdineProduzione}, che rappresenta la quantità da produrre e la quantità prodotta.
+            \item \texttt{OrdineProduzioneFasi} tiene traccia dello stato di avanzamento della produzione considerando quante unità sono state prodotte in base alla \texttt{Fase} e anche in base ai materiali disponibili. Può infatti succedere che la quantità richiesta non venga raggiunta per mancanza di materiali sufficienti: il conteggio si ferma automaticamente quando il numero di unità è stato raggiunto o manualmente quando le risorse sono state esaurite. Tiene conto della quantità da produrre, della quantità prodotta e dello stato (aperto, in corso, chiuso).
+            \item Il riquadro nell'immagine comprende i \textit{bounded context} presi in analisi. Il \texttt{Rilevamento} prevede che ogni lavoratore segnali (attraverso un \textit{badge}) al sistema il momento di inizio del lavoro e il momento della fine dello stesso, con il numero di pezzi prodotti in base alla fase di lavoro corrispondente. Il completamento di una fase di \texttt{Rilevamento} fa avanzare anche \texttt{Lavorazione} che tiene conto della quantità prodotta e della quantità scartata.
+            \item Una \texttt{Risorsa} è rappresentata dall'operaio, la macchina che utilizza per la fase determinata, la \texttt{Fase}, il numero di unità prodotte, l'ora di inizio del lavoro e l'ora di fine.
+        \end{itemize}
 
-        nello specifico
-        La soluzione ideale sarebbe quella di includere OrdineProduzione e OrdineProduzioneFasi in un unico microservizio MSRilevamento. Questo perché secondo i principi del Domain-Driven Design la divisione in Bounded Contexts dovrebbe prevedere che i diversi microservizi siano poco accoppiati tra di loro. In questo caso infatti c'è un alto grado di accoppiamento con Lavorazione.
-        
-        - Questa soluzione non è applicabile al momento perché il monolite è strettamente collegato in vari punti con OrdineProduzione e con OrdineProduzioneFasi. La priorità è dunque estrarre Rilevamento e Lavorazione, e in un secondo momento completare la divisione ideale.
-        Il monolite è molto grande, non presenta una netta separazione tra backend e frontend e non è nemmeno possibile avere una netta divisione del database tra microservizi, almeno per il momento. E' dunque importante valutare quali sono le priorità, i costi dell'applicazione di certi pattern rispetto ad altri, il tutto ricordando che è un sistema attualmente attivo. Ne consegue che i cambiamenti devono essere pensati per essere graduali e incrementali, trovando dei metodi che risolvano temporaneamente i problemi che emergono dalla migrazione verso i microservizi.
+        \vspace{0.2 em}
+        \noindent Il problema principale è far comunicare in tempo reale \texttt{Rilevamento} e \texttt{OrdineProduzioneFasi}, senza che quest'ultimo debba essere portato all'interno del microservizio che individuiamo come \texttt{MS\_Rilevamento}.
 
+        \vspace{0.2 em}
+        \noindent La soluzione ideale infatti sarebbe quella di includere \texttt{OrdineProduzione} e \texttt{OrdineProduzioneFasi} nell'unico microservizio \texttt{MS\_Rilevamento}. Questo perché secondo i principi del \textit{Domain-Driven Design} la divisione in \textit{bounded contexts} dovrebbe attuare una scomposizione in microservizi che siano poco accoppiati tra di loro. In questo caso invece c'è un alto grado di accoppiamento tra i \textit{bounded context} appena citati e  \texttt{Lavorazione}, quindi scomporli in servizi differenti non è in linea con i principi DDD\footnote{E. Evans, Domain-Driven Design: Tackling Complexity in the Heart of Software, Addison-Wesley, 2003}.
+
+        \vspace{0.2 em}
+        \noindent Questa soluzione non è applicabile al momento perché il monolite è strettamente collegato in vari punti con \texttt{OrdineProduzione} e con \texttt{OrdineProduzioneFasi}. La priorità è dunque estrarre \texttt{Rilevamento} e \texttt{Lavorazione} in un unico servizio, e in un secondo momento completare la divisione ideale.
 
         \subsection{Progettazione}
-        Durante il mio stage l'analisi dei requisiti e la progettazione sono andate di pari passo. Man mano che aumentava la nostra conoscenza del dominio di applicazione e si individuavano i requisiti, la progettazione veniva spontanea, senza una separazione formale delle attività. 
-        Ma la progettazione spiega anche come fare le cose individuate nell'analisi dei requisiti, quindi questo capitolo parlerà dei pattern individuati per poter effettivamente svolgere i requisiti individuati.
+        Durante il mio \textit{stage}, l’analisi dei requisiti e la fase di progettazione si sono sviluppate in modo parallelo. Con l’aumentare della mia conoscenza del dominio applicativo e l’individuazione dei requisiti, la progettazione, guidata dal \textit{Product Owner}, è avvenuta in modo naturale, senza una netta separazione tra le due attività.  
 
-        La soluzione individuata dunque ha questo aspetto, come si vede nell'immagine \ref{fig:progettazione}:
+        \vspace{0.2 em}
+        \noindent Poiché la progettazione consiste nel definire come realizzare concretamente quanto emerso dall’analisi dei requisiti, questo capitolo si concentrerà sulla descrizione dei \textit{pattern} identificati e delle soluzioni architetturali adottate per soddisfare i requisiti individuati.
+
+        \vspace{0.2 em}
+        \noindent La soluzione individuata è rappresentata nella Figura \ref{fig:progettazione} e rappresenta il modo in cui \texttt{MS\_} \texttt{Rilevamento} potrà comunicare con SAI attraverso un \texttt{MS\_Middleware}. Questo rappresenta molto bene il piano di migrazione visibile nella Figura \ref{fig:migrazione}.
         
-        \begin{figure}[H]
+        \begin{figure}
             \centering
-            \includegraphics[width=0.5\linewidth]{BCS-Tessi//images/Progettazione.png}
-            \caption{Enter Caption}
+            \includegraphics[width=0.7\linewidth]{BCS-Tessi//images/Progettazione.png}
+            \caption[Progettazione per l'estrazione del microservizio]{Attività di progettazione per quanto concerne l'estrazione di \texttt{MS\_Rilevamento}}
             \label{fig:progettazione}
         \end{figure}
 
-        che è in linea con quanto si desiderava fare e con l'immagine \ref{fig:migrazione}
-        Rimane il problema della sinronizzazione dei dati e infatti La soluzione proposta è quella di introdurre il pattern per la sincronizzazione bidirezionale dei dati oppure il pattern di real-time data syncronization. Per avere una buona sincronizzazione dei dati da entrambe le parti e per assicurarne la consistenza può essere utile il bi-directional sync data integration pattern, nonostante aggiunga un tempo di latenza. Il real-time data syncronization pattern può essere one-way o two-ways avvicinandosi molto al bidirezionale. Un vantaggio non trascurabile è la disponibilità immediata dei dati modificati, che può adattarsi bene al nostro caso.
-        Se si desidera invece mantenere il pattern Database View, si può comunque considerare un real-time data syncronization pattern al posto del Change Data Capture attualmente applicato, per avere le modifiche ai dati in tempo reale anche di OrdineProduzioneFasi. L'implementazione di un nuovo pattern può richiedere più tempo di quello immediatamente a disposizione nonché del lavoro aggiuntivo per studiarlo e implementarlo. Considerando inoltre che il servizio non può essere lasciato inattivo per il tempo richiesto, una possibilità potrebbe essere quella di mantenere le soluzioni attualmente in uso e lavorare su un branch astratto mediante l'uso del pattern Branch By Abstraction. In questo modo è possibile lavorare sull'implementazione del pattern più definitivo senza compromettere la funzionalità attuale, e con la quantità di tempo che l'azienda può mettere a disposizione per questo specifico task.
-        Alla luce delle considerazioni espresse fino a questo momento e date le dimensioni molto grandi del monolite in esame, l'azienda ha scelto di optare per una migrazione graduale. Inoltre, il fatto che non ci sia una divisione netta tra front-end e back-end molti dei pattern studiati non sono applicabili. La soluzione più ragionevole è risultata dunque quella di applicare l'Anti-corruption Layer, prevedendo la lunga convivenza del monolite e del nuovo sistema a microservizi. Un altro pattern proposto è il Change Data Capture, infatti l'azienda lo aveva già applicato per le comunicazioni con il database. E' stato scelto dall'azienda anche il modello di architettura esagonale, noto anche come pattern di porte e adattatori che mira a creare architetture liberamente accoppiate in cui i componenti delle applicazioni possano essere testati in modo indipendente, senza dipendenze da archivi di dati o interfacce utente. Viene utilizzato per isolare la logica aziendale (logica di dominio) dal codice dell'infrastruttura correlato. E' possibile collegare facilmente i componenti della business logic ad altri componenti nell'architettura dell'applicazione tramite porte e adattatori. Le porte sono punti di ingresso indipendenti dalla tecnologia in un componente dell'applicazione. Queste interfacce personalizzate determinano l'interfaccia che consente agli attori esterni di comunicare con il componente dell'applicazione, indipendentemente da chi o cosa implementa l'interfaccia. Gli adattatori interagiscono con l'applicazione tramite una porta utilizzando una tecnologia specifica. Gli adattatori si collegano a queste porte, ricevono o forniscono dati alle porte e li trasformano per un'ulteriore elaborazione. Ad esempio, un REST adattatore consente agli attori di comunicare con il componente dell'applicazione tramite un RESTAPI. Le porte dunque si connettono all'applicazione e gli adattatori fungono da connessione con il mondo esterno. Gli handler sono componenti fondamentali nell'architettura esagonale, poiché gestiscono le richieste di comando e comunicano con il dominio dell'applicazione. Sono classi o metodi che si occupano di eseguire specifiche operazioni sul dominio di applicazione. Queste operazioni possono includere la creazione, la lettura, l'aggiornamento o la cancellazione di dati.
+        \vspace{0.2 em}
+        \noindent Date le dimensioni molto grandi del monolite in esame, l'azienda ha scelto di optare per una migrazione graduale. La soluzione più ragionevole è risultata dunque quella di applicare il \textit{pattern} \textit{Anti-Corruption Layer} (ACL) prevedendo la lunga convivenza del monolite e del nuovo sistema a microservizi. 
+
+        \vspace{0.2 em}
+        \noindent Un altro \textit{pattern} proposto è il \textit{Change Data Capture}, una tecnica utilizzata per identificare e tracciare le modifiche apportate ai dati in un database. Nel nostro caso è utile nei contesti di sincronizzazione tra sistemi eterogenei, ossia di \texttt{MS\_Rilevamento} e di SAI, il monolite. 
+        
+        E' stato scelto dall'azienda anche il modello di architettura esagonale, noto anche come pattern di porte e adattatori che mira a creare architetture liberamente accoppiate in cui i componenti delle applicazioni possano essere testati in modo indipendente, senza dipendenze da archivi di dati o interfacce utente. Viene utilizzato per isolare la logica aziendale (logica di dominio) dal codice dell'infrastruttura correlato. E' possibile collegare facilmente i componenti della business logic ad altri componenti nell'architettura dell'applicazione tramite porte e adattatori. Le porte sono punti di ingresso indipendenti dalla tecnologia in un componente dell'applicazione. Queste interfacce personalizzate determinano l'interfaccia che consente agli attori esterni di comunicare con il componente dell'applicazione, indipendentemente da chi o cosa implementa l'interfaccia. Gli adattatori interagiscono con l'applicazione tramite una porta utilizzando una tecnologia specifica. Gli adattatori si collegano a queste porte, ricevono o forniscono dati alle porte e li trasformano per un'ulteriore elaborazione. Ad esempio, un REST adattatore consente agli attori di comunicare con il componente dell'applicazione tramite un RESTAPI. Le porte dunque si connettono all'applicazione e gli adattatori fungono da connessione con il mondo esterno. Gli handler sono componenti fondamentali nell'architettura esagonale, poiché gestiscono le richieste di comando e comunicano con il dominio dell'applicazione. Sono classi o metodi che si occupano di eseguire specifiche operazioni sul dominio di applicazione. Queste operazioni possono includere la creazione, la lettura, l'aggiornamento o la cancellazione di dati.
 
         La progettazione dell'API per un caso d'uso.
         Caso d'uso: Registrazione di una Lavorazione
@@ -228,7 +240,7 @@ Come illustrato nella documentazione grafica di riferimento, l'architettura risu
         \end{figure}
         
         L'estrazione del microservizio ha prodotto un significativo miglioramento nell'efficienza operativa dell'organizzazione, risolvendo problematiche strutturali che affliggevano il sistema precedente. La transizione architetturale ha permesso di superare le limitazioni imposte dall'approccio precedentemente adottato, basato sul pattern "batch delta copier", che rappresentava un significativo collo di bottiglia nei flussi informativi aziendali.
-Nella configurazione precedente, l'aggiornamento dei dati avveniva attraverso procedure batch eseguite con cadenza giornaliera, imponendo un ritardo sistematico di 12 ore nella disponibilità delle informazioni aggiornate. Questa latenza costituiva un ostacolo significativo per gli operatori, che si trovavano a lavorare con dati non allineati alla situazione corrente, compromettendo potenzialmente l'efficacia dei processi decisionali e operativi.
+Nella configurazione precedente, l'aggiornamento dei dati avveniva attraverso procedure batch eseguite con cadenza giornaliera, imponendo un ritardo sistematico di 12 ore nella disponibilità delle informazioni aggiornate. Questa latenza costituiva un ostacolo significativo per gli operai, che si trovavano a lavorare con dati non allineati alla situazione corrente, compromettendo potenzialmente l'efficacia dei processi decisionali e operativi.
 L'implementazione della tecnologia Debezium ha rivoluzionato questo paradigma, introducendo un meccanismo di aggiornamento in tempo reale che elimina la latenza informativa. Questo cambiamento ha permesso ai lavoratori di accedere immediatamente ai dati aggiornati, senza dover attendere l'esecuzione delle procedure batch notturne, con un conseguente incremento della reattività operativa e della qualità delle decisioni basate su informazioni tempestive.
 È importante sottolineare che questa transizione verso un modello event-driven comporta un inevitabile compromesso in termini di consumo di risorse computazionali. La maggiore reattività del sistema si traduce in un più intenso utilizzo dell'infrastruttura IT, richiedendo un bilanciamento attento tra benefici operativi e costi infrastrutturali. In considerazione di questo trade-off, l'implementazione della sincronizzazione in tempo reale è stata strategicamente limitata ai soli dati per i quali la tempestività dell'aggiornamento rappresenta un requisito critico per i processi aziendali, ottimizzando così l'allocazione delle risorse disponibili.
 
