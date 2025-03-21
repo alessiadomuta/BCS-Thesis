@@ -56,6 +56,9 @@
         \vspace{0.2 em}
         \noindent Questa soluzione non è applicabile al momento perché il monolite è strettamente collegato in vari punti con \texttt{OrdineProduzione} e con \texttt{OrdineProduzioneFasi}. La priorità è dunque estrarre \texttt{Rilevamento} e \texttt{Lavorazione} in un unico servizio, e in un secondo momento completare la divisione ideale.
 
+        \vspace{0.2 em}
+        \noindent Inoltre, un altro problema è rappresentato dalla necessità di \texttt{MS\_Rilevamento} di leggere dei dati da due fonti. Per monitorare lo stato di una \texttt{Lavorazione} in relazione a \texttt{OrdineProduzione}, è necessario confrontare i dati provenienti sia dal microservizio, sia dal monolite. Questo perché altrimenti non è possibile accedere ai dati essenziali dell'ordine della fase da lavorare, senza portare \texttt{OrdineProduzione} all'interno di \texttt{MS\_Rilevamento}. Come farlo sarà oggetto della sezione successiva. 
+
         \subsection{Progettazione}
         Durante il mio \textit{stage}, l’analisi dei requisiti e la fase di progettazione si sono sviluppate in modo parallelo. Con l’aumentare della mia conoscenza del dominio applicativo e l’individuazione dei requisiti, la progettazione, guidata dal \textit{Product Owner}, è avvenuta in modo naturale, senza una netta separazione tra le due attività.  
 
@@ -67,7 +70,7 @@
         
         \begin{figure}
             \centering
-            \includegraphics[width=0.7\linewidth]{BCS-Tessi//images/Progettazione.png}
+            \includegraphics[width=0.6\linewidth]{BCS-Tessi//images/Progettazione.png}
             \caption[Progettazione per l'estrazione del microservizio]{Attività di progettazione per quanto concerne l'estrazione di \texttt{MS\_Rilevamento}}
             \label{fig:progettazione}
         \end{figure}
@@ -76,39 +79,43 @@
         \noindent Date le dimensioni molto grandi del monolite in esame, l'azienda ha scelto di optare per una migrazione graduale. La soluzione più ragionevole è risultata dunque quella di applicare il \textit{pattern} \textit{Anti-Corruption Layer} (ACL) prevedendo la lunga convivenza del monolite e del nuovo sistema a microservizi. 
 
         \vspace{0.2 em}
-        \noindent Un altro \textit{pattern} proposto è il \textit{Change Data Capture}, una tecnica utilizzata per identificare e tracciare le modifiche apportate ai dati in un database. Nel nostro caso è utile nei contesti di sincronizzazione tra sistemi eterogenei, ossia di \texttt{MS\_Rilevamento} e di SAI, il monolite. 
+        \noindent Un altro \textit{pattern} che ho proposto è il \textit{Change Data Capture}, una tecnica utilizzata per identificare e tracciare le modifiche apportate ai dati in un database. Nel nostro caso è utile nei contesti di sincronizzazione tra sistemi eterogenei, ossia di \texttt{MS\_Rilevamento} e di SAI, il monolite. 
+
+        \vspace{0.2em}
+        \noindent Per l'implementazione di questo microservizio, insieme al \textit{Product Owner} siamo giunti alla scelta del modello di \textbf{architettura esagonale}, noto anche come \textit{pattern} di porte e adattatori che mira a creare architetture liberamente accoppiate in cui i componenti delle applicazioni possano essere testati in modo indipendente, senza dipendenze da archivi di dati o interfacce utente. Viene utilizzato per isolare la logica aziendale (logica di dominio) dal codice dell'infrastruttura correlato. Le porte sono punti di ingresso indipendenti dalla tecnologia in un componente dell'applicazione. Queste interfacce personalizzate determinano l'interfaccia che consente agli attori esterni di comunicare con il componente dell'applicazione, indipendentemente da chi o cosa implementa l'interfaccia.
+
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=0.65\linewidth]{BCS-Tessi//images/esagonale.png}
+            \caption[Architettura esagonale]{Rappresentazione visuale dell'architettura esagonale anche nota come \textit{ports} e \textit{adapters}. Fonte:\href{https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/fundamental-blocks-of-the-system}{ The Software Architecture Chronicles} \textit{(ultima visita 21/03/2025)}}
+            \label{fig:esagonale}
+        \end{figure}
+
+        \vspace{0.2 em}
+        \noindent Come anticipato nella precedente sezione, un problema da risolvere era quello di effettuare due letture sul \textit{bounded context} \texttt{Lavorazione}. La soluzione trovata per fare ciò è effettuare una lettura su \texttt{MS\_Rilevamento} tramite un \textit{adapter} PostgreSQL sul \textit{database} locale, e una su SAI tramite una connessione PostgreSQL al \textit{database} del monolite stesso. Studiando i \textit{pattern} di scomposizione dei \textit{database}, per questa specifica situazione ho individuato il pattern \textbf{\textit{Database Wrapping Service}}\footnote{S. Newman, Monolith to Microservices: Evolutionary Patterns to Transform Your Monolith, O'Reilly Media, 2019}. Nello specifico si implementa un servizio intermedio (\textit{wrapping service}) che si occupa di esporre le informazioni di SAI tramite delle \textit{Web} API senza esporre direttamente il \textit{database} sottostante. 
+
+        \vspace{0.2 em}
+        \noindent In questo modo, il \textit{team} che gestisce il monolite è responsabile dell’aggiornamento delle API in caso di modifiche alla struttura del \textit{database}, e il \textit{team} di \texttt{MS\_Rilevamento} non deve preoccuparsi dei cambiamenti interni a SAI. Questo approccio riduce l'accoppiamento tra i sistemi, rendendo più facile l'evoluzione della struttura dei dati.
+
+        \vspace{0.2 em}
+        \noindent Infine, insieme al \textit{Product Owner}, abbiamo pensato a come sincronizzare questi dati. Dallo studio della letteratura sui \textit{pattern} è emerso come migliore per il nostro problema il \textit{\textbf{Change Data Capture}} \textbf{(CDC)} implementato con un \textbf{\textit{Batch Delta Copier}}\ap{3}. 
         
-        E' stato scelto dall'azienda anche il modello di architettura esagonale, noto anche come pattern di porte e adattatori che mira a creare architetture liberamente accoppiate in cui i componenti delle applicazioni possano essere testati in modo indipendente, senza dipendenze da archivi di dati o interfacce utente. Viene utilizzato per isolare la logica aziendale (logica di dominio) dal codice dell'infrastruttura correlato. E' possibile collegare facilmente i componenti della business logic ad altri componenti nell'architettura dell'applicazione tramite porte e adattatori. Le porte sono punti di ingresso indipendenti dalla tecnologia in un componente dell'applicazione. Queste interfacce personalizzate determinano l'interfaccia che consente agli attori esterni di comunicare con il componente dell'applicazione, indipendentemente da chi o cosa implementa l'interfaccia. Gli adattatori interagiscono con l'applicazione tramite una porta utilizzando una tecnologia specifica. Gli adattatori si collegano a queste porte, ricevono o forniscono dati alle porte e li trasformano per un'ulteriore elaborazione. Ad esempio, un REST adattatore consente agli attori di comunicare con il componente dell'applicazione tramite un RESTAPI. Le porte dunque si connettono all'applicazione e gli adattatori fungono da connessione con il mondo esterno. Gli handler sono componenti fondamentali nell'architettura esagonale, poiché gestiscono le richieste di comando e comunicano con il dominio dell'applicazione. Sono classi o metodi che si occupano di eseguire specifiche operazioni sul dominio di applicazione. Queste operazioni possono includere la creazione, la lettura, l'aggiornamento o la cancellazione di dati.
+        
+        \vspace{0.2 em} 
+        \noindent Il \textit{Change Data Capture} è un \textit{pattern} che monitora e cattura le modifiche ai dati in un sistema di origine (nel nostro caso SAI) per sincronizzarle con sistemi di destinazione, garantendo così la coerenza delle informazioni attraverso piattaforme diverse. Il \textit{Batch Delta Copier} è un'implementazione specifica di CDC che funziona identificando periodicamente i dati nuovi o modificati dalla sorgente (il "delta") e copiandoli in blocco verso la destinazione durante finestre temporali programmate.
 
-        La progettazione dell'API per un caso d'uso.
-        Caso d'uso: Registrazione di una Lavorazione
-        Quando viene registrata una lavorazione, il sistema dovrebbe aggiornare automaticamente la quantità prodotta nell'entità OrdineProduzioneFasi. Se lo stato della fase corrispondente risulta "chiuso", l'operazione non deve essere registrata e deve restituire un errore, evitando ulteriori modifiche.
-        soluzione webapi n questo approccio, ogni microservizio o componente invia richieste al monolite in maniera sincrona e attende una risposta prima di proseguire. Il flusso di lavoro è bloccante, quindi il servizio attende una risposta dal monolite prima di continuare. Se si verifica un errore (come nel caso in cui la fase sia chiusa), la situazione può essere gestita immediatamente, permettendo di effettuare un rollback e annullare le modifiche già effettuate, ripristinando lo stato precedente. Sebbene questo approccio crei un maggiore accoppiamento tra il microservizio e il monolite, è generalmente più semplice da implementare rispetto alla soluzione basata su sagas.
-
-        Problema: Necessità di dati da due fonti
-        MSRILEVAMENTO: serve per verificare se esiste già una lavorazione in corso per quella specifica fase dell'Ordine di Produzione. In tal caso, il sistema dovrebbe proporre automaticamente la lavorazione in corso.
-        Monolite: necessario per ottenere informazioni aggiuntive sull'Ordine di Produzione, come il codice, la data prevista di evasione, e i dettagli della fase (es. descrizione e numero della fase).
-        In pratica, per completare correttamente questa operazione, è necessario combinare i dati provenienti da entrambi i sistemi: uno per monitorare lo stato attuale della lavorazione e l'altro per accedere ai dati essenziali dell'ordine e della fase da lavorare.
-        Soluzione
-        Effettuare due letture:
-        Una su MSRILEVAMENTO tramite un adapter PostgreSQL su un database locale.
-        Una su ERP tramite una connessione PostgreSQL al database del monolite.
-        Si propongono due approcci per gestire queste letture:
-        Pattern Database View: si crea una vista nel database che unisce i dati da MSRILEVAMENTO e dal monolite. Tuttavia, questo crea un accoppiamento diretto tra il sistema e la struttura del database dell'ERP.Il sistema attualmente adottato per unire questi dati consiste nel prodotto cartesiano sulle tabelle. Questo significa che tutte le combinazioni possibili tra le righe delle due tabelle vengono generate, creando un insieme di dati potenzialmente molto grande. Successivamente, per estrarre le informazioni rilevanti, vengono applicate delle viste. Questo può portare a rallentamenti notevoli, nonché difficoltà nella gestione della complessità dei dati.Una soluzione migliore potrebbe essere applicare il Database Wrapping Service.
-        Pattern Database Wrapping Service (Preferibile): si crea un servizio intermedio (wrapping service) che si occupa di esporre le informazioni dell'ERP tramite delle Web API senza esporre direttamente il database sottostante. In questo modo, il team che gestisce l'ERP è responsabile dell’aggiornamento delle API in caso di modifiche alla struttura del database, e il team di MSRILEVAMENTO non deve preoccuparsi dei cambiamenti interni all'ERP. Questo approccio riduce l'accoppiamento tra i sistemi, rendendo più facile l'evoluzione della struttura dei dati.
-
-        Demo debezium per data sincronization 
 
         
         \subsection{Implementazione}
-        Descriverò l'attività di implementazione, riprendendo la sezione relativa nel primo capitolo. 
-        Racconterò nel dettaglio i miei \textit{task}, le difficoltà incontrate e le soluzioni ottenute, sia riguardo all'estrazione del microservizio che riguardo la gestione del \textit{database}. 
-        Descriverò i \textit{pattern} scelti, come li ho implementati, ed eventuali risultati rilevanti. 
+        La fase di progettazione è stata senza dubbio la più complessa, soprattutto a causa della mancanza di soluzioni definitive e della relativa novità del concetto di migrazione verso i microservizi. Nonostante le difficoltà iniziali, una volta definita la strategia da adottare, l’implementazione è proseguita in modo naturale, seguendo il percorso tracciato.  
 
-        STRUTTURA DEL CODICE, altri pattern che ho applicato tramite il learn by doing ma non parte del processo di progettazione. 
-        Tecnologie utilizzate sono già state approfondite, ma di particolare rilevanza Debezium.
+        Per supportare l’implementazione, ho preso diversi appunti e annotazioni operative, che ho discusso insieme al \textit{Product Owner} per garantire chiarezza e coerenza nell’esecuzione.  
 
-        Ai fini di questa trattazione, come sono state implementate le singole cose non è particolarmente rilevante, nonostante sia entrata in contatto con diversi pattern molto interessanti come: CQRS, DTO. 
+        La fase di codifica è stata improntata su un approccio \textit{learn by doing}: pur avendo una base di riferimento, ho dovuto affinare le mie competenze sul campo, confrontandomi regolarmente con il \textit{tutor} aziendale e il \textit{Product Owner} per ricevere \textit{feedback} e indicazioni utili.
+
+        Nello specifico, ho potuto creare una struttura di progetto molto precisa, rappresentata nella Figura \ref{fig:code-structure}.
+
+         
         \begin{figure}[H]
             \centering
             \includegraphics[width=0.5\linewidth]{BCS-Tessi//images/code_structure.png}
@@ -173,7 +180,7 @@ public async Task<OrdineProduzione> FindByFaseAsync(int ordineProduzioneFaseId)
 }
 \end{verbatim}
 
-# Analisi dell'Operazione di Lettura nell'API di Rilevamento Produzione
+Analisi dell'Operazione di Lettura nell'API di Rilevamento Produzione
 
 Il componente fondamentale che implementa l'operazione di lettura all'interno dell'API è il metodo `FindByFaseAsync` della classe `OrdineProduzioneRepository`. Questo metodo esemplifica l'implementazione di un'operazione di recupero dati (Read) secondo il paradigma REST.
 
