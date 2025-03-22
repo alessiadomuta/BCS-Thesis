@@ -82,14 +82,7 @@
         \noindent Un altro \textit{pattern} che ho proposto è il \textit{Change Data Capture}, una tecnica utilizzata per identificare e tracciare le modifiche apportate ai dati in un database. Nel nostro caso è utile nei contesti di sincronizzazione tra sistemi eterogenei, ossia di \texttt{MS\_Rilevamento} e di SAI, il monolite. 
 
         \vspace{0.2em}
-        \noindent Per l'implementazione di questo microservizio, insieme al \textit{Product Owner} siamo giunti alla scelta del modello di \textbf{architettura esagonale}, noto anche come \textit{pattern} di porte e adattatori che mira a creare architetture liberamente accoppiate in cui i componenti delle applicazioni possano essere testati in modo indipendente, senza dipendenze da archivi di dati o interfacce utente. Viene utilizzato per isolare la logica aziendale (logica di dominio) dal codice dell'infrastruttura correlato. Le porte sono punti di ingresso indipendenti dalla tecnologia in un componente dell'applicazione. Queste interfacce personalizzate determinano l'interfaccia che consente agli attori esterni di comunicare con il componente dell'applicazione, indipendentemente da chi o cosa implementa l'interfaccia.
-
-        \begin{figure}[H]
-            \centering
-            \includegraphics[width=0.65\linewidth]{BCS-Tessi//images/esagonale.png}
-            \caption[Architettura esagonale]{Rappresentazione visuale dell'architettura esagonale anche nota come \textit{ports} e \textit{adapters}. Fonte:\href{https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/fundamental-blocks-of-the-system}{ The Software Architecture Chronicles} \textit{(ultima visita 21/03/2025)}}
-            \label{fig:esagonale}
-        \end{figure}
+        \noindent Per l'implementazione di questo microservizio, insieme al \textit{Product Owner} siamo giunti alla scelta del modello di \textbf{architettura esagonale}, noto anche come \textit{pattern} di porte e adattatori che mira a creare architetture liberamente accoppiate in cui i componenti delle applicazioni possano essere testati in modo indipendente, senza dipendenze da archivi di dati o interfacce utente. Viene utilizzato per isolare la logica aziendale (logica di dominio) dal codice dell'infrastruttura correlato. Le \textbf{porte} sono punti di ingresso indipendenti dalla tecnologia in un componente dell'applicazione. Gli \textbf{adattatori} invece, implementano le interfacce definite dalle porte, consentono una comunicazione fluida tra il nucleo applicativo e i sistemi esterni, facilitando future estensioni o sostituzioni di componenti senza impattare sulla logica di business centrale.
 
         \vspace{0.2 em}
         \noindent Come anticipato nella precedente sezione, un problema da risolvere era quello di effettuare due letture sul \textit{bounded context} \texttt{Lavorazione}. La soluzione trovata per fare ciò è effettuare una lettura su \texttt{MS\_Rilevamento} tramite un \textit{adapter} PostgreSQL sul \textit{database} locale, e una su SAI tramite una connessione PostgreSQL al \textit{database} del monolite stesso. Studiando i \textit{pattern} di scomposizione dei \textit{database}, per questa specifica situazione ho individuato il pattern \textbf{\textit{Database Wrapping Service}}\footnote{S. Newman, Monolith to Microservices: Evolutionary Patterns to Transform Your Monolith, O'Reilly Media, 2019}. Nello specifico si implementa un servizio intermedio (\textit{wrapping service}) che si occupa di esporre le informazioni di SAI tramite delle \textit{Web} API senza esporre direttamente il \textit{database} sottostante. 
@@ -109,124 +102,105 @@
         \subsection{Implementazione}
         La fase di progettazione è stata senza dubbio la più complessa, soprattutto a causa della mancanza di soluzioni definitive e della relativa novità del concetto di migrazione verso i microservizi. Nonostante le difficoltà iniziali, una volta definita la strategia da adottare, l’implementazione è proseguita in modo naturale, seguendo il percorso tracciato.  
 
-        Per supportare l’implementazione, ho preso diversi appunti e annotazioni operative, che ho discusso insieme al \textit{Product Owner} per garantire chiarezza e coerenza nell’esecuzione.  
-
-        La fase di codifica è stata improntata su un approccio \textit{learn by doing}: pur avendo una base di riferimento, ho dovuto affinare le mie competenze sul campo, confrontandomi regolarmente con il \textit{tutor} aziendale e il \textit{Product Owner} per ricevere \textit{feedback} e indicazioni utili.
-
-        Nello specifico, ho potuto creare una struttura di progetto molto precisa, rappresentata nella Figura \ref{fig:code-structure}.
+        \vspace{0.2 em}
+        \noindent La fase di codifica è stata improntata su un approccio \textit{learn by doing}: pur avendo una base di riferimento, ho dovuto affinare le mie competenze sul campo, confrontandomi regolarmente con il \textit{tutor} aziendale e il \textit{Product Owner} per ricevere \textit{feedback} e indicazioni utili.
+        
+        \noindent Nello specifico, ho potuto implementare una struttura di progetto molto precisa, rappresentata nella Figura \ref{fig:code-structure}.
 
          
-        \begin{figure}[H]
+        \begin{figure}
             \centering
             \includegraphics[width=0.5\linewidth]{BCS-Tessi//images/code_structure.png}
             \caption{Struttura del codice utilizzata per l'estrazione del microservizio.}
             \label{fig:code-structure}
         \end{figure}
 
-        
-        Analizzando più approfonditamente la struttura del microservizio Sogea.RilevamentoProduzione, possiamo espandere i seguenti concetti architetturali:
+        \vspace{0.2 em}
+        \noindent Analizzando più approfonditamente la struttura del microservizio \texttt{Sogea.Rilevamento}\texttt{Produzione}, posso espandere i seguenti concetti architetturali:
+        \begin{itemize}
+            \item \textbf{\textit{Domain-Driven Design}} \textbf{(DDD)}: il microservizio implementa i principi DDD attraverso la separazione in \textit{$namespace_G$} come \texttt{Domain}, \texttt{Abstractions}. Mentre \texttt{Domain} contiene le entità di dominio e gli aggregati, le \texttt{Abstraction} forniscono interfacce che definiscono comportamenti senza implementazioni concrete;
+            \item \textbf{\textit{Command Query Responsibility $\textbf{Segregation}_G$} (CQRS)}: è un modello architetturale che separa le operazioni di lettura (\textit{query}) da quelle di scrittura (comandi) utilizzando interfacce distinte per ottimizzare le prestazioni e la scalabilità.I \texttt{Commands} gestiscono le operazioni di scrittura e la modifica dello stato, mentre le \texttt{Queries} gestiscono le operazioni di lettura. I \texttt{QueryHandlers} elaborano le \textit{query} e interagiscono con PostgreSQL;
+            \item \textbf{\textit{Event Sourcing}}: il \textit{namespace} \texttt{Events} indica l'implementazione di Event Sourcing,  modello architetturale che memorizza lo stato di un sistema come una sequenza di eventi immutabili, permettendo di ricostruire lo stato corrente riproducendo tali eventi.
+            \item \textbf{\textit{Data Transfer Objects} (DTOs)}: il \textit{namespace} \texttt{DTOs} (\texttt{Sogea.RilevamentoProduzione.}\texttt{ DTOs}) contiene oggetti utilizzati per trasferire dati tra i diversi livelli dell'applicazione. I DTOs sono oggetti immutabili che incapsulano dati per il trasferimento tra componenti;
+            \item \textbf{\textit{Handlers}}: gli \texttt{Handlers} rappresentano il punto di contatto tra l'infrastruttura e il dominio, traducendo le richieste in operazioni sul dominio e sono rappresentativi dell'applicazione dell'architettura esagonale.
+        \end{itemize}
 
-**Domain-Driven Design (DDD)**:
-- Il microservizio implementa chiaramente i principi DDD attraverso la separazione in namespace come Domain, Abstractions e Commands
-- Il namespace Domain contiene probabilmente le entità di dominio, aggregati, value objects e domain services che rappresentano il nucleo del business
-- Le Abstractions forniscono interfacce e contratti che definiscono comportamenti senza implementazioni concrete
-- Questa separazione permette di mantenere il dominio al centro dell'applicazione, isolandolo dalle preoccupazioni tecniche
+        \vspace{0.2 em}
+        \noindent I microservizi, per loro natura intrinseca, comportano significative attività di integrazione per garantire una comunicazione efficace tra i diversi componenti. Un esempio concreto di questa necessità è rappresentato dalla soluzione implementata per il problema, presentato nelle sezioni immediatamente precedenti, della duplice lettura, che si verificava sia sul sistema monolitico sia sul microservizio \texttt{MS\_Rilevamento}. Per risolvere questa criticità, è stata sviluppata un'\textbf{API} dedicata che funge da intermediario nella comunicazione, ottimizzando così il flusso di dati tra le diverse parti dell'architettura.
 
-**Command Query Responsibility Segregation (CQRS)**:
-- La separazione esplicita tra Commands e Queries evidenzia l'implementazione del pattern CQRS
-- I Commands (in Sogea.RilevamentoProduzione.Commands) gestiscono le operazioni di scrittura e modifica dello stato
-- Le Queries (in Sogea.RilevamentoProduzione.Queries) gestiscono le operazioni di lettura dei dati
-- I QueryHandlers specifici (Sogea.RilevamentoProduzione.QueriesHandlers) elaborano le query e interagiscono con PostgreSQL, suggerendo un'implementazione completa del pattern
+        \begin{verbatim}
+        public async Task<OrdineProduzione> FindByFaseAsync(int ordineProduzioneFaseId)
+        {
+          string url = this.Configuration.Server.Replace("{productionOrderId}", 
+          ordineProduzioneFaseId.ToString());
+          RestClient client = new RestClient(url);
+          RestRequest request = new RestRequest(Method.GET);
+          request.AddHeader("DITTA", this.Configuration.Ditta);
+          IRestResponse response = await client.ExecuteAsync(request);
+          if (response.IsSuccessful && response.Content != null)
+          {
+            RootDto rootDto = JsonConvert.DeserializeObject<RootDto>(response.Content);
+            // ... elaborazione della risposta ...
+          }
+          return null;
+        }
+        \end{verbatim}
 
-**Event Sourcing**:
-- Il namespace Events indica l'implementazione di Event Sourcing, dove le modifiche allo stato sono registrate come eventi
-- Gli eventi rappresentano fatti immutabili che sono accaduti nel sistema
-- Questa architettura permette di ricostruire lo stato del sistema riapplicando gli eventi in sequenza
-- La presenza di questo modulo suggerisce che il sistema mantiene un log degli eventi come fonte di verità
+        \vspace{0.2 em}
+        \noindent Il componente fondamentale che implementa l'operazione di lettura all'interno dell'API è il metodo \texttt{FindByFaseAsync} della classe \texttt{OrdineProduzioneRepository}. Questo metodo esemplifica l'implementazione di un'operazione di recupero dati (Read) secondo il paradigma $REST_G$, approfondito nella Sezione 1.7.
 
-**Data Transfer Objects (DTOs)**:
-- Il namespace DTOs (Sogea.RilevamentoProduzione.DTOs) contiene oggetti utilizzati per trasferire dati tra i diversi livelli dell'applicazione
-- I DTOs sono oggetti immutabili che incapsulano dati per il trasferimento tra componenti
-- Separano la rappresentazione dei dati nel dominio dalla loro rappresentazione per la comunicazione, prevenendo l'esposizione diretta delle entità di dominio
+        \vspace{0.2 em}
+        \noindent L'operazione di lettura si articola attraverso i seguenti passaggi:
+        \begin{itemize}
+            \item \textbf{costruzione dell'\textit{$\textbf{endpoint}_G$}}: l'$URL_G$ di destinazione viene dinamicamente generato sostituendo il parametro \texttt{productionOrderId} con l'identificativo della fase di produzione richiesta;
+            \item \textbf{configurazione della richiesta $HTTP_G$}: viene istanziato un \textit{client} REST e configurata una richiesta di tipo GET, che per definizione nel protocollo HTTP rappresenta un'operazione di lettura non modificante;
+            \item \textbf{contestualizzazione della richiesta}: \texttt{DITTA} viene aggiunto per specificare il contesto aziendale della richiesta, consentendo al servizio di rispondere con i dati pertinenti.
+            \item \textbf{esecuzione asincrona}: a richiesta viene eseguita in modalità asincrona (\texttt{await client.} 
+            \texttt{ExecuteAsync}), ottimizzando l'utilizzo delle risorse del sistema durante l'attesa della risposta;
+            \item \textbf{elaborazione dei dati}: in caso di risposta positiva, i dati $JSON_G$ ricevuti vengono deserializzati e trasformati in oggetti del dominio applicativo.
+        \end{itemize}
 
-**Handlers**:
-- I QueriesHandlers (Sogea.RilevamentoProduzione.QueriesHandlers) implementano la logica di gestione delle query
-- Probabilmente il sistema utilizza anche command handlers (non visibili direttamente ma presumibilmente presenti in Commands)
-- I handlers rappresentano il punto di contatto tra l'infrastruttura e il dominio, traducendo le richieste in operazioni sul dominio
-- La presenza di handlers specifici per PostgreSQL (Sogea.RilevamentoProduzione.QueriesHandlers.PostgreSQL) indica un'implementazione per database specifici, permettendo flessibilità e potenziali sostituzioni
+        \vspace{0.2 em}
+        \noindent Per affrontare invece la problematica della sincronizzazione dei dati, ho potuto esplorare e implementare un'architettura specializzata basata sulla tecnologia \textbf{Debezium}, una piattaforma di \textbf{\textit{Change Data Capture}} (\textbf{CDC}), approfondita nella Sezione 1.7. 
 
-Questa struttura modulare facilita la manutenzione, il testing e la scalabilità del microservizio, consentendo modifiche e aggiornamenti localizzati senza impattare l'intero sistema. L'architettura complessiva suggerisce un'implementazione matura di principi di progettazione avanzati orientati ai microservizi.
+        \vspace{0.2 em}
+        \noindent L'architettura di sincronizzazione adottata ha integrato Debezium con \textbf{RabbitMQ}, quest'ultimo utilizzato come \textit{message broker }per la gestione efficiente del flusso di informazioni. Questa combinazione tecnologica ha consentito la realizzazione di un sistema di code (inteso come liste) di messaggi altamente reattivo, in grado di catturare e propagare le modifiche ai dati nel momento stesso in cui queste venivano apportate nel sistema di origine.
 
-sull'implementazione della webapi
-i microservizi sono intrinsecamente caratterizzati da lavori di integration, ossia di comunicazione tra le parti, infatti per la risoluzione del problema delle due letture, si è implementata una webapi che legge i dati sia da SAI che dal microservizio. 
+        \vspace{0.2 em}
+        \noindent Il principio operativo di questa soluzione si basa sul meccanismo di CDC, attraverso il quale Debezium monitora continuamente il \textit{log} delle transazioni del \textit{database}, identifica le operazioni di inserimento, aggiornamento o eliminazione dei dati e trasforma queste informazioni in eventi che vengono successivamente instradati attraverso RabbitMQ verso i sistemi destinatari, come si può osservare in Figura \ref{fig:queue}.
 
-Per spiegare che l'API effettua un'operazione di lettura, dovresti concentrarti sul metodo `FindByFaseAsync`, in particolare sulla parte che gestisce la chiamata REST. Ecco lo snippet più rilevante:
-
-\begin{verbatim}
-public async Task<OrdineProduzione> FindByFaseAsync(int ordineProduzioneFaseId)
-{
-  string url = this.Configuration.Server.Replace("{productionOrderId}", 
-  ordineProduzioneFaseId.ToString());
-  RestClient client = new RestClient(url);
-  RestRequest request = new RestRequest(Method.GET);
-  request.AddHeader("DITTA", this.Configuration.Ditta);
-  IRestResponse response = await client.ExecuteAsync(request);
-  if (response.IsSuccessful && response.Content != null)
-  {
-    RootDto rootDto = JsonConvert.DeserializeObject<RootDto>(response.Content);
-    // ... elaborazione della risposta ...
-  }
-  return null;
-}
-\end{verbatim}
-
-Analisi dell'Operazione di Lettura nell'API di Rilevamento Produzione
-
-Il componente fondamentale che implementa l'operazione di lettura all'interno dell'API è il metodo `FindByFaseAsync` della classe `OrdineProduzioneRepository`. Questo metodo esemplifica l'implementazione di un'operazione di recupero dati (Read) secondo il paradigma REST.
-
-L'operazione di lettura si articola attraverso i seguenti passaggi:
-
-1. **Costruzione dell'endpoint**: L'URL di destinazione viene dinamicamente generato sostituendo il parametro `{productionOrderId}` con l'identificativo della fase di produzione richiesta.
-
-2. **Configurazione della richiesta HTTP**: Viene istanziato un client REST e configurata una richiesta di tipo GET, che per definizione nel protocollo HTTP rappresenta un'operazione di lettura non modificante.
-
-3. **Contestualizzazione della richiesta**: L'header "DITTA" viene aggiunto per specificare il contesto aziendale della richiesta, consentendo al servizio di rispondere con i dati pertinenti.
-
-4. **Esecuzione asincrona**: La richiesta viene eseguita in modalità asincrona (`await client.ExecuteAsync`), ottimizzando l'utilizzo delle risorse del sistema durante l'attesa della risposta.
-
-5. **Elaborazione dei dati**: In caso di risposta positiva, i dati JSON ricevuti vengono deserializzati e trasformati in oggetti del dominio applicativo.
-
-Questa implementazione rappresenta un esempio paradigmatico di pattern Repository, che isola la logica di business dalla complessità dell'accesso ai dati esterni, fornendo un'interfaccia coerente per il recupero delle informazioni relative agli ordini di produzione.
-
-Per affrontare la complessa problematica della sincronizzazione dei dati, è stata implementata un'architettura specializzata basata sulla tecnologia Debezium, una piattaforma di Change Data Capture (CDC) open source, che viene dettagliatamente analizzata nella sezione dedicata alle tecnologie utilizzate nel progetto. Questa soluzione è stata applicata specificamente ai componenti del sistema che richiedevano un aggiornamento costante e affidabile dei dati tra diverse applicazioni o servizi.
-L'architettura di sincronizzazione adottata ha integrato Debezium con RabbitMQ, quest'ultimo utilizzato come message broker per la gestione efficiente del flusso di informazioni. Questa combinazione tecnologica ha consentito la realizzazione di un sistema di code di messaggi altamente reattivo, in grado di catturare e propagare le modifiche ai dati nel momento stesso in cui queste venivano apportate nel sistema di origine.
-Il principio operativo fondamentale di questa soluzione si basa sul meccanismo di Change Data Capture, attraverso il quale Debezium monitora continuamente il log delle transazioni del database, identifica le operazioni di inserimento, aggiornamento o eliminazione dei dati e trasforma queste informazioni in eventi che vengono successivamente instradati attraverso RabbitMQ verso i sistemi destinatari.
-L'implementazione di questo pattern architetturale ha permesso di ottenere una sincronizzazione dei dati in tempo reale, eliminando i ritardi tipicamente associati ai tradizionali processi batch di aggiornamento e garantendo così una maggiore coerenza informativa tra i diversi componenti del sistema
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{BCS-Tessi//images/queue.PNG}
-    \caption{RabbitMQ queue}
-    \label{fig:queue}
-\end{figure}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\linewidth]{BCS-Tessi//images/queue.PNG}
+            \caption{Coda implementata con Debezium e gestita da RabbitMQ.}
+            \label{fig:queue}
+        \end{figure}
 
         
         \subsection{Verifica e validazione}
-        Durante il processo di sviluppo software, ho adottato un approccio sistematico all'implementazione dei test unitari, integrandoli organicamente nel ciclo di sviluppo iterativo. L'esecuzione dei test unitari avveniva contestualmente all'implementazione di nuove funzionalità, seguendo la metodologia di sviluppo incrementale. Questo mi ha permesso di attuare una copertura totale di test del codice.
-Le sessioni di sprint review costituivano un momento di verifica, durante il quale le funzionalità sviluppate erano sottoposte a un processo di validazione che coinvolgeva anche il Product Owner, garantendo così un controllo di qualità multidimensionale e una verifica della conformità rispetto ai requisiti iniziali.
-Per quanto concerne la tipologia di test implementati, ho principalmente eseguito verifiche di integrazione per assicurare la corretta esposizione delle funzionalità sviluppate nell'ambiente server. A tal fine, ho utilizzato Swagger come strumento primario di verifica e documentazione delle API. Questo framework mi ha permesso di visualizzare in tempo reale l'effettivo funzionamento delle nuove implementazioni, offrendo un'interfaccia intuitiva per l'interazione con i servizi esposti.
-La visualizzazione grafica fornita da Swagger ha rappresentato un elemento fondamentale nel processo di verifica, consentendomi di monitorare efficacemente l'integrazione delle nuove funzionalità nel sistema esistente e di identificare tempestivamente eventuali incongruenze o malfunzionamenti. 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1\linewidth]{BCS-Tessi//images/swagger.PNG}
-    \caption{Swagger}
-    \label{fig:swagger}
-\end{figure}
+        Durante il processo di sviluppo, ho adottato un approccio sistematico all'implementazione dei \textit{test} unitari, integrandoli organicamente nel ciclo di sviluppo iterativo. L'esecuzione dei \textit{test} unitari avveniva contestualmente all'implementazione di nuove funzionalità, seguendo la metodologia di sviluppo incrementale. Questo mi ha permesso di attuare una copertura totale di \textit{test} del codice.
 
-Il processo di validazione delle funzionalità sviluppate è stato caratterizzato da un approccio collegiale e multidisciplinare, coinvolgendo diverse figure professionali all'interno dell'organizzazione. La responsabilità primaria di tale validazione è stata assunta dal Product Owner, figura deputata alla verifica della conformità del prodotto rispetto ai requisiti di business, in sinergia con il Team Leader, che ha supervisionato gli aspetti tecnici dell'implementazione.
-Un elemento distintivo del processo di validazione è stato il coinvolgimento attivo dell'intero team di sviluppo, creando così un contesto di revisione collettiva che ha favorito l'identificazione tempestiva di potenziali problematiche e l'ottimizzazione della qualità complessiva del prodotto. Questo approccio partecipativo si è concretizzato in particolare durante le sessioni di Sprint Review, eventi formali previsti dalla metodologia Agile.
-Durante tali sessioni, la presenza simultanea di tutti i membri del team ha consentito un'analisi approfondita e multidimensionale delle funzionalità implementate. Questa modalità operativa ha permesso di sottoporre il prodotto a un esame critico da diverse prospettive professionali, garantendo una valutazione olistica che ha abbracciato sia gli aspetti funzionali che quelli tecnici dell'implementazione.
-La Sprint Review ha rappresentato pertanto non solo un momento di verifica formale del lavoro svolto, ma anche un'occasione strutturata di confronto e condivisione, durante la quale il team nella sua interezza ha potuto osservare, analizzare e valutare sia le singole funzionalità implementate che il prodotto nella sua configurazione complessiva.
+        \vspace{0.2 em}
+        \noindent Le sessioni di \textit{Sprint Review} costituivano un momento di verifica, durante il quale le funzionalità sviluppate erano sottoposte a un processo di validazione che coinvolgeva anche il \textit{Product Owner}, garantendo così la verifica della conformità rispetto ai requisiti iniziali.
+
+        \vspace{0.2 em}
+        \noindent Inoltre, ho eseguito ulteriori verifiche di integrazione per assicurare la corretta esposizione delle funzionalità sviluppate nell'ambiente \textit{server}. A tal fine, ho utilizzato Swagger come strumento primario di verifica e documentazione delle API. Questo \textit{framework}, approfondito nella Sezione 1.7, mi ha permesso di visualizzare in tempo reale l'effettivo funzionamento delle nuove implementazioni, offrendo un'interfaccia intuitiva per l'interazione con i servizi esposti, il cui funzionamento è osservabile nella Figura \ref{fig:swagger}.
+        
+        \begin{figure}[H]
+            \centering
+            \includegraphics[width=1\linewidth]{BCS-Tessi//images/swagger.PNG}
+            \caption{Swagger}
+            \label{fig:swagger}
+        \end{figure}
+
+        \vspace{0.2 em}
+        \noindent Come anticipato nella Sezione 1.6.4, il processo di Validazione fornisce evidenza oggettiva sulle capacità del \textit{software} di soddisfare le aspettative e i bisogni del committente. 
+
+        \vspace{0.2 em}
+        \noindent Data la natura accademica del mio \textit{stage}, non si sono svolte validazioni più formali che avrebbero incluso il coinvolgimento di \textit{stakeholder} esterni.
+
+        \vspace{0.2 em}
+        \noindent Nel mio caso infatti, il processo di validazione è stato caratterizzato da un approccio collettivo, coinvolgendo diverse figure all'interno dell'organizzazione. La responsabilità primaria di tale validazione è stata assunta dal \textit{Product Owner} e dal \textit{Team Leader}, che ha supervisionato gli aspetti tecnici dell'implementazione. Durante una \textit{Sprint Review}, ho presentato le funzionalità implementate e il loro funzionamento a tutto il \textit{team} di sviluppo che interagisce con questo particolare microservizio.
 
 
     \section{Risultati raggiunti}
