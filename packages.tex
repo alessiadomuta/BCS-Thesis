@@ -7,6 +7,8 @@
 \usepackage{booktabs}%for thin lines
 \usepackage{xcolor} %line color
 \usepackage{multicol}%two columns
+\usepackage{listings}
+\usepackage{tcolorbox}
 %Glossaries
 \usepackage[toc]{glossaries}
 \makeglossaries
@@ -18,7 +20,7 @@
 \usepackage{longtable}
 \usepackage{makecell}
 
-\usepackage{minted}%code formatting
+\usepackage[table]{xcolor}
 
 \usepackage[a4paper, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry} % Adjust margin as needed
 
@@ -84,3 +86,27 @@
 
 % Include Files
 \usepackage{import} % Import files
+
+%code formatting
+\lstdefinelanguage{CSharp}{
+    morekeywords={abstract, as, base, bool, break, byte, case, catch, char, checked, class, const, continue, decimal, default, delegate, do, double, else, enum, event, explicit, extern, false, finally, fixed, float, for, foreach, goto, if, implicit, in, int, interface, internal, is, lock, long, namespace, new, null, object, operator, out, override, params, private, protected, public, readonly, ref, return, sbyte, sealed, short, sizeof, stackalloc, static, string, struct, switch, this, throw, true, try, typeof, uint, ulong, unchecked, unsafe, ushort, using, virtual, void, volatile, while},
+    sensitive=true,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+}
+
+\lstset{
+    language=CSharp,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{gray}\itshape,
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny,
+    stepnumber=1,
+    breaklines=true,
+    tabsize=4,
+    showstringspaces=false,
+}
+
