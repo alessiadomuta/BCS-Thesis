@@ -346,13 +346,31 @@
 
         
         \subsection{Verifica e validazione}
-        Durante il processo di sviluppo, ho adottato un approccio sistematico all'implementazione dei \textit{test} unitari, integrandoli organicamente nel ciclo di sviluppo iterativo. L'esecuzione dei \textit{test} unitari avveniva contestualmente all'implementazione di nuove funzionalità, seguendo la metodologia di sviluppo incrementale. Questo mi ha permesso di attuare una copertura totale di \textit{test} del codice.
+        Il processo di verifica del \textit{software} è stato articolato in più fasi, iniziando dal controllo delle singole unità di codice per poi estendersi all’intero sistema, come illustrato nella Sezione 1.6.4.  
 
         \vspace{0.2 em}
-        \noindent Le sessioni di \textit{Sprint Review} costituivano un momento di verifica, durante il quale le funzionalità sviluppate erano sottoposte a un processo di valutazione che coinvolgeva anche il \textit{Product Owner}, garantendo così la verifica della conformità rispetto ai requisiti iniziali.
+        \noindent In SogeaSoft S.r.l., è prassi consolidata che qualsiasi modifica al codice venga sottoposta a revisione prima di essere integrata nel \textit{branch} stabile di sviluppo. Nello specifico, le modifiche devono essere pubblicate tramite una \textit{Pull Request} su Microsoft Azure e sottoposte alla verifica di un altro sviluppatore.
 
         \vspace{0.2 em}
-        \noindent Inoltre, ho eseguito ulteriori verifiche di integrazione per assicurare la corretta esposizione delle funzionalità sviluppate nell'ambiente \textit{server}. A tal fine, ho utilizzato Swagger come strumento primario di verifica e documentazione delle API. Questo \textit{framework}, approfondito nella Sezione 1.7, mi ha permesso di visualizzare in tempo reale l'effettivo funzionamento delle nuove implementazioni, offrendo un'interfaccia intuitiva per l'interazione con i servizi esposti, il cui funzionamento è osservabile nella Figura \ref{fig:swagger}.
+        \noindent Quando viene aperta una \textit{Pull Request}, viene automaticamente avviata una \textit{pipeline} di \textit{test} sulla piattaforma Microsoft Azure. In questo ambiente, il codice viene compilato e sottoposto a \textit{test} automatici per verificarne la correttezza.  
+
+        \vspace{0.2 em}
+        \noindent Per tutti i \textit{task} rilevanti, ho provveduto a scrivere una serie di \textbf{\textit{test} unitari} volti a garantire il corretto funzionamento delle logiche definite durante le attività di progettazione. In SogeaSoft S.r.l. non sono previsti requisiti minimi di copertura per i \textit{test} unitari; tuttavia, ho scelto autonomamente di raggiungere il 100\% di copertura per tutte le funzionalità da me sviluppate. Questo approccio mi ha permesso di scrivere codice più solido e aderente alle specifiche progettuali.
+
+        \vspace{0.2 em}
+        \noindent Oltre ai \textit{test} unitari, ho eseguito anche \textbf{\textit{test} di integrazione}, concentrandomi in particolare sulla verifica del corretto funzionamento delle chiamate REST, su cui si basa gran parte del sistema. Questi \textit{test} avevano l'obiettivo di garantire che le funzionalità sviluppate fossero correttamente esposte nell'ambiente \textit{server} e rispondessero in modo adeguato alle richieste.  
+
+        \vspace{0.2 em}
+        \noindent Per la verifica e la documentazione delle API, ho utilizzato \textbf{Swagger}, descritto più nel dettaglio nella Sezione 1.7. Questo \textit{framework} mi ha permesso di monitorare in tempo reale il comportamento delle nuove implementazioni, fornendo un'interfaccia intuitiva per testare i servizi esposti. Il funzionamento di Swagger è illustrato nella Figura \ref{fig:swagger}.  
+
+        \vspace{0.2 em}
+        \noindent Per quanto riguarda i \textbf{\textit{test} di sistema}, le sessioni di \textit{Sprint Review} hanno rappresentato un'importante occasione di verifica, durante la quale le funzionalità sviluppate venivano sottoposte a un processo di valutazione strutturato. Questo momento coinvolgeva attivamente il \textit{Product Owner}, garantendo un confronto diretto sulla conformità delle implementazioni rispetto ai requisiti iniziali.  
+
+        \vspace{0.2 em}
+        \noindent Durante queste revisioni, oltre al \textit{Product Owner}, erano presenti tutti i membri del \textit{team} di sviluppo che interagivano con il microservizio in questione. Il \textit{Product Owner}, essendo in contatto diretto con gli \textit{stakeholder} e gli esperti di dominio, ha svolto il ruolo di intermediario, assicurando che le soluzioni implementate rispondessero alle esigenze aziendali.
+
+        \vspace{0.2 em}
+        \noindent L'azienda, avendo già un quadro chiaro delle richieste degli \textit{stakeholder}, è stata in grado di valutare con precisione il livello di soddisfacimento dei requisiti. Questo approccio ha permesso di ottenere un riscontro immediato e di identificare eventuali aree di miglioramento prima del rilascio definitivo, favorendo un ciclo di sviluppo iterativo e allineato alle necessità del \textit{business}.
         
         \begin{figure}[H]
             \centering
@@ -365,15 +383,24 @@
         \noindent Come anticipato nella Sezione 1.6.4, il processo di validazione fornisce evidenza oggettiva sulle capacità del \textit{software} di soddisfare le aspettative e i bisogni del committente. 
 
         \vspace{0.2 em}
-        \noindent Data la natura accademica del mio \textit{stage}, non si sono svolte validazioni più formali che avrebbero incluso il coinvolgimento di \textit{stakeholder} esterni.
+        \noindent Data la natura accademica del mio \textit{stage}, non sono state condotte validazioni formali che avrebbero previsto il coinvolgimento diretto degli \textit{stakeholder} esterni o di un \textit{domain expert}.  
 
         \vspace{0.2 em}
-        \noindent Nel mio caso infatti, il processo di validazione è stato caratterizzato da un approccio collettivo, coinvolgendo diverse figure all'interno dell'organizzazione. La responsabilità primaria di tale validazione è stata assunta dal \textit{Product Owner} e dal \textit{Team Leader}, che ha supervisionato gli aspetti tecnici dell'implementazione. Durante una \textit{Sprint Review}, ho presentato le funzionalità implementate e il loro funzionamento a tutto il \textit{team} di sviluppo che interagisce con questo particolare microservizio.
+        \noindent Nel mio caso, la \textbf{validazione} del lavoro svolto è stata effettuata da diverse figure, a seconda della rilevanza degli avanzamenti apportati: il \textit{Product Owner}, il \textit{Team Leader} (che ha ricoperto anche il ruolo di mio \textit{tutor} aziendale) e, in alcuni casi, gli altri sviluppatori. Sebbene un’attività simile si sia già svolta durante i test di sistema, la validazione avrebbe richiesto un processo più strutturato e formale.  
+
+        \vspace{0.2 em}
+        \noindent L'obiettivo della validazione è verificare che il \textit{software}, in specifiche condizioni operative, sia in grado di soddisfare gli scopi per cui è stato progettato. Per questo motivo, è essenziale il coinvolgimento diretto degli \textit{stakeholder}. Di conseguenza, si può affermare che la vera validazione sarà effettuata in autonomia da SogeaSoft S.r.l., mentre il mio contributo si è limitato a una fase preliminare di verifica interna.
+
+        \vspace{0.2 em}
+        \noindent Idealmente, la validazione di una funzionalità dovrebbe avvenire una sola volta, senza necessità di ripetere il processo. Per raggiungere questo obiettivo, il \textit{team} deve presentare prove oggettive, supportate dalla documentazione, che dimostrino la conformità della funzionalità agli scenari di esecuzione e il pieno soddisfacimento dei requisiti.  
+
+        \vspace{0.2 em}
+        \noindent Per garantire un processo futuro di validazione efficace, ho dedicato particolare attenzione alla manutenzione e all’aggiornamento della documentazione tecnica su Wiki Azure. In questo modo, il codice da me sviluppato è accompagnato da tutte le informazioni progettuali necessarie, facilitando la comprensione e la verifica delle soluzioni implementate.
 
 
     \section{Risultati raggiunti}
         \subsection{Il microservizio}
-        L'estrazione del microservizio dal sistema monolitico preesistente ha raggiunto l'obiettivo prefissato, riuscendo preservare le funzionalità originarie pur trasferendole in un'architettura indipendente. L'esito positivo di questa migrazione è evidenziato dalla piena operatività del componente estratto, ora funzionante come entità autonoma al di fuori del contesto monolitico in cui era originariamente integrato.
+        L'estrazione del microservizio dal sistema monolitico preesistente ha raggiunto l'obiettivo prefissato, riuscendo preservare le funzionalità originarie pur trasferendole in un'architettura indipendente. L'esito positivo di questa migrazione è evidenziato dalla piena operatività del componente estratto, ora funzionante come entità autonoma al di fuori del contesto monolitico in cui era originariamente integrato. Al momento è possibile utilizzarlo solo tramite \textbf{Swagger}, ma l'azienda prevede di implementare anche i collegamenti con l'interfaccia più intuitiva attualmente in uso.
 
         \vspace{0.2 em}
         \noindent Il processo di estrazione ha richiesto l'implementazione di soluzioni tecniche che, sotto il profilo dell'eleganza architetturale, non sono perfette. Tuttavia, questi compromessi sono stati consapevolmente accettati in considerazione dell'obiettivo primario del progetto, che consisteva nell'estrazione funzionale del microservizio piuttosto che nella realizzazione di un'architettura ideale dal punto di vista teorico.
@@ -381,28 +408,28 @@
         \vspace{0.2 em}
         \noindent Al termine del periodo di \textit{stage}, il microservizio estratto ha raggiunto il livello di autonomia desiderato, pur mantenendo specifici canali di comunicazione con il sistema monolitico originario per garantire la continuità dei processi aziendali. Questa configurazione ha consentito al servizio di assumere la responsabilità esclusiva della gestione dei \texttt{rilevamenti} e delle \texttt{lavorazioni} associate alle \texttt{fasi} produttive, interfacciandosi con il sistema di gestione degli \texttt{ordini di produzione} e delle relative fasi (\texttt{OrdineProduzioneFase}), come è possibile osservare nella Figura \ref{fig:final-Swagger}.
         
-        \begin{figure}[H]
+        \begin{figure}
             \centering
             \includegraphics[width=1\linewidth]{BCS-Tessi//images/FinalSwagger.PNG}
-            \caption{Schermata iniziale per la gestione del microservizio \texttt{MS\_Rilevamento}}
+            \caption{Schermata iniziale di Swagger per la gestione del microservizio \texttt{MS\_Rilevamento}}
             \label{fig:final-Swagger}
         \end{figure}
 
         \vspace{0.2 em}
-        \noindent L'estrazione del microservizio ha prodotto un significativo miglioramento nell'efficienza operativa dell'organizzazione, risolvendo problematiche strutturali del sistema precedente, trattate nella Sezione 3.2.1. 
+        \noindent L'estrazione del microservizio ha prodotto un significativo miglioramento nell'efficienza operativa dell'organizzazione, risolvendo problematiche strutturali del sistema precedente, trattate nella Sezione 3.2.1. Inoltre, rispetto alle misurazioni su velocità ed efficienza citate nella Sezione 3.2.2, abbiamo osservato un miglioramento non indifferente soprattutto rispetto all'aggiornamento dei dati in tempo reale. 
 
         \vspace{0.2 em}
-        \noindent Nella configurazione precedente di SAI, l'aggiornamento dei dati avveniva attraverso procedure \textit{batch}, ossia di estrazione di un grande gruppo (\textit{batch}) di dati, eseguite con cadenza giornaliera, imponendo un ritardo sistematico di 24 ore nella disponibilità delle informazioni aggiornate. Questa latenza costituiva un ostacolo significativo per gli operai, che si trovavano a lavorare con dati non allineati alla situazione corrente.
+        \noindent Infatti, ella configurazione precedente di SAI, l'aggiornamento dei dati avveniva attraverso procedure \textit{batch} notturne, ossia di estrazione di un grande gruppo (\textit{batch}) di dati, eseguite ogni notte, imponendo un ritardo sistematico di 24 ore nella disponibilità delle informazioni aggiornate. Questa latenza costituiva un ostacolo significativo per gli operai, perché questa operazione era spesso soggetta a errori e un operaio doveva attendere diverse ore la risoluzione del problema. 
 
         \vspace{0.2 em}
-        \noindent L'implementazione della tecnologia Debezium ha rivoluzionato questo paradigma, introducendo un meccanismo di aggiornamento in tempo reale che elimina questa latenza. Ciò ha permesso ai lavoratori di accedere immediatamente ai dati aggiornati, senza dover attendere l'esecuzione delle procedure \textit{batch}.
+        \noindent L'implementazione della tecnologia Debezium ha rivoluzionato questo paradigma, introducendo un meccanismo di aggiornamento in tempo reale che elimina questa latenza. Ciò ha permesso ai lavoratori di accedere immediatamente ai dati aggiornati, senza dover attendere l'esecuzione delle procedure \textit{batch}. Tuttavia, questo cambiamento ha comportato un aumento del costo computazionale. Rispetto alle previsioni iniziali sul \textit{Return on Investment}, il beneficio derivante dall’incremento della velocità e dalla riduzione della necessità di intervento umano per la risoluzione di problemi ha compensato i costi aggiuntivi, portando a un bilancio complessivo neutro, senza un guadagno significativo. 
 
         \vspace{0.2 em}
-        \noindent Questa transizione verso un modello \textit{event-$driven_G$}, ossia una rilevazione e gestione di eventi immediata, comporta un inevitabile compromesso in termini di consumo di risorse computazionali. La maggiore reattività del sistema si traduce in un più intenso utilizzo dell'infrastruttura, richiedendo un bilanciamento attento tra benefici operativi e costi infrastrutturali. Considerando questo \textit{trade-off}, l'implementazione della sincronizzazione in tempo reale è stata strategicamente limitata ai soli dati per i quali la tempestività dell'aggiornamento rappresenta un requisito critico per i processi aziendali.
+        \noindent Infatti questa transizione verso un modello \textit{event-$driven_G$}, ossia una rilevazione e gestione di eventi immediata, comporta un inevitabile compromesso in termini di consumo di risorse computazionali. La maggiore reattività del sistema si traduce in un più intenso utilizzo dell'infrastruttura, richiedendo un bilanciamento attento tra benefici operativi e costi infrastrutturali. Considerando questo \textit{trade-off}, l'implementazione della sincronizzazione in tempo reale è stata strategicamente limitata ai soli dati per i quali la tempestività dell'aggiornamento rappresenta un requisito critico per i processi aziendali. 
 
         
         \subsection{Risultati quantitativi}
-        Durante il periodo di \textit{stage}, ho conseguito con successo \textbf{tre} dei quattro obiettivi obbligatori inizialmente concordati, unitamente all'obiettivo facoltativo. L'obiettivo classificato come "desiderabile" non è stato affrontato, in seguito a una rivalutazione delle priorità progettuali. Questo ha privilegiato lo sviluppo del Proof of Concept (PoC), ossia l'obiettivo facoltativo 1 (FA1), rispetto alla documentazione esaustiva dell'ecosistema dei servizi preesistenti e delle loro interdipendenze (OB3).
+        Durante il periodo di \textit{stage}, ho conseguito con successo \textbf{tre} dei quattro obiettivi obbligatori inizialmente concordati, unitamente all'obiettivo facoltativo. L'obiettivo classificato come desiderabile non è stato affrontato, in seguito a una rivalutazione delle priorità progettuali. Questo ha privilegiato lo sviluppo del Proof of Concept (PoC), ossia l'obiettivo facoltativo 1 (FA1), rispetto alla documentazione esaustiva dell'ecosistema dei servizi preesistenti e delle loro interdipendenze (OB3).
 
         \vspace{0.2 em}
         \noindent Questo cambiamento delle priorità delle attività si è rivelata funzionale al rispetto del vincolo temporale delle 304 ore allocate per l'esperienza formativa. La gestione del tempo ha inoltre consentito l'estensione delle attività oltre il perimetro inizialmente definito, permettendo la realizzazione di un prototipo funzionale che rappresenta l'evoluzione naturale del Proof of Concept sviluppato.
