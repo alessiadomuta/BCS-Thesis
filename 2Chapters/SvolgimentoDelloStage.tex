@@ -17,7 +17,7 @@
     \end{itemize}
     
     \vspace{0.2 em}
-    \noindent Il progetto di \textit{stage} si è focalizzato principalmente sull'analisi approfondita del dominio applicativo, con l'obiettivo di aggiornare e ridefinire il modello esistente. Questo processo ha previsto l'identificazione e la delimitazione dei \textit{bounded contexts} secondo i principi del \textit{Domain-Driven Design}, cercando di mantenere una rappresentazione chiara e coerente delle diverse aree funzionali del sistema. La fase successiva ha riguardato la formalizzazione dei requisiti funzionali e non funzionali, definendo così i confini tecnici e prestazionali necessari per lo sviluppo del microservizio. Come anticipato nella Sezione 1.6.2, le situazioni descritte possono costituire un modello di dominio completo.  
+    \noindent Il progetto di \textit{stage} si è focalizzato principalmente sull'analisi approfondita del dominio applicativo, con l'obiettivo di aggiornare e ridefinire il modello esistente. Questo processo ha previsto l'identificazione e la delimitazione dei \textit{bounded contexts} secondo i principi del \textit{Domain-Driven Design}, cercando di mantenere una rappresentazione chiara e coerente delle diverse aree funzionali del sistema. Le attività successive hanno riguardato la formalizzazione dei requisiti funzionali e non funzionali, definendo così i confini tecnici e prestazionali necessari per lo sviluppo del microservizio. Come anticipato nella Sezione 1.6.2, le situazioni descritte possono costituire un modello di dominio completo.  
 
     \vspace{0.2 em}
     \noindent L'obiettivo principale del progetto di \textit{stage} era individuare un modello di dominio specifico e svilupparne un prototipo. Dopo un'attenta valutazione, è stato scelto il \textbf{monitoraggio del processo produttivo} come ambito di intervento. Durante il lavoro, ho potuto constatare quanto sia complesso separare completamente i modelli di dominio, poiché alcuni si intersecano inevitabilmente. Questo mi ha portato alla consapevolezza che non esiste una soluzione perfetta in senso assoluto, bensì un compromesso tra le diverse esigenze e realtà operative. 
@@ -31,7 +31,7 @@
         \noindent L'analisi dei requisiti è stata condotta in collaborazione con il \textit{Product Owner}. L'obiettivo primario è stato comprendere approfonditamente le esigenze e le aspettative degli utenti finali, con particolare attenzione al contesto preesistente nel sistema monolitico.
         
         \vspace{0.2 em}
-        \noindent Per pervenire a una definizione precisa dei requisiti, si è adottata la metodologia delle \textit{User Story}, uno strumento concettuale che consente di descrivere sinteticamente e in forma narrativa i bisogni specifici degli utenti. Attraverso la redazione di un documento articolato che raccoglieva tali \textit{User Story}, è stato possibile procedere all'identificazione dei requisiti funzionali iniziali. Queste sono state sviluppate in modo incrementale, parallelamente all'approfondimento della conoscenza del dominio specifico.
+        \noindent Per raggiungere una definizione precisa dei requisiti, si è adottata la metodologia delle \textit{User Story}, uno strumento concettuale che consente di descrivere sinteticamente e in forma narrativa i bisogni specifici degli utenti. Attraverso la redazione di un documento articolato che raccoglieva tali \textit{User Story}, mi è stato possibile procedere all'identificazione dei requisiti funzionali iniziali. Queste sono state sviluppate in modo incrementale, parallelamente all'approfondimento della mia conoscenza del dominio specifico.
         
         \vspace{0.2 em}
         \noindent Un elemento metodologico di particolare rilevanza è stato l'utilizzo di prototipi dimostrativi. Tali strumenti si sono rivelati estremamente efficaci nel facilitare la visualizzazione della soluzione tanto per il cliente quanto per il \textit{team} di sviluppo, contribuendo a dissipare eventuali ambiguità concettuali.
@@ -78,7 +78,7 @@
         \noindent Sebbene l'implementazione si sia concentrata su un sottoinsieme specifico delle entità individuate, ho compreso comunque tutti i requisiti che ho individuato nelle attività di analisi. Questa scelta metodologica ha consentito di mantenere una visione olistica del progetto, garantendo al contempo una realizzazione maggiormente sostenibile e allineata con le risorse disponibili.
 
         \vspace{0.2 em}
-        \noindent I requisiti individuati li ho definiti seguendo le linee guida aziendali, assicurando così una perfetta coerenza con gli standard e le aspettative di SogeaSoft S.r.l. La Tabella \ref{tab:requisiti} rappresenta una sintesi concisa di tali requisiti, offrendo una panoramica strutturata degli obiettivi progettuali complessivi. 
+        \noindent I requisiti individuati li ho definiti seguendo le linee guida aziendali, assicurando così una perfetta coerenza con gli \textit{standard} e le aspettative di SogeaSoft S.r.l. La Tabella \ref{tab:requisiti} rappresenta una sintesi concisa di tali requisiti, offrendo una panoramica strutturata degli obiettivi progettuali complessivi. 
 
         \begin{table}[H]
         \centering
@@ -208,10 +208,10 @@
 
         
         \subsection{Implementazione}
-        La fase di progettazione è stata senza dubbio la più complessa, soprattutto a causa della mancanza di soluzioni definitive e della relativa novità del concetto di migrazione verso i microservizi\footnote{D. Shadija, M. Rezai, and R. Hill, "Towards an Understanding of Microservices," in Proceedings of the 2017 IEEE International Conference on Computer and Information Technology (CIT), Helsinki, Finland, 2017, pp. 1072-1078}. Nonostante le difficoltà iniziali, una volta definita la strategia da adottare, l'implementazione è proseguita in modo naturale, seguendo il percorso tracciato.  
+        Le attività di progettazione sono state senza dubbio le più complesse, soprattutto a causa della mancanza di soluzioni definitive e della relativa novità del concetto di migrazione verso i microservizi\footnote{D. Shadija, M. Rezai, and R. Hill, "Towards an Understanding of Microservices," in Proceedings of the 2017 IEEE International Conference on Computer and Information Technology (CIT), Helsinki, Finland, 2017, pp. 1072-1078}. Nonostante le difficoltà iniziali, una volta definita la strategia da adottare, l'implementazione è proseguita in modo naturale, seguendo il percorso tracciato.  
 
         \vspace{0.2 em}
-        \noindent La fase di codifica è stata improntata su un approccio \textit{learn by doing}: pur avendo una base di riferimento, ho dovuto affinare le mie competenze sul campo, confrontandomi regolarmente con il \textit{tutor} aziendale e il \textit{Product Owner} per ricevere \textit{feedback} e indicazioni utili.
+        \noindent L'attività di codifica è stata improntata su un approccio \textit{learn by doing}: pur avendo una base di riferimento, ho dovuto affinare le mie competenze sul campo, confrontandomi regolarmente con il \textit{tutor} aziendale e il \textit{Product Owner} per ricevere \textit{feedback} e indicazioni utili.
         
         \noindent Nello specifico, ho potuto implementare una struttura di progetto molto precisa, già anticipata nella Sezione 3.2.2 e rappresentata nella Figura \ref{fig:code-structure}.
 
@@ -302,7 +302,7 @@
         \noindent L'esecuzione della richiesta avviene in modalità asincrona (\texttt{await client.ExecuteAsync} \\ \texttt{(request)}), una scelta che ottimizza l'utilizzo delle risorse di sistema evitando blocchi durante l'attesa della risposta dalla rete.
 
         \vspace{0.2 em}
-        \noindent Nella fase di elaborazione, il codice verifica il successo della risposta e la presenza di contenuti. In caso positivo, i dati \textbf{$JSON_G$} ricevuti vengono deserializzati in un oggetto \texttt{RootDto} tramite \texttt{JsonConvert.DeserializeObject<RootDto>}. Da questo DTO radice, vengono estratte le informazioni necessarie come identificativi, codici e stati dell'ordine di produzione. Questo è un perfetto esempio di come vengono strutturati gli aggregati nel contesto DDD. 
+        \noindent Durante l'elaborazione, il codice verifica il successo della risposta e la presenza di contenuti. In caso positivo, i dati \textbf{$JSON_G$} ricevuti vengono deserializzati in un oggetto \texttt{RootDto} tramite \texttt{JsonConvert.DeserializeObject<RootDto>}. Da questo DTO radice, vengono estratte le informazioni necessarie come identificativi, codici e stati dell'ordine di produzione. Questo è un perfetto esempio di come vengono strutturati gli aggregati nel contesto DDD. 
 
         \vspace{0.2 em}
         \noindent Nel DDD, gli aggregati rappresentano raggruppamenti di entità e oggetti di valore che vengono trattati come un'unità coesa per garantire l'integrità dei dati. Qui vediamo come i dati provenienti da un sistema esterno (in formato JSON) vengono prima trasformati in un DTO neutro (\texttt{RootDto}), che agisce come struttura intermedia, e poi progressivamente ricostruiti negli oggetti di dominio veri e propri (\texttt{OrdineProduzione}, \texttt{OrdineProduzioneFase}, \texttt{Fase}). Questa operazione è visibile nella Figura \ref{fig:rootdto}.
@@ -342,7 +342,8 @@
 
         \noindent L'implementazione dunque si è svolta senza particolari difficoltà, seguendo le attività di progettazione precedentemente definite. Rispetto alla previsione iniziale illustrata nella Figura \ref{fig:product-backlog}, avevo stimato di implementare circa il 73\% dei requisiti individuati. Tuttavia, al termine dello sviluppo, ho potuto constatare di aver raggiunto un 76\%, superando leggermente le aspettative iniziali.  
 
-        In particolare, l'esplorazione di \textbf{Debezium} era inizialmente prevista solo a livello teorico, ma sono riuscita anche a soddisfare i primi requisiti per la sua implementazione, ponendo le basi per l'adozione completa di questo \textit{framework} nell'applicazione del \textit{pattern} \textit{Change Data Capture} (CDC). 
+        \vspace{0.2 em}
+        \noindent In particolare, l'esplorazione di \textbf{Debezium} era inizialmente prevista solo a livello teorico, ma sono riuscita anche a soddisfare i primi requisiti per la sua implementazione, ponendo le basi per l'adozione completa di questo \textit{framework} nell'applicazione del \textit{pattern} \textit{Change Data Capture} (CDC). 
 
         
         \subsection{Verifica e validazione}
@@ -389,7 +390,7 @@
         \noindent Nel mio caso, la \textbf{validazione} del lavoro svolto è stata effettuata da diverse figure, a seconda della rilevanza degli avanzamenti apportati: il \textit{Product Owner}, il \textit{Team Leader} (che ha ricoperto anche il ruolo di mio \textit{tutor} aziendale) e, in alcuni casi, gli altri sviluppatori. Sebbene un’attività simile si sia già svolta durante i test di sistema, la validazione avrebbe richiesto un processo più strutturato e formale.  
 
         \vspace{0.2 em}
-        \noindent L'obiettivo della validazione è verificare che il \textit{software}, in specifiche condizioni operative, sia in grado di soddisfare gli scopi per cui è stato progettato. Per questo motivo, è essenziale il coinvolgimento diretto degli \textit{stakeholder}. Di conseguenza, si può affermare che la vera validazione sarà effettuata in autonomia da SogeaSoft S.r.l., mentre il mio contributo si è limitato a una fase preliminare di verifica interna.
+        \noindent L'obiettivo della validazione è verificare che il \textit{software}, in specifiche condizioni operative, sia in grado di soddisfare gli scopi per cui è stato progettato. Per questo motivo, è essenziale il coinvolgimento diretto degli \textit{stakeholder}. Di conseguenza, si può affermare che la vera validazione sarà effettuata in autonomia da SogeaSoft S.r.l., mentre il mio contributo si è limitato a un momento  preliminare di verifica interna.
 
         \vspace{0.2 em}
         \noindent Idealmente, la validazione di una funzionalità dovrebbe avvenire una sola volta, senza necessità di ripetere il processo. Per raggiungere questo obiettivo, il \textit{team} deve presentare prove oggettive, supportate dalla documentazione, che dimostrino la conformità della funzionalità agli scenari di esecuzione e il pieno soddisfacimento dei requisiti.  
@@ -429,10 +430,10 @@
 
         
         \subsection{Risultati quantitativi}
-        Durante il periodo di \textit{stage}, ho conseguito con successo \textbf{tre} dei quattro obiettivi obbligatori inizialmente concordati, unitamente all'obiettivo facoltativo. L'obiettivo classificato come desiderabile non è stato affrontato, in seguito a una rivalutazione delle priorità progettuali. Questo ha privilegiato lo sviluppo del Proof of Concept (PoC), ossia l'obiettivo facoltativo 1 (FA1), rispetto alla documentazione esaustiva dell'ecosistema dei servizi preesistenti e delle loro interdipendenze (OB3).
+        Durante il periodo di \textit{stage}, ho conseguito con successo \textbf{tre} dei quattro obiettivi obbligatori inizialmente concordati, unitamente all'obiettivo facoltativo. L'obiettivo classificato come desiderabile non è stato affrontato, in seguito a una rivalutazione delle priorità progettuali. Questo ha privilegiato lo sviluppo del \textit{Proof of Concept} (PoC), ossia l'obiettivo facoltativo 1 (FA1), rispetto alla documentazione esaustiva dell'ecosistema dei servizi preesistenti e delle loro interdipendenze (OB3).
 
         \vspace{0.2 em}
-        \noindent Questo cambiamento delle priorità delle attività si è rivelata funzionale al rispetto del vincolo temporale delle 304 ore allocate per l'esperienza formativa. La gestione del tempo ha inoltre consentito l'estensione delle attività oltre il perimetro inizialmente definito, permettendo la realizzazione di un prototipo funzionale che rappresenta l'evoluzione naturale del Proof of Concept sviluppato.
+        \noindent Questo cambiamento delle priorità delle attività si è rivelata funzionale al rispetto del vincolo temporale delle 304 ore allocate per l'esperienza formativa. La gestione del tempo ha inoltre consentito l'estensione delle attività oltre il perimetro inizialmente definito, permettendo la realizzazione di un prototipo funzionale che rappresenta l'evoluzione naturale del \textit{Proof of Concept} sviluppato.
 
         \vspace{0.2 em}
         \noindent I risultati tangibili prodotti durante il periodo di \textit{stage} comprendono:
